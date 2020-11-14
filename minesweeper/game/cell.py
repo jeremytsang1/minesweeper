@@ -9,12 +9,13 @@ class Cell:
         UNOPENED = 4
         FLAG_INCORRECT = 5
         UNENCOUNTERED_BOMB = 6
-        DEATH_LOCATION = 7
+        OPENED_BOMB = 7
 
     MIN_COUNT = 0
     MAX_COUNT = 8
     ERROR_COMPONENT_TYPE = "component must be an int but is"
     ERROR_COMPONENT_VALUE = "component must be positive but is"
+    ERROR_FLAG_TYPE = "flag state must be type bool but is"
     ERROR_COUNT_TYPE = "count must be an int"
     ERROR_COUNT_VALUE = ("count must be between Cell.MIN_COUNT,"
                          " Cell.MAX_COUNT")
@@ -25,7 +26,7 @@ class Cell:
         Appearance.UNOPENED: '?',
         Appearance.FLAG_INCORRECT: '#',
         Appearance.UNENCOUNTERED_BOMB: '*',
-        Appearance.DEATH_LOCATION: '!',
+        Appearance.OPENED_BOMB: '!',
     }
 
     def __init__(self, row, col, bomb=False):
@@ -68,6 +69,19 @@ class Cell:
     def get_col(self):
         return self.col
 
+    def set_flag(self):
+        if self.appearance == Cell.Appearance.UNOPENED:
+            self.appearance = Cell.Appearance.FLAG
+            return True
+        return False
+
+    def unset_flag(self):
+        if self.appearance == Cell.Appearance.FLAG:
+            self.appearance = Cell.Appearance.UNOPENED
+            return True
+        else:
+            return False
+
     def set_count(self, count):
         """Opens a cell and sets it number.
 
@@ -80,9 +94,14 @@ class Cell:
         -------
         None
         """
+        if self.bomb:
+            raise Exception("")
         self.validate_count(count)
         self.count = count
-        self.appearance = Cell.Appearance.NUMBER
+        if count == 0:
+            self.appearance = Cell.Appearance.EMPTY
+        else:
+            self.appearance = Cell.Appearance.NUMBER
 
     def get_count(self):
         return self.count

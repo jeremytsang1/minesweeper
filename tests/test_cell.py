@@ -47,7 +47,53 @@ class TestCell(unittest.TestCase):
         self.cell.set_count(5)
         self.assertEqual(self.cell.text_appearance(), '5')
 
+    def test_set_flag_of_unopened_no_bomb(self):
+        self.assertTrue(self.cell.set_flag())
+        self.assertEqual(self.cell.get_appearance(), Cell.Appearance.FLAG)
 
+    def test_unset_flag_of_unopened_no_bomb(self):
+        self.cell.set_flag()
+        self.assertTrue(self.cell.unset_flag())
+        self.assertEqual(self.cell.get_appearance(), Cell.Appearance.UNOPENED)
+
+    def test_set_flag_of_flag(self):
+        self.assertTrue(self.cell.set_flag())
+        self.assertFalse(self.cell.set_flag())
+        self.assertEqual(self.cell.get_appearance(), Cell.Appearance.FLAG)
+
+    def test_unset_flag_of_no_flag(self):
+        self.assertFalse(self.cell.unset_flag())
+        self.assertEqual(self.cell.get_appearance(), Cell.Appearance.UNOPENED)
+
+    def test_set_flag_of_unopened_bomb(self):
+        self.cell = Cell(5, 2, True)
+        self.assertTrue(self.cell.set_flag())
+
+        self.assertEqual(self.cell.text_appearance(),
+                         Cell.TEXT_APPEARANCE_RULES[Cell.Appearance.FLAG])
+
+    def test_unset_flag_of_unopened_bomb(self):
+        self.cell = Cell(5, 2, True)
+        self.assertFalse(self.cell.unset_flag())
+
+        self.assertEqual(self.cell.text_appearance(),
+                         Cell.TEXT_APPEARANCE_RULES[Cell.Appearance.UNOPENED])
+
+    def test_set_flag_of_empty(self):
+        self.cell = Cell(5, 2, False)
+        self.cell.set_count(0)
+        self.assertFalse(self.cell.set_flag())
+
+        self.assertEqual(self.cell.text_appearance(),
+                         Cell.TEXT_APPEARANCE_RULES[Cell.Appearance.EMPTY])
+
+    def test_unset_flag_of_empty(self):
+        self.cell = Cell(5, 2, False)
+        self.cell.set_count(0)
+        self.assertFalse(self.cell.unset_flag())
+
+        self.assertEqual(self.cell.text_appearance(),
+                         Cell.TEXT_APPEARANCE_RULES[Cell.Appearance.EMPTY])
 
 
 if __name__ == '__main__':
