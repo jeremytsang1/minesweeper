@@ -34,7 +34,6 @@ class Cell:
         self.row = row
         self.col = col
         self.bomb = bomb
-        self.opened = False
         self.appearance = Cell.Appearance.UNOPENED
         self.count = None
 
@@ -70,17 +69,23 @@ class Cell:
         return self.col
 
     def set_count(self, count):
+        """Opens a cell and sets it number.
+
+        Parameters
+        ----------
+        count: int
+            Integer between Cell.MIN_COUNT and Cell.MAX_COUNT (inclusive for both).
+
+        Returns
+        -------
+        None
+        """
         self.validate_count(count)
         self.count = count
+        self.appearance = Cell.Appearance.NUMBER
 
     def get_count(self):
         return self.count
-
-    def set_opened(self):
-        self.opened = True
-
-    def get_opened(self):
-        return self.opened
 
     def is_bomb(self):
         return self.bomb

@@ -43,6 +43,11 @@ class TestCell(unittest.TestCase):
             self.cell.set_count(i)
             self.assertEqual(self.cell.get_count(), i)
 
+    def test_appearance_for_count(self):
+        self.cell.set_count(5)
+        self.assertEqual(self.cell.text_appearance(), '5')
+
+
 
 
 if __name__ == '__main__':
