@@ -4,7 +4,7 @@ from minesweeper.game.cell import Cell
 
 class TestCell(unittest.TestCase):
     def setUp(self):
-        pass
+        self.cell = None
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from minesweeper.game.board import Board
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        pass
+        self.board = None
 
 
 if __name__ == '__main__':
