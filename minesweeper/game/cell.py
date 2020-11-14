@@ -15,8 +15,8 @@ class Cell:
     MAX_COUNT = 8
     ERROR_COMPONENT_TYPE = "component must be an int but is"
     ERROR_COMPONENT_VALUE = "component must be positive but is"
-    ERROR_COUNT_TYPE = "adj_bomb_count must be an int"
-    ERROR_COUNT_VALUE = ("adj_bomb_count must be between Cell.MIN_COUNT,"
+    ERROR_COUNT_TYPE = "count must be an int"
+    ERROR_COUNT_VALUE = ("count must be between Cell.MIN_COUNT,"
                          " Cell.MAX_COUNT")
 
     TEXT_APPEARANCE_RULES = {
@@ -36,7 +36,7 @@ class Cell:
         self.bomb = bomb
         self.opened = False
         self.appearance = Cell.Appearance.UNOPENED
-        self.adj_bomb_count = None
+        self.count = None
 
     def validate_component(self, row, col):
         component_name = {row: "Row", col: "Col"}
@@ -69,12 +69,12 @@ class Cell:
     def get_col(self):
         return self.col
 
-    def set_adj_bomb_count(self, count):
+    def set_count(self, count):
         self.validate_count(count)
-        self.adj_bomb_count = count
+        self.count = count
 
-    def get_adj_bomb_count(self):
-        return self.adj_bomb_count
+    def get_count(self):
+        return self.count
 
     def set_opened(self):
         self.opened = True
@@ -93,8 +93,8 @@ class Cell:
 
     def text_appearance(self):
         if self.appearance == Cell.Appearance.NUMBER:
-            self.validate_count(self.adj_bomb_count)  # make sure not None
-            return str(self.adj_bomb_count)
+            self.validate_count(self.count)  # make sure not None
+            return str(self.count)
         else:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
 
