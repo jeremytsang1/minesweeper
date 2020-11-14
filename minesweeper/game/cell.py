@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Cell:
     class Appearance(Enum):
         FLAG = 1
@@ -96,3 +97,9 @@ class Cell:
             return str(self.adj_bomb_count)
         else:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
+
+    def __repr__(self):
+        return self.text_appearance()
+
+    def __str__(self):
+        return self.text_appearance()
