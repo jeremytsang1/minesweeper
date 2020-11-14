@@ -12,6 +12,8 @@ class Cell:
 
     MIN_COUNT = 0
     MAX_COUNT = 8
+    ERROR_COMPONENT_TYPE = "component must be an int but is"
+    ERROR_COMPONENT_VALUE = "component must be positive but is"
     ERROR_COUNT_TYPE = "adj_bomb_count must be an int"
     ERROR_COUNT_VALUE = ("adj_bomb_count must be between Cell.MIN_COUNT,"
                          " Cell.MAX_COUNT")
@@ -26,12 +28,31 @@ class Cell:
     }
 
     def __init__(self, row, col, bomb=False):
-        self.row
-        self.col
+        self.validate_component(row, col)
+
+        self.row = row
+        self.col = col
         self.bomb = bomb
         self.opened = False
         self.appearance = Cell.Appearance.UNOPENED
         self.adj_bomb_count = None
+
+    def validate_component(self, row, col):
+        component_name = {row: "Row", col: "Col"}
+
+        for component in (row, col):
+            if type(component) != int:
+                msg = (f'{component_name[component]} '
+                       f'{Cell.ERROR_COMPONENT_TYPE} '
+                       f'{component} (type {type(component)})')
+                raise TypeError(msg)
+            elif component < 0:
+                msg = (f'{component_name[component]} '
+                       f'{Cell.ERROR_COMPONENT_VALUE} '
+                       f'{component}')
+                raise ValueError(msg)
+            else:
+                pass
 
     def validate_count(self, count):
         if type(count) != int:
@@ -51,7 +72,7 @@ class Cell:
         self.validate_count(count)
         self.adj_bomb_count = count
 
-    def get_adj_bomb_count(self, count):
+    def get_adj_bomb_count(self):
         return self.adj_bomb_count
 
     def set_opened(self):
