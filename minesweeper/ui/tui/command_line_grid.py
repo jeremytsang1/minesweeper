@@ -16,9 +16,13 @@ class CommandLineGrid():
         """
         self.HEIGHT = height
         self.WIDTH = width
+
         if cell_width is None:
-            self.CELL_WIDTH = max(self.digit_count(self.HEIGHT) - 1,
-                                  self.digit_count(self.WIDTH) - 1) + 2
+            self.CELL_WIDTH = self.mininum_permissible_cell_width()
+        else:
+            self.CELL_WIDTH = min(cell_width,
+                                  self.mininum_permissible_cell_width())
+
         self.UNIT_CEIL = self.CELL_WIDTH * self.LINE
 
     @staticmethod
@@ -31,6 +35,10 @@ class CommandLineGrid():
             tmp //= CommandLineGrid.BASE
             digit_count += 1
         return digit_count
+
+    def mininum_permissible_cell_width(self):
+        return max(self.digit_count(self.HEIGHT) - 1,
+                   self.digit_count(self.WIDTH) - 1) + 2
 
     def place_elt_in_cell(self, elt):
         return str(elt).center(self.CELL_WIDTH)
@@ -61,7 +69,8 @@ class CommandLineGrid():
     def make_col_num_row(self):
         return self.make_row([''] + [i for i in range(self.WIDTH)])
 
-    def get_shape(self, itr_2d, row_num):
+    @staticmethod
+    def get_shape(itr_2d, row_num):
         return len(itr_2d), len(itr_2d[row_num])
 
     def validate_shape(self, itr_2d):
@@ -75,7 +84,7 @@ class CommandLineGrid():
                     self.WIDTH, self.HEIGHT, *self.get_shape(itr_2d, i)
                 )
 
-    def make_table_from_2d_itr(self, itr_2d):
+    def make_table_from_itr_2d(self, itr_2d):
         self.validate_shape(itr_2d)
 
         divider = self.make_divider()

@@ -10,7 +10,7 @@ class TerminalUI():
         self.coli_grid = None
 
     def render_board(self):
-        return self.coli_grid.make_table_from_2d_itr(self.board.get_grid())
+        return self.coli_grid.make_table_from_itr_2d(self.board.get_grid())
 
     def start_game(self):
         pass
