@@ -122,8 +122,28 @@ class Cell:
         else:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
 
+    def open_cell(self, count):
+        if self.is_bomb():
+            self.set_appearance = Cell.Appearance.OPENED_BOMB
+
     def __repr__(self):
         return self.text_appearance()
 
     def __str__(self):
         return self.text_appearance()
+
+
+class CellError(Exception):
+    """Base exception class for objects of type Cell."""
+    def __init__(self, Cell):
+        self.row = row
+        self.col = col
+
+
+
+class AttemptToOpenFlagCell(CellError):
+    """When a user clicks a flag.
+
+    """
+    def __init__(self, row, col):
+        super().__init__("")
