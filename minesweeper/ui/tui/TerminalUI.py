@@ -41,6 +41,11 @@ class TerminalUI():
         if contents is None:
             contents = ["" for _ in range(self.WIDTH + 1)]
 
+        if len(contents) < 1 + self.WIDTH:
+            raise NotEnoughContents(1 + self.WIDTH, contents)
+        if len(contents) > 1 + self.WIDTH:
+            raise TooMuchContents(1 + self.WIDTH, contents)
+
         if seperator is None:
             seperator = self.WALL
 
@@ -58,13 +63,28 @@ class TerminalUI():
     def make_col_num_row(self):
         return self.make_row([''] + [i for i in range(self.WIDTH)])
 
+    def render_board(self):
+        divider = self.make_divider()
+        rendered = divider
+        rendered += f"\n{self.make_col_num_row()}"
+        rendered += f"\n{divider}"
+        for i in range(self.HEIGHT):
+            rendered += f"\n{self.make_row([i] + self.board.get_grid()[i])}"
+            rendered += f"\n{divider}"
+        return rendered
+
 
 class TerminalUIError(Exception):
-    def __init__(self):
-        super().__init__()
+    pass
 
 
-class NotEnoughContents:
+class NotEnoughContents(TerminalUIError):
+    def __init__(self, required, contents):
+        msg = f"(required, actual): ({required}, {len(contents)})"
+        super().__init__(msg)
+
+
+class TooMuchContents(TerminalUIError):
     def __init__(self, required, contents):
         msg = f"(required, actual): ({required}, {len(contents)})"
         super().__init__(msg)
