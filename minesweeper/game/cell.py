@@ -88,7 +88,8 @@ class Cell:
         Parameters
         ----------
         count: int
-            Integer between Cell.MIN_COUNT and Cell.MAX_COUNT (inclusive for both).
+            Integer between Cell.MIN_COUNT and Cell.MAX_COUNT (inclusive for
+            both).
 
         Returns
         -------

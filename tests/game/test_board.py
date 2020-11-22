@@ -75,7 +75,5 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(repr(self.board), expected)
 
 
-
-
 if __name__ == '__main__':
     unittest.main()
