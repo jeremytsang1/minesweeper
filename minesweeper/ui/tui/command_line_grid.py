@@ -1,14 +1,12 @@
-class TerminalUI():
-    """User interface for command line version of the game.
-
-    """
+class CommandLineGrid():
+    """Board class for printing on command line."""
     BASE = 10
     SEP = "+"
     LINE = "-"
     WALL = "|"
 
-    def __init__(self, board):
-        """Creates a new Terminal UI.
+    def __init__(self, height, width, cell_width=None):
+        """Creates a new Commandline Grid.
 
         Parameters
         ----------
@@ -16,21 +14,21 @@ class TerminalUI():
             Minesweeper game board.
 
         """
-        self.board = board
-        self.HEIGHT = board.get_height()
-        self.WIDTH = board.get_width()
-        self.CELL_WIDTH = max(self.digit_count(self.HEIGHT) - 1,
-                              self.digit_count(self.WIDTH) - 1) + 2
+        self.HEIGHT = height
+        self.WIDTH = width
+        if cell_width is None:
+            self.CELL_WIDTH = max(self.digit_count(self.HEIGHT) - 1,
+                                  self.digit_count(self.WIDTH) - 1) + 2
         self.UNIT_CEIL = self.CELL_WIDTH * self.LINE
 
     @staticmethod
     def digit_count(num):
         tmp = -num if num < 0 else num
         digit_count = 1
-        tmp /= TerminalUI.BASE
+        tmp /= CommandLineGrid.BASE
 
         while tmp != 0:
-            tmp //= TerminalUI.BASE
+            tmp //= CommandLineGrid.BASE
             digit_count += 1
         return digit_count
 
@@ -63,28 +61,56 @@ class TerminalUI():
     def make_col_num_row(self):
         return self.make_row([''] + [i for i in range(self.WIDTH)])
 
-    def render_board(self):
+    def get_shape(self, itr_2d, row_num):
+        return len(itr_2d), len(itr_2d[row_num])
+
+    def validate_shape(self, itr_2d):
+        if len(itr_2d) != self.HEIGHT:
+            raise Iterable2DShapeIncompatible(
+                self.WIDTH, self.HEIGHT, *self.get_shape(itr_2d, 0)
+            )
+        for i, row in enumerate(itr_2d):
+            if len(row) != self.WIDTH:
+                raise Iterable2DShapeIncompatible(
+                    self.WIDTH, self.HEIGHT, *self.get_shape(itr_2d, i)
+                )
+
+    def make_table_from_2d_itr(self, itr_2d):
+        self.validate_shape(itr_2d)
+
         divider = self.make_divider()
         rendered = divider
         rendered += f"\n{self.make_col_num_row()}"
         rendered += f"\n{divider}"
-        for i in range(self.HEIGHT):
-            rendered += f"\n{self.make_row([i] + self.board.get_grid()[i])}"
-            rendered += f"\n{divider}"
+
+        for row_num in range(len(itr_2d)):
+            rendered += (f"\n{self.make_row([row_num] + itr_2d[row_num])}"
+                         f"\n{divider}")
         return rendered
 
 
-class TerminalUIError(Exception):
+class CommandLineGridError(Exception):
     pass
 
 
-class NotEnoughContents(TerminalUIError):
+class NotEnoughContents(CommandLineGridError):
     def __init__(self, required, contents):
         msg = f"(required, actual): ({required}, {len(contents)})"
         super().__init__(msg)
 
 
-class TooMuchContents(TerminalUIError):
+class TooMuchContents(CommandLineGridError):
     def __init__(self, required, contents):
         msg = f"(required, actual): ({required}, {len(contents)})"
+        super().__init__(msg)
+
+
+class Iterable2DShapeIncompatible(CommandLineGridError):
+    """Error for when the iterable trying to print doesn't have same size as the
+    instance
+
+    """
+    def __init__(self, exp_width, exp_height, act_height, act_width):
+        msg = (f"Expected shape: ({exp_height}, {exp_width})\n"
+               f"Passed   shape: ({act_height}, {act_width})")
         super().__init__(msg)
