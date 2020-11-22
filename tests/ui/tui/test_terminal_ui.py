@@ -6,12 +6,17 @@ from minesweeper.game.board import Board
 class TestTerminalUI(unittest.TestCase):
     def setUp(self):
         self.board = Board(10, 10)
-        self.tui = TerminalUI
+        self.tui = TerminalUI(self.board)
         pass
 
     def test_digit_count(self):
         self.assertEqual(TerminalUI.digit_count(124), 3)
         self.assertEqual(TerminalUI.digit_count(3357395), 7)
+
+    def test_divider(self):
+        expected = "|---+---+---+---+---+---+---+---+---+---+---|"
+        self.assertEqual(self.tui.make_divider(), expected)
+
 
     def test_col_nums(self, ):
         expected = (
