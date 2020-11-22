@@ -17,6 +17,10 @@ class TestTerminalUI(unittest.TestCase):
         expected = "|---+---+---+---+---+---+---+---+---+---+---|"
         self.assertEqual(self.tui.make_divider(), expected)
 
+    def test_empty_row(self):
+        print(79 * "-")
+        print(self.tui.make_row([''] + [i for i in range(10)]))
+
 
     def test_col_nums(self, ):
         expected = (
