@@ -41,5 +41,6 @@ class BoardNegativeDimsError(BoardError):
         super().__init__('Cannot create Board with negative dimensions '
                          f'({height}, {width}).')
 
+
 if __name__ == '__main__':
     board = Board(5, 5)

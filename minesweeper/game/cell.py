@@ -135,15 +135,10 @@ class Cell:
 
 class CellError(Exception):
     """Base exception class for objects of type Cell."""
-    def __init__(self, Cell):
-        self.row = row
-        self.col = col
-
+    pass
 
 
 class AttemptToOpenFlagCell(CellError):
-    """When a user clicks a flag.
-
-    """
+    """When a user clicks a flag attempting to open it."""
     def __init__(self, row, col):
         super().__init__("")
