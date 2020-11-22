@@ -1,4 +1,4 @@
-from minesweeper.ui.tui.command_line_grid import CommandLineGrid
+from minesweeper.ui.tui.table_printer import TablePrinter
 
 
 class TerminalUI():
@@ -7,10 +7,9 @@ class TerminalUI():
     """
     def __init__(self, ):
         self.board = None
-        self.coli_grid = None
 
     def render_board(self):
-        return self.coli_grid.make_table_from_itr_2d(self.board.get_grid())
+        return TablePrinter.makeTable(self.board.get_grid())
 
     def start_game(self):
         pass

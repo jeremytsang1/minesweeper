@@ -1,15 +1,13 @@
 from minesweeper.ui.tui.command_line_grid import CommandLineGrid
 
+
 class TablePrinter():
     """Class to print 2D tables
 
     """
     @staticmethod
     def makeTable(itr_2d):
-        try:
-            shape = CommandLineGrid.get_shape(itr_2d, 0)
-        except TypeError:
-            print(shape)
+        shape = CommandLineGrid.get_shape(itr_2d, 0)
 
         grid = CommandLineGrid(*shape, TablePrinter.get_longest_len(itr_2d))
         return grid.make_table_from_itr_2d(itr_2d)
@@ -22,16 +20,3 @@ class TablePrinter():
                 if longest < len(str(elt)):
                     longest = len(str(elt))
         return longest
-
-
-class TablePrinterError(Exception):
-    pass
-
-
-class TablePrinterShape(TablePrinterError):
-    """Error for when itrerable to print is not 2D.
-
-    """
-    def __init__(self, ):
-        msg = ("Expected shape `itr_2d` to have 2dimensions \n")
-        super().__init__(msg)
