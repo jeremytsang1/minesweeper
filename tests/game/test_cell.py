@@ -98,7 +98,8 @@ class TestCell(unittest.TestCase):
     def test_print_cell(self):
         self.cell = Cell(5, 2, True)
         self.cell.set_count
-        print(self.cell)
+        self.assertEqual(repr(self.cell), "?")
+
 
 if __name__ == '__main__':
     unittest.main()
