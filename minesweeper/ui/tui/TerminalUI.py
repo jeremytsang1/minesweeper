@@ -34,9 +34,12 @@ class TerminalUI():
             digit_count += 1
         return digit_count
 
+    def place_elt_in_cell(self, elt):
+        return str(elt).center(self.CELL_WIDTH)
+
     def make_row(self, contents=None, seperator=None):
         if contents is None:
-            contents = ["" for _ in range(self.WIDTH + 2)]
+            contents = ["" for _ in range(self.WIDTH + 1)]
 
         if seperator is None:
             seperator = self.WALL
@@ -52,8 +55,8 @@ class TerminalUI():
         return self.make_row([self.UNIT_CEIL for _ in range(1 + self.WIDTH)],
                              self.SEP)
 
-    def place_elt_in_cell(self, elt):
-        return str(elt).center(self.CELL_WIDTH)
+    def make_col_num_row(self):
+        return self.make_row([''] + [i for i in range(self.WIDTH)])
 
 
 class TerminalUIError(Exception):
