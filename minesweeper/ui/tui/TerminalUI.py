@@ -34,14 +34,6 @@ class TerminalUI():
             digit_count += 1
         return digit_count
 
-    def make_divider(self):
-        result = self.UNIT_CEIL
-
-        for _ in range(self.WIDTH):
-            result += self.SEP + self.UNIT_CEIL
-
-        return f'{self.WALL}{result}{self.WALL}'
-
     def make_row(self, contents=None, seperator=None):
         if contents is None:
             contents = ["" for _ in range(self.WIDTH + 2)]
@@ -55,6 +47,10 @@ class TerminalUI():
             row += f'{seperator}{self.place_elt_in_cell(elt)}'
 
         return f'{self.WALL}{row}{self.WALL}'
+
+    def make_divider(self):
+        return self.make_row([self.UNIT_CEIL for _ in range(1 + self.WIDTH)],
+                             self.SEP)
 
     def place_elt_in_cell(self, elt):
         return str(elt).center(self.CELL_WIDTH)
