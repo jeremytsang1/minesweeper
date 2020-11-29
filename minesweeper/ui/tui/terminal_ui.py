@@ -31,7 +31,7 @@ class TerminalUI():
     COL_PROMPT = "\nWhich col?"
     GOODBYE = "Goodbye!"
 
-    def __init__(self, ):
+    def __init__(self):
         self.game = None
 
     def render_board(self):
