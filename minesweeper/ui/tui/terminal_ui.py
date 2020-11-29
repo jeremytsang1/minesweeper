@@ -114,8 +114,8 @@ class TUI():
         print(f'\n{TUI.GOODBYE}')
 
     def get_position_from_user(self):
-        row = self.read_int(f"{TUI.ROW_PROMPT}")  # TODO: restrict to max row
-        col = self.read_int(f"{TUI.COL_PROMPT}")  # TODO: restrict to max col
+        row = self.read_int(f"{TUI.ROW_PROMPT}", 0, self.height)
+        col = self.read_int(f"{TUI.COL_PROMPT}", 0, self.width)
         return row, col
 
     @staticmethod
