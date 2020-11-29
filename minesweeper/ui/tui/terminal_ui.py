@@ -41,7 +41,7 @@ class TUI():
     def start_game(self):
         MENU_ACTIONS = {
             1: self.new_game,
-            2: self.end_game
+            2: self.quit_and_end_program
         }
 
         menu_option = self.read_menu_option(self.MAIN_MENU)
@@ -104,7 +104,7 @@ class TUI():
         self.bomb_count = bomb_count
 
     @staticmethod
-    def end_game():
+    def quit_and_end_program():
         print(f'\n{TUI.GOODBYE}')
 
     def get_position_from_user(self):
