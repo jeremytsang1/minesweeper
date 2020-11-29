@@ -38,19 +38,16 @@ class TerminalUI():
         return TablePrinter.makeTable(self.board.get_grid())
 
     def start_game(self):
-        menu_option = None
         MENU_ACTIONS = {
             1: self.new_game,
             2: self.end_game
         }
 
-        while menu_option is None:
-            menu_option = self.read_menu_option(self.MAIN_MENU)
+        menu_option = self.read_menu_option(self.MAIN_MENU)
 
         MENU_ACTIONS[menu_option]()
 
     def new_game(self):
-        menu_option = None
         MENU_ACTIONS = {
             1: self.start_easy,
             2: self.start_medium,
@@ -58,8 +55,7 @@ class TerminalUI():
             4: self.start_custom,
         }
 
-        while menu_option is None:
-            menu_option = self.read_menu_option(self.NEW_GAME_MENU)
+        menu_option = self.read_menu_option(self.NEW_GAME_MENU)
 
         MENU_ACTIONS[menu_option]()
 
@@ -84,15 +80,8 @@ class TerminalUI():
         print(f'\n{TerminalUI.GOODBYE}')
 
     def get_position_from_user(self):
-        row = None
-        col = None
-
-        while row is None:
-            row = self.read_int(f"{TerminalUI.ROW_PROMPT}")  # TODO: restrict to max row
-
-        while col is None:
-            col = self.read_int(f"{TerminalUI.COL_PROMPT}")  # TODO: restrict to max col
-
+        row = self.read_int(f"{TerminalUI.ROW_PROMPT}")  # TODO: restrict to max row
+        col = self.read_int(f"{TerminalUI.COL_PROMPT}")  # TODO: restrict to max col
         return row, col
 
     @staticmethod
@@ -101,11 +90,14 @@ class TerminalUI():
 
     @staticmethod
     def read_int(msg, min_val=0, max_val=MAX_INT):
-        try:
-            return TerminalUI.validate_range(int(input(f"\n{msg}\n> ")), min_val, max_val)
-        except ValueError:
-            print("\nPlease enter an integer!")
-            return None
+        val = None
+        while val is None:
+            try:
+                val = TerminalUI.validate_range(int(input(f"\n{msg}\n> ")), min_val, max_val)
+            except ValueError:
+                print("\nPlease enter an integer!")
+                val = None
+        return val
 
     @staticmethod
     def validate_range(val, min_val, max_val):
