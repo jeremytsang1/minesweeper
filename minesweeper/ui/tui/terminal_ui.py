@@ -116,8 +116,8 @@ class TUI():
         )
 
     # -------------------------------------------------------------------------
-
     # End game and quitting functions
+
     @staticmethod
     def quit_and_end_program():
         print(f'\n{TUI.GOODBYE}')
