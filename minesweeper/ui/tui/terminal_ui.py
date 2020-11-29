@@ -45,6 +45,9 @@ class TUI():
     def render_board(self):
         return TablePrinter.makeTable(self.board.get_grid())
 
+    # -------------------------------------------------------------------------
+    # Main menu functions
+
     def start_game(self):
         MENU_ACTIONS = {
             1: self.new_game,
@@ -52,6 +55,9 @@ class TUI():
         }
         menu_option = self.read_menu_option(self.MAIN_MENU)
         MENU_ACTIONS[menu_option]()
+
+    # -------------------------------------------------------------------------
+    # New game menu functions
 
     def new_game(self):
         MENU_ACTIONS = {
@@ -109,11 +115,18 @@ class TUI():
             sep="\n",
         )
 
+    # -------------------------------------------------------------------------
+
+    # End game and quitting functions
     @staticmethod
     def quit_and_end_program():
         print(f'\n{TUI.GOODBYE}')
 
+    # -------------------------------------------------------------------------
+    # Input functions
+
     def get_position_from_user(self):
+        """Assumes a game is currently running."""
         row = self.read_int(f"{TUI.ROW_PROMPT}", 0, self.height)
         col = self.read_int(f"{TUI.COL_PROMPT}", 0, self.width)
         return row, col
@@ -152,6 +165,7 @@ class TUI():
 
     @staticmethod
     def make_menu_str(menu):
+        """Use to concatenate menu iterables into single string."""
         return "\n".join(menu)
 
 
