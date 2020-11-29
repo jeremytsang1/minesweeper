@@ -50,6 +50,33 @@ class TerminalUI():
         MENU_ACTIONS[menu_option]()
 
     def new_game(self):
+        menu_option = None
+        MENU_ACTIONS = {
+            1: self.start_easy,
+            2: self.start_medium,
+            3: self.start_hard,
+            4: self.start_custom,
+        }
+
+        while menu_option is None:
+            menu_option = self.read_menu_option(self.NEW_GAME_MENU)
+
+        MENU_ACTIONS[menu_option]()
+
+    def start_easy(self):
+        print("\nStarting EASY game")
+        pass
+
+    def start_medium(self):
+        print("\nStarting MEDIUM game")
+        pass
+
+    def start_hard(self):
+        print("\nStarting HARD game")
+        pass
+
+    def start_custom(self):
+        print("\nStarting CUSTOM game")
         pass
 
     @staticmethod
