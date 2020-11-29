@@ -55,7 +55,19 @@ class TerminalUI():
     @staticmethod
     def end_game():
         print(f'\n{TerminalUI.GOODBYE}')
-+
+
+    def get_position_from_user(self):
+        row = None
+        col = None
+
+        while row is None:
+            row = self.read_int(f"{TerminalUI.ROW_PROMPT}")  # TODO: restrict to max row
+
+        while col is None:
+            col = self.read_int(f"{TerminalUI.COL_PROMPT}")  # TODO: restrict to max col
+
+        return row, col
+
     @staticmethod
     def read_menu_option(menu):
         return TerminalUI.read_int(TerminalUI.make_menu_str(menu), 1, len(menu) + 1)
