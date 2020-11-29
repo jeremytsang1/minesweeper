@@ -1,4 +1,5 @@
 from minesweeper.ui.tui.table_printer import TablePrinter
+from minesweeper.game.board import Board
 
 
 class TUI():
@@ -151,7 +152,9 @@ class TUI():
 
     def print_dummy_board(self):
         print('\nprint_dummy_board()')
-        pass
+        dummy_board = Board([[False for _ in range(self.width)]
+                             for _ in range(self.height)])
+        print(TablePrinter.makeTable(dummy_board.get_grid()))
 
     def print_real_board(self):
         print('\nprint_real_board()')
