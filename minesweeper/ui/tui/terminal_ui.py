@@ -133,7 +133,7 @@ class TUI():
         # TODO: take the action from the menu and do the MENU_ACTION
 
     def print_turn(self):
-        print(f"Turns taken: {self.turn}")
+        print(f"\nTurns taken: {self.turn}")
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
