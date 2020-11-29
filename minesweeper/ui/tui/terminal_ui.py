@@ -71,6 +71,7 @@ class TUI():
 
         self.reset_attributes()
         self.turn = 0
+        self.take_turn()
 
     def start_easy(self):
         self.make_game_info(10, 10, 10)
@@ -117,6 +118,22 @@ class TUI():
 
     # -------------------------------------------------------------------------
     # Turn menu functions
+
+    def take_turn(self):
+        MENU_ACTIONS = {
+            # TODO: See TURN_MENU for details
+        }
+        self.print_turn()
+        # TODO: display blank dummy board (since real board not initialized till first move
+
+        menu_option = self.read_menu_option(self.TURN_MENU)
+        MENU_ACTIONS[menu_option]()
+        # TODO: initialiaze board if turn 0
+        # TODO: display the turn menu
+        # TODO: take the action from the menu and do the MENU_ACTION
+
+    def print_turn(self):
+        print(f"Turns taken: {self.turn}")
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
