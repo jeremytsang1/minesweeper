@@ -29,6 +29,7 @@ class TerminalUI():
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
+    GOODBYE = "Goodbye!"
 
     def __init__(self, ):
         self.game = None
