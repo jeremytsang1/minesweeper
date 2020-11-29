@@ -9,14 +9,13 @@ class Game:
 
     def __init__(self, height, width, bomb_count=1,
                  first_click_row=0, first_click_col=0):
-        self.height = height
-        self.width = width
         self.bomb_count = bomb_count
 
         if height < Game.MIN_HEIGHT or width < Game.MIN_WIDTH:
             raise GameNegativeDimsError(height, width)
 
-        self.board = Board(Game.lay_bombs(first_click_row, first_click_col))
+        self.board = Board(Game.lay_bombs(height, width,
+                                          first_click_row, first_click_col))
 
     def validate_init_input(self):
         self.validate_shape()
@@ -48,7 +47,7 @@ class Game:
         pass
 
     @staticmethod
-    def lay_bombs(first_click_row, first_click_col):
+    def lay_bombs(height, width, first_click_row, first_click_col):
         pass
 
 
