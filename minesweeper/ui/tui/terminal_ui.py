@@ -34,7 +34,7 @@ class TUI():
 
     def __init__(self):
         self.game = None
-        self.reset_stats()
+        self.reset_attributes()
 
     def reset_attributes(self):
         self.height = None
@@ -62,7 +62,7 @@ class TUI():
             3: self.start_hard,
             4: self.start_custom,
         }
-
+        self.reset_attributes()
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
 
         MENU_ACTIONS[menu_option]()
