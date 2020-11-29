@@ -104,7 +104,7 @@ class TerminalUI():
         try:
             return TerminalUI.validate_range(int(input(f"\n{msg}\n> ")), min_val, max_val)
         except ValueError:
-            print("Please enter an integer!")
+            print("\nPlease enter an integer!")
             return None
 
     @staticmethod
@@ -113,7 +113,7 @@ class TerminalUI():
             return val
         else:
             print(
-                "Please enter an int in the interval",
+                "\nPlease enter an int in the interval",
                 TerminalUI.make_range_string(min_val, max_val)
             )
 
