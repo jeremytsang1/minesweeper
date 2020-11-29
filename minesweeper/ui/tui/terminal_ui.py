@@ -33,10 +33,10 @@ class TUI():
     GOODBYE = "Goodbye!"
 
     def __init__(self):
-        self.game = None
         self.reset_attributes()
 
     def reset_attributes(self):
+        self.game = None
         self.height = None
         self.width = None
         self.bomb_count = None
