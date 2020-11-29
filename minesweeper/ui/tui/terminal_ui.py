@@ -34,6 +34,13 @@ class TUI():
 
     def __init__(self):
         self.game = None
+        self.reset_stats()
+
+    def reset_attributes(self):
+        self.height = None
+        self.width = None
+        self.bomb_count = None
+        self.turn = None
 
     def render_board(self):
         return TablePrinter.makeTable(self.board.get_grid())
