@@ -118,15 +118,15 @@ class TUI():
 
     @staticmethod
     def read_int(msg, min_val=0, max_val=MAX_INT):
-        val = None
-        while val is None:
+        usr_input = None
+        while usr_input is None:
             try:
-                val = int(input(TUI.PROMPT_APPEARANCE.format(msg)))
-                val = TUI.validate_range(val, min_val, max_val)
+                usr_input = int(input(TUI.PROMPT_APPEARANCE.format(msg)))
+                usr_input = TUI.validate_range(usr_input, min_val, max_val)
             except ValueError:
                 print("\nPlease enter an integer!")
-                val = None
-        return val
+                usr_input = None
+        return usr_input
 
     @staticmethod
     def validate_range(val, min_val, max_val):
