@@ -23,7 +23,7 @@ class TUI():
         "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
     )
-    GAME_MENU = (
+    TURN_MENU = (
         "1. Open single cell",
         "2. Open all adjacents to a particular cell",
         "3. Quit.",
