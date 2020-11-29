@@ -66,6 +66,7 @@ class TUI():
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
 
         MENU_ACTIONS[menu_option]()
+        self.turn = 0
 
     def start_easy(self):
         self.make_game_info(10, 10, 10)
