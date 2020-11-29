@@ -60,20 +60,47 @@ class TerminalUI():
         MENU_ACTIONS[menu_option]()
 
     def start_easy(self):
-        print("\nStarting EASY game")
-        pass
+        self.make_game_info(10, 10, 10)
+        self.display_start_game("EASY")
 
     def start_medium(self):
-        print("\nStarting MEDIUM game")
-        pass
+        self.make_game_info(16, 16, 40)
+        self.display_start_game("MEDIUM")
 
     def start_hard(self):
-        print("\nStarting HARD game")
-        pass
+        self.make_game_info(16, 30, 99)
+        self.display_start_game("HARD")
 
     def start_custom(self):
-        print("\nStarting CUSTOM game")
-        pass
+        self.make_game_info(*self.read_custom_game_data())
+        self.display_start_game("CUSTOM")
+
+    @staticmethod
+    def read_custom_game_data():
+        height = TerminalUI.read_int(TerminalUI.HEIGHT_PROMPT, 1, TerminalUI.MAX_INT)
+        width = TerminalUI.read_int(TerminalUI.WIDTH_PROMPT, 1, TerminalUI.MAX_INT)
+        max_bomb_count = height * width
+        bomb_count = TerminalUI.read_int(
+            TerminalUI.BOMB_PROMPT.format(max_bomb_count),
+            min_val=1,
+            max_val=max_bomb_count,
+        )
+        return height, width, bomb_count
+
+    def display_start_game(self, difficulty):
+        print(
+            "",
+            f"Starting {difficulty} game!",
+            f"height: {self.height}",
+            f" width: {self.width}",
+            f" bombs: {self.bomb_count}",
+            sep="\n",
+        )
+
+    def make_game_info(self, height, width, bomb_count):
+        self.height = height
+        self.width = width
+        self.bomb_count = bomb_count
 
     @staticmethod
     def end_game():
