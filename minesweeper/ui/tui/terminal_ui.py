@@ -94,6 +94,11 @@ class TUI():
         )
         return height, width, bomb_count
 
+    def make_game_info(self, height, width, bomb_count):
+        self.height = height
+        self.width = width
+        self.bomb_count = bomb_count
+
     def display_start_game(self, difficulty):
         print(
             "",
@@ -103,11 +108,6 @@ class TUI():
             f" bombs: {self.bomb_count}",
             sep="\n",
         )
-
-    def make_game_info(self, height, width, bomb_count):
-        self.height = height
-        self.width = width
-        self.bomb_count = bomb_count
 
     @staticmethod
     def quit_and_end_program():
