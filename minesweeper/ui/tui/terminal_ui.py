@@ -38,7 +38,27 @@ class TerminalUI():
         return TablePrinter.makeTable(self.board.get_grid())
 
     def start_game(self):
+        menu_option = None
+        MENU_ACTIONS = {
+            1: self.new_game,
+            2: self.end_game
+        }
+
+        while menu_option is None:
+            menu_option = self.read_menu_option(self.MAIN_MENU)
+
+        MENU_ACTIONS[menu_option]()
+
+    def new_game(self):
         pass
+
+    @staticmethod
+    def end_game():
+        print(f'\n{TerminalUI.GOODBYE}')
++
+    @staticmethod
+    def read_menu_option(menu):
+        return TerminalUI.read_int(TerminalUI.make_menu_str(menu), 1, len(menu) + 1)
 
     @staticmethod
     def read_int(msg, min_val=0, max_val=MAX_INT):
