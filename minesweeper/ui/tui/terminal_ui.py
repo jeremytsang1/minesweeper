@@ -121,7 +121,9 @@ class TUI():
 
     def take_turn(self):
         MENU_ACTIONS = {
-            # TODO: See TURN_MENU for details
+            1: lambda: None,
+            2: lambda: None,
+            3: self.quit_and_end_program,
         }
         self.print_turn()
         # TODO: display blank dummy board (since real board not initialized till first move
