@@ -4,11 +4,11 @@
 # Description : Driver for minesweeper game. Currently only running text based
 #               version.
 
-from minesweeper.ui.tui.terminal_ui import TerminalUI
+from minesweeper.ui.tui.terminal_ui import TUI
 
 
 def main():
-    ui = TerminalUI()
+    ui = TUI()
     ui.start_game()
 
 

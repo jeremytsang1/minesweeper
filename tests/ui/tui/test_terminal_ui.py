@@ -1,12 +1,12 @@
 import unittest
-from minesweeper.ui.tui.terminal_ui import TerminalUI
+from minesweeper.ui.tui.terminal_ui import TUI
 from minesweeper.ui.tui.command_line_grid import CommandLineGrid
 from minesweeper.game.board import Board
 
 
 class TestTerminalUI(unittest.TestCase):
     def setUp(self):
-        self.tui = TerminalUI()
+        self.tui = TUI()
 
     # def test_render_board_artificial(self):
     #     height, width = 10, 10
