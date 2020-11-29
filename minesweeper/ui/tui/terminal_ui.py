@@ -7,25 +7,25 @@ class TerminalUI():
     """
     MAX_INT = 1000000
     MAIN_MENU = (
-        "\n1. New Game"
-        "\n2. Quit"
+        "1. New Game",
+        "2. Quit",
     )
     NEW_GAME_MENU = (
-        "\n1. Easy"
-        "\n2. Medium"
-        "\n3. Hard"
-        "\n4. Custom"
+        "1. Easy",
+        "2. Medium",
+        "3. Hard",
+        "4. Custom",
     )
-    HEIGHT_PROMPT = "\nHow many rows?"
-    WIDTH_PROMPT = "\nHow many cols?"
+    HEIGHT_PROMPT = "How many rows?"
+    WIDTH_PROMPT = "How many cols?"
     BOMB_PROMPT = (
         "\nHow many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
     )
     GAME_MENU = (
-        "\n1. Open single cell"
-        "\n2. Open all adjacents to a particular cell"
-        "\n3. Quit."
+        "1. Open single cell",
+        "2. Open all adjacents to a particular cell",
+        "3. Quit.",
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
