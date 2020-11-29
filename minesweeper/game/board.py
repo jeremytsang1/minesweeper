@@ -2,15 +2,21 @@ from minesweeper.game.cell import Cell
 
 
 class Board:
-    MIN_WIDTH = 1
-    MIN_HEIGHT = 1
+    DEFAULT_SIZE = 10
 
-    def __init__(self, height, width):
-        if height < Board.MIN_HEIGHT or width < Board.MIN_WIDTH:
-            raise BoardNegativeDimsError(height, width)
-        self.grid = [[Cell(i, j) for j in range(width)] for i in range(height)]
-        self.height = height
-        self.width = width
+    def __init__(self, bombs=None):
+        if bombs is None:
+            bombs = [[True for j in range(Board.DEFAULT_SIZE)]
+                     for i in range(Board.DEFAULT_SIZE)]
+
+        self.height = len(bombs)
+        self.width = len(bombs[0])
+
+        if not all(len(bombs[0]) == len(row) for row in bombs):
+            raise JaggedMinePositionsError(bombs)
+
+        self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
+                     for i, row in enumerate(bombs)]
 
     def get_height(self):
         return self.height
@@ -36,11 +42,10 @@ class BoardError(Exception):
         super().__init__(message)
 
 
-class BoardNegativeDimsError(BoardError):
-    def __init__(self, height, width):
-        super().__init__('Cannot create Board with negative dimensions '
-                         f'({height}, {width}).')
-
+class JaggedMinePositionsError(BoardError):
+    def __init__(self, mine_positions):
+        super().__init__('mine_positions is a jagged 2D list! Row lengths are:'
+                         ' '.join(str(len(row)) for row in mine_positions))
 
 if __name__ == '__main__':
     board = Board(5, 5)

@@ -6,7 +6,7 @@ class TerminalUI():
 
     """
     def __init__(self, ):
-        self.board = None
+        self.game = None
 
     def render_board(self):
         return TablePrinter.makeTable(self.board.get_grid())
