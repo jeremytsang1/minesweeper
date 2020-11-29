@@ -50,9 +50,7 @@ class TUI():
             1: self.new_game,
             2: self.quit_and_end_program
         }
-
         menu_option = self.read_menu_option(self.MAIN_MENU)
-
         MENU_ACTIONS[menu_option]()
 
     def new_game(self):
@@ -62,10 +60,10 @@ class TUI():
             3: self.start_hard,
             4: self.start_custom,
         }
-        self.reset_attributes()
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
-
         MENU_ACTIONS[menu_option]()
+
+        self.reset_attributes()
         self.turn = 0
 
     def start_easy(self):
