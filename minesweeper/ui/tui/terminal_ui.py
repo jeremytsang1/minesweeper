@@ -38,3 +38,10 @@ class TerminalUI():
 
     def start_game(self):
         pass
+    @staticmethod
+    def make_menu_str(menu):
+        return "\n".join(menu)
+
+
+if __name__ == '__main__':
+    tui = TerminalUI()
