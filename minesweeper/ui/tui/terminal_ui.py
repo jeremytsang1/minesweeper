@@ -42,9 +42,6 @@ class TUI():
         self.bomb_count = None
         self.turn = None
 
-    def render_board(self):
-        return TablePrinter.makeTable(self.board.get_grid())
-
     # -------------------------------------------------------------------------
     # Main menu functions
 
@@ -126,16 +123,38 @@ class TUI():
             3: self.quit_and_end_program,
         }
         self.print_turn()
-        # TODO: display blank dummy board (since real board not initialized till first move
+        self.display_board_to_user()
 
         menu_option = self.read_menu_option(self.TURN_MENU)
         MENU_ACTIONS[menu_option]()
-        # TODO: initialiaze board if turn 0
+        # TODO: initialize board if turn 0
         # TODO: display the turn menu
         # TODO: take the action from the menu and do the MENU_ACTION
+        # TODO: check game state
+        # TODO: increment turn
 
     def print_turn(self):
         print(f"\nTurns taken: {self.turn}")
+
+    def display_board_to_user(self):
+        if self.turn == 0 and self.game is None:
+            # Need the user to make a move before initializing a real board.
+            self.print_dummy_board()
+        elif self.turn != 0 and self.game is not None:
+            self.render_board()
+            pass
+        elif self.turn == 0 and self.game is not None:
+            raise DidNotErasePreviousGameError
+        else:  # self.turn != 0  and self.game is None
+            raise NoGameInstance
+
+    def print_dummy_board(self):
+        print('\nprint_dummy_board()')
+        pass
+
+    def print_real_board(self):
+        print('\nprint_real_board()')
+        # return TablePrinter.makeTable(self.board.get_grid())
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
@@ -189,6 +208,21 @@ class TUI():
     def make_menu_str(menu):
         """Use to concatenate menu iterables into single string."""
         return "\n".join(menu)
+
+
+class TUIError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
+class DidNotErasePreviousGameError(TUIError):
+    def __init__(self, turn):
+        super().__init__("It's turn 0 but no game still using previous game!")
+
+
+class NoGameInstance(TUIError):
+    def __init__(self, turn):
+        super().__init__("It's not turn 0 but game has not been created!")
 
 
 if __name__ == '__main__':
