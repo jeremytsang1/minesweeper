@@ -19,7 +19,7 @@ class TerminalUI():
     HEIGHT_PROMPT = "How many rows?"
     WIDTH_PROMPT = "How many cols?"
     BOMB_PROMPT = (
-        "\nHow many bombs? (must be in the range "
+        "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
     )
     GAME_MENU = (
