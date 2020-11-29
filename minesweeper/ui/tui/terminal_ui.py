@@ -6,6 +6,7 @@ class TUI():
 
     """
     MAX_INT = 1000000
+    PROMPT_APPEARANCE = "\n{}\n> "
     MAIN_MENU = (
         "1. New Game",
         "2. Quit",
@@ -120,7 +121,8 @@ class TUI():
         val = None
         while val is None:
             try:
-                val = TUI.validate_range(int(input(f"\n{msg}\n> ")), min_val, max_val)
+                val = int(input(TUI.PROMPT_APPEARANCE.format(msg)))
+                val = TUI.validate_range(val, min_val, max_val)
             except ValueError:
                 print("\nPlease enter an integer!")
                 val = None
