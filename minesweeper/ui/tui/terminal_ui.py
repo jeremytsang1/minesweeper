@@ -57,6 +57,8 @@ class TUI():
     # New game menu functions
 
     def new_game(self):
+        self.reset_attributes()
+
         MENU_ACTIONS = {
             1: self.start_easy,
             2: self.start_medium,
@@ -66,7 +68,6 @@ class TUI():
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
         MENU_ACTIONS[menu_option]()
 
-        self.reset_attributes()
         self.turn = 0
         self.take_turn()
 
