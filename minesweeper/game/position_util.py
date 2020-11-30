@@ -21,7 +21,8 @@ class PositionUtil():
         self.validate_pos(row, col)
 
         return {(row + i, col + j) for j in self.SHIFTS for i in self.SHIFTS
-                if i != j and (row + i, col + j) in self.valid_positions}
+                if (not (j == 0 and i == 0))
+                and (row + i, col + j) in self.valid_positions}
 
 
 class PositionError(Exception):
