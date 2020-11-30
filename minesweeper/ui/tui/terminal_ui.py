@@ -177,7 +177,6 @@ class TUI():
             self.print_dummy_board()
         elif self.turn != 0 and self.game is not None:
             self.print_real_board()
-            pass
         elif self.turn == 0 and self.game is not None:
             raise DidNotErasePreviousGameError
         else:  # self.turn != 0  and self.game is None
