@@ -1,5 +1,6 @@
 from minesweeper.ui.tui.table_printer import TablePrinter
 from minesweeper.game.board import Board
+from minesweeper.game.game import Game
 
 
 class TUI():
@@ -23,6 +24,10 @@ class TUI():
     BOMB_PROMPT = (
         "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
+    )
+    FIRST_TURN_MENU = (
+        "1. Open cell",
+        "2. Quit.",
     )
     TURN_MENU = (
         "1. Open cell",
@@ -70,7 +75,7 @@ class TUI():
         MENU_ACTIONS[menu_option]()
 
         self.turn = 0
-        self.take_turn()
+        self.take_first_turn()
 
     def start_easy(self):
         self.make_game_info(10, 10, 10)
@@ -114,6 +119,29 @@ class TUI():
             f" bombs: {self.bomb_count}",
             sep="\n",
         )
+
+    # -----------------------------------------------------------------------------
+    # First turn menu functions
+
+    def take_first_turn(self):
+        MENU_ACTION = {
+            1: self.open_first_cell,
+            2: self.quit_and_end_program,
+        }
+        assert self.game is None
+        assert self.turn == 0
+
+        self.print_turn()
+        self.display_board_to_user()
+
+        menu_option = self.read_menu_option(TUI.FIRST_TURN_MENU)
+        MENU_ACTION[menu_option]()
+
+    def open_first_cell(self):
+        pos = self.get_position_from_user()
+        self.game = Game(self.height, self.width, self.bomb_count, *pos)
+        self.turn += 1
+        # self.take_turn()
 
     # -------------------------------------------------------------------------
     # Turn menu functions
