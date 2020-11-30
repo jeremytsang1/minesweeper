@@ -17,11 +17,11 @@ class PositionUtil():
         if row not in range(self.height) or col not in range(self.width):
             raise OutOfBoundsError(self.height, self.width, row, col)
 
-    def get_adj(self, row, col):
+    def adj(self, row, col):
         self.validate_pos(row, col)
 
-        return [(row + i, col + j) for j in self.SHIFTS for i in self.SHIFTS
-                if i != j and (row + i, col + j) in self.valid_positions]
+        return {(row + i, col + j) for j in self.SHIFTS for i in self.SHIFTS
+                if i != j and (row + i, col + j) in self.valid_positions}
 
 
 class PositionError(Exception):
