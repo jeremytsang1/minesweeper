@@ -50,6 +50,12 @@ class Game:
         # should return if move was valid or not
         pass
 
+    def check_end_game(self):
+        won = self.check_victory()
+        loss = self.check_loss()
+        assert not (won and loss)
+        return won, loss
+
     def check_victory(self):
         pass
 
