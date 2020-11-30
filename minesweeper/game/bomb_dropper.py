@@ -19,6 +19,7 @@ class BombDropper():
                                    initial_click_col, bomb_count)
         self.height = height
         self.width = width
+        self.bomb_count = bomb_count
         self.bombs = self.drop_bombs()
 
     # -------------------------------------------------------------------------
@@ -67,6 +68,9 @@ class BombDropper():
 
     def drop_bombs(self):
         bombs = self.initialize_empty_bomb_field()
+        bombs_dropped = 0
+        while bombs_dropped != self.bomb_count:
+            bombs_dropped += 1
         return bombs
 
 
