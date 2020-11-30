@@ -177,7 +177,7 @@ class TUI():
             # Need the user to make a move before initializing a real board.
             self.print_dummy_board()
         elif self.turn != 0 and self.game is not None:
-            self.render_board()
+            self.print_real_board()
             pass
         elif self.turn == 0 and self.game is not None:
             raise DidNotErasePreviousGameError
