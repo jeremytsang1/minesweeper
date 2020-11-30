@@ -9,9 +9,12 @@ class TestPositionUtil(unittest.TestCase):
     def setUp(self):
         self.pos_util = PositionUtil(10, 10)
 
-    def cmp(self, shape, pos, expected):
+    def cmp(self, shape, pos, expected, display=False):
         self.pos_util = PositionUtil(*shape)
         actual = self.pos_util.adj(*pos)
+        if display:
+            print(f'actual: {actual}')
+            print(f'expected: {expected}')
         self.assertEqual(actual, expected)
 
     def test_negative_components(self):
