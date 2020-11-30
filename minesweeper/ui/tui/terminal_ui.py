@@ -190,6 +190,10 @@ class TUI():
         print('\nprint_real_board()')
         print(TablePrinter.makeTable(self.game.get_grid()))
 
+    def perform_player_game_action(self, player_action):
+        pos = self.get_position_from_user()
+        return player_action(*pos)   # Returns a move
+
     def process_move(self, move):
         if move.is_valid():
             self.turn += 1
@@ -205,10 +209,6 @@ class TUI():
             self.run_main_menu()
         else:
             self.take_turn()
-
-    def perform_player_game_action(self, player_action):
-        pos = self.get_position_from_user()
-        return player_action(*pos)   # Returns a move
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
