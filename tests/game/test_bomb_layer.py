@@ -1,10 +1,29 @@
 import unittest
-from minesweeper.game.bomb_dropper import BombDropper
+from minesweeper.game.bomb_dropper import (
+    BombDropper,
+    InvalidComponent,
+)
 
 
 class TestBombDropper(unittest.TestCase):
     def setUp(self):
         self.bd = BombDropper()
+
+    def test_validation_neg_height(self):
+        with self.assertRaises(InvalidComponent):
+            self.bd = BombDropper(-18, 29)
+
+    def test_validation_neg_width(self):
+        with self.assertRaises(InvalidComponent):
+            self.bd = BombDropper(86, -38)
+
+    def test_validation_zero_height(self):
+        with self.assertRaises(InvalidComponent):
+            self.bd = BombDropper(0, 8)
+
+    def test_validation_zero_width(self):
+        with self.assertRaises(InvalidComponent):
+            self.bd = BombDropper(8, 0)
 
     def test_default_init(self):
         self.assertEqual(self.bd.get_height(), 10)
