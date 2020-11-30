@@ -7,6 +7,7 @@ class Cell:
         NUMBER = 2
         EMPTY = 3
         UNOPENED = 4
+        # ----------------------------------------
         FLAG_INCORRECT = 5
         UNENCOUNTERED_BOMB = 6
         OPENED_BOMB = 7
