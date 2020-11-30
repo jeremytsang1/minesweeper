@@ -18,25 +18,8 @@ class Game:
                                           first_click_row, first_click_col))
         # TODO: make the first move with the board
 
-    def get_grid(self):
-        return self.board.get_grid()
-
-    def validate_init_input(self):
-        self.validate_shape()
-        self.validate_bomb_count()
-        self.validate_first_move()
-
-    def validate_shape(self):
-        # TODO
-        pass
-
-    def validate_bomb_count(self):
-        # TODO
-        pass
-
-    def validate_first_move(self):
-        # TODO
-        pass
+    # -----------------------------------------------------------------------------
+    # PUBLIC # TODO rename since there is no privacy modifiers in python
 
     def open_cell(self, row, col):
         print("\nOpening!")
@@ -60,6 +43,29 @@ class Game:
         return won, loss
 
     def reveal_board(self):
+        pass
+
+    # -----------------------------------------------------------------------------
+    # PRIVATE # TODO rename since there is no privacy modifiers in python
+
+    def get_grid(self):
+        return self.board.get_grid()
+
+    def validate_init_input(self):
+        self.validate_shape()
+        self.validate_bomb_count()
+        self.validate_first_move()
+
+    def validate_shape(self):
+        # TODO
+        pass
+
+    def validate_bomb_count(self):
+        # TODO
+        pass
+
+    def validate_first_move(self):
+        # TODO
         pass
 
     def check_victory(self):
