@@ -31,7 +31,7 @@ class TUI():
     )
     TURN_MENU = (
         "1. Open cell",
-        "2. Flag cell",
+        "2. Toggle Flag",
         "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
         "4. Quit.",
     )
@@ -150,7 +150,7 @@ class TUI():
     def take_turn(self):
         MENU_ACTIONS = {
             1: self.open_cell,
-            2: self.flag_cell,
+            2: self.toggle_flag,
             3: self.chord_cell,
             4: self.quit_and_end_program,
         }
@@ -194,7 +194,7 @@ class TUI():
         print("\nOpening!")
         pass
 
-    def flag_cell(self):
+    def toggle_flag(self):
         valid_move = True
         return valid_move
 

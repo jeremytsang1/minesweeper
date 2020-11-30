@@ -42,7 +42,7 @@ class Game:
         # should return if move was valid or not
         pass
 
-    def flag_cell(self, row, col):
+    def toggle_flag(self, row, col):
         # should return if move was valid or not
         pass
 
