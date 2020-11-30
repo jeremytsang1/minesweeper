@@ -5,13 +5,16 @@ class PositionUtil():
         PositionUtil.validate_components(height, width)
         self.height = height
         self.width = width
-        self.valid_positions = {(i, j) for j in range(width) for i in range(height)}
+        self.valid_positions = self.make_valid_positions(width, height)
 
     def validate_components(height, width):
         if height <= 0:
             raise InvalidComponent(height, "height")
         if width <= 0:
             raise InvalidComponent(width, "width")
+
+    def make_valid_positions(self, height, width):
+        return {(i, j) for j in range(self.width) for i in range(self.height)}
 
     def validate_pos(self, row, col):
         if row not in range(self.height) or col not in range(self.width):
