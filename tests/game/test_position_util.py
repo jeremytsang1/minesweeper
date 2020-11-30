@@ -61,5 +61,30 @@ class TestPositionUtil(unittest.TestCase):
         expected = {(0, 0), (2, 0)}
         self.cmp(shape, pos, expected)
 
+    def test_adj_grid_upper_left_corner(self):
+        shape = (30, 30)
+        pos = (0, 0)
+        expected = {(0, 1), (1, 0), (1, 1)}
+        self.cmp(shape, pos, expected)
+
+    def test_adj_grid_upper_right_corner(self):
+        shape = (30, 30)
+        pos = (0, 29)
+        expected = {(0, 28), (1, 29), (1, 28)}
+        self.cmp(shape, pos, expected)
+
+    def test_adj_grid_lower_left_corner(self):
+        shape = (30, 30)
+        pos = (29, 0)
+        expected = {(28, 0), (29, 1), (28, 1)}
+        self.cmp(shape, pos, expected)
+
+    def test_adj_grid_lower_right_corner(self):
+        shape = (30, 30)
+        pos = (29, 29)
+        expected = {(28, 29), (29, 28), (28, 28)}
+        self.cmp(shape, pos, expected)
+
+
 if __name__ == '__main__':
     unittest.main()
