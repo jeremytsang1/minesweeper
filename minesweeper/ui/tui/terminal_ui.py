@@ -193,14 +193,17 @@ class TUI():
     def process_move(self, move):
         if move.is_valid():
             self.turn += 1
-            if True in self.game.check_end_game():
-                self.showEndGameResults(self.game.check_end_game())
-                self.run_main_menu()
-            else:
-                self.take_turn()
+            self.process_valid_move()
         else:
             assert type(move.get_message()) == str
             print("", move.get_message(), sep="\n")
+            self.take_turn()
+
+    def process_valid_move(self):
+        if True in self.game.check_end_game():
+            self.showEndGameResults(self.game.check_end_game())
+            self.run_main_menu()
+        else:
             self.take_turn()
 
     def perform_player_game_action(self, player_action):
