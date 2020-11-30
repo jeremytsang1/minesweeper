@@ -149,21 +149,21 @@ class TUI():
 
     def take_turn(self):
         MENU_ACTIONS = {
-            1: self.open_cell,
-            2: self.toggle_flag,
-            3: self.chord_cell,
+            1: self.game.open_cell,
+            2: self.game.toggle_flag,
+            3: self.game.chord_cell,
             4: self.quit_and_end_program,
         }
         self.print_turn()
         self.display_board_to_user()
 
         menu_option = self.read_menu_option(self.TURN_MENU)
-        valid_move = MENU_ACTIONS[menu_option]()
 
-        if valid_move is not None:
-            self.process_move(valid_move)
+        if MENU_ACTIONS[menu_option] == self.quit_and_end_program:
+            MENU_ACTIONS[menu_option]()  # Quit the program.
         else:
-            pass  # Quit the program.
+            valid_move = self.perform_player_game_action(MENU_ACTIONS[menu_option])
+            self.process_move(valid_move)
 
     def print_turn(self):
         print(f"\nTurns taken: {self.turn}")
@@ -190,24 +190,6 @@ class TUI():
         print('\nprint_real_board()')
         print(TablePrinter.makeTable(self.game.get_grid()))
 
-    def open_cell(self):
-        print("\nOpening!")
-        pos = self.get_position_from_user()
-        valid_move = self.game.open_cell(*pos)
-        return valid_move
-
-    def toggle_flag(self):
-        print("Toggling Flag!")
-        pos = self.get_position_from_user()
-        valid_move = self.game.toggle_flag(*pos)
-        return valid_move
-
-    def chord_cell(self):
-        print("\nChording!")
-        pos = self.get_position_from_user()
-        valid_move = self.game.chord_cell(*pos)
-        return valid_move
-
     def process_move(self, valid_move):
         if valid_move:
             self.turn += 1
@@ -220,6 +202,10 @@ class TUI():
             assert type(valid_move.get_message()) == str
             print("", valid_move.get_message(), sep="\n")
             self.take_turn()
+
+    def perform_player_game_action(self, player_action):
+        pos = self.get_position_from_user()
+        return player_action(*pos)   # Returns a move
 
     # -------------------------------------------------------------------------
     # End game and quitting functions

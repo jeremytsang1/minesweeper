@@ -39,14 +39,17 @@ class Game:
         pass
 
     def open_cell(self, row, col):
+        print("\nOpening!")
         # should return if move was valid or not
         pass
 
     def toggle_flag(self, row, col):
+        print("Toggling flag!")
         # should return if move was valid or not
         pass
 
     def chord_cell(self, row, col):
+        print("\nChording!")
         # should return if move was valid or not
         pass
 
