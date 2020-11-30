@@ -107,3 +107,7 @@ class InvalidInitialClick(BombDropperError):
         super().__init__(
             f'Initial click ({row}, {col})is outside {height} x {width} grid'
         )
+
+
+if __name__ == '__main__':
+    bd = BombDropper(10, 10, 4, 5, 10)
