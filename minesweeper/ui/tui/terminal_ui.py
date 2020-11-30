@@ -142,7 +142,7 @@ class TUI():
         pos = self.get_position_from_user()
         self.game = Game(self.height, self.width, self.bomb_count, *pos)
         self.turn += 1
-        # self.take_turn()
+        self.take_turn()
 
     # -------------------------------------------------------------------------
     # Turn menu functions
@@ -163,9 +163,6 @@ class TUI():
         if valid_move is not None:
             self.process_move(valid_move)
 
-        # TODO: initialize board if turn 0
-        # TODO: display the turn menu
-        # TODO: take the action from the menu and do the MENU_ACTION
         # TODO: check game state
         # TODO: increment turn
 
