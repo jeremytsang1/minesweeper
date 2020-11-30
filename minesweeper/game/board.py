@@ -46,4 +46,4 @@ class JaggedMinePositionsError(BoardError):
 
 
 if __name__ == '__main__':
-    board = Board(5, 5)
+    pass
