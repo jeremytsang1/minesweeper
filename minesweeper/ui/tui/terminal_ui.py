@@ -1,6 +1,7 @@
 from minesweeper.ui.tui.table_printer import TablePrinter
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
+from minesweeper.game.move import Move
 
 
 class TUI():
@@ -195,6 +196,7 @@ class TUI():
         return player_action(*pos)   # Returns a move
 
     def process_move(self, move):
+        assert type(move) == Move
         if move.is_valid():
             self.turn += 1
             self.process_valid_move()
