@@ -162,8 +162,8 @@ class TUI():
         if MENU_ACTIONS[menu_option] == self.quit_and_end_program:
             MENU_ACTIONS[menu_option]()  # Quit the program.
         else:
-            valid_move = self.perform_player_game_action(MENU_ACTIONS[menu_option])
-            self.process_move(valid_move)
+            move = self.perform_player_game_action(MENU_ACTIONS[menu_option])
+            self.process_move(move)
 
     def print_turn(self):
         print(f"\nTurns taken: {self.turn}")
@@ -190,8 +190,8 @@ class TUI():
         print('\nprint_real_board()')
         print(TablePrinter.makeTable(self.game.get_grid()))
 
-    def process_move(self, valid_move):
-        if valid_move:
+    def process_move(self, move):
+        if move:
             self.turn += 1
             if True in self.game.check_end_game():
                 self.showEndGameResults(self.game.check_end_game())
@@ -199,8 +199,8 @@ class TUI():
             else:
                 self.take_turn()
         else:
-            assert type(valid_move.get_message()) == str
-            print("", valid_move.get_message(), sep="\n")
+            assert type(move.get_message()) == str
+            print("", move.get_message(), sep="\n")
             self.take_turn()
 
     def perform_player_game_action(self, player_action):
