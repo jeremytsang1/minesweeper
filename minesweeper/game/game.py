@@ -74,6 +74,9 @@ class Game:
     def check_loss(self):
         assert False, "Not yet implemented"
 
+    # ----------------------------------------
+    # Game setup
+
     @staticmethod
     def lay_bombs(height, width, first_click_row, first_click_col):
         assert False, "Not yet implemented"
