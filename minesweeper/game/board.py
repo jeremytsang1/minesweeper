@@ -30,6 +30,30 @@ class Board:
     def get_grid(self):
         return self.grid
 
+    def iterate(self, fcn):
+        """Call a function on each of the cells in the grid.
+
+        Parameters
+        ----------
+        fcn: function
+            Must take a single parameter representing the cell.
+
+        Returns
+        -------
+        None
+        """
+        for row in self.grid:
+            for cell in row:
+                fcn(cell)
+
+    def reveal_mines(self, revealed):
+        def reveal_mine(cell):
+            if cell.is_bomb():
+                cell.set_appearance(Cell.Appearance.UNENCOUNTERED_BOMB if revealed else
+                                    Cell.Appearance.UNOPENED)
+
+        self.iterate(reveal_mine)
+
     def __repr__(self):
         return '\n'.join(' '.join(repr(cell) for cell in row) for row in self.grid)
 
