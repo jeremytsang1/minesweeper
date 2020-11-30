@@ -52,7 +52,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # Main menu functions
 
-    def start_game(self):
+    def run_main_menu(self):
         MENU_ACTIONS = {
             1: self.new_game,
             2: self.quit_and_end_program
@@ -195,7 +195,7 @@ class TUI():
             self.turn += 1
             if True in self.game.check_end_game():
                 self.showEndGameResults(self.game.check_end_game())
-                self.start_game()  # Go back to the main menu.
+                self.run_main_menu()
             else:
                 self.take_turn()
         else:
