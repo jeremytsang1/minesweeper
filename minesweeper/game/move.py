@@ -40,9 +40,9 @@ class Move():
         },
     }
 
-    def __init__(self, cell, valid, move_type, adjFlagCount=None):
-        self.cell = cell
+    def __init__(self, valid, cell, move_type, adjFlagCount=None):
         self.valid = valid
+        self.cell = cell
         self.move_type = move_type
         self.adjFlagCount = adjFlagCount
 
