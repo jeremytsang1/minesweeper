@@ -204,9 +204,16 @@ class TUI():
 
     def process_move(self, valid_move):
         if valid_move:
-            pass
+            self.turn += 1
+            if True in self.game.check_end_game():
+                self.showEndGameResults(self.game.check_end_game())
+                self.start_game()  # Go back to the main menu.
+            else:
+                self.take_turn()
         else:
-            pass
+            assert type(valid_move.get_message()) == str
+            print("", valid_move.get_message(), sep="\n")
+            self.take_turn()
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
