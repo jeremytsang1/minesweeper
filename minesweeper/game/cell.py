@@ -31,7 +31,7 @@ class Cell:
     }
 
     def __init__(self, row, col, bomb=False):
-        self.validate_component(row, col)
+        self.validate_components(row, col)
 
         self.row = row
         self.col = col
@@ -39,7 +39,7 @@ class Cell:
         self.appearance = Cell.Appearance.UNOPENED
         self.count = None
 
-    def validate_component(self, row, col):
+    def validate_components(self, row, col):
         component_name = {row: "Row", col: "Col"}
 
         for component in (row, col):
