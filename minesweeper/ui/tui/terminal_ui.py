@@ -213,6 +213,9 @@ class TUI():
     # -------------------------------------------------------------------------
     # End game and quitting functions
 
+    def showEndGameResults(self):  # TODO
+        pass
+
     @staticmethod
     def quit_and_end_program():
         print(f'\n{TUI.GOODBYE}')
