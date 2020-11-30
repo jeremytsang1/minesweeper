@@ -54,7 +54,7 @@ class Cell:
                        f'{component}')
                 raise ValueError(msg)
             else:
-                pass
+                pass  # Component is valid.
 
     def validate_count(self, count):
         if type(count) != int:
@@ -62,7 +62,7 @@ class Cell:
         elif count not in range(Cell.MIN_COUNT, Cell.MAX_COUNT + 1):
             raise ValueError(Cell.ERROR_COUNT_VALUE)
         else:
-            pass
+            pass  # Count is valid.
 
     def get_row(self):
         return self.row
