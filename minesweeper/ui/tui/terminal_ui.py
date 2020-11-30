@@ -38,6 +38,8 @@ class TUI():
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
+    WON_MSG = "\nYOU WIN!"
+    LOSS_MSG = "\nYOU DIED!"
     GOODBYE = "\nGoodbye!"
 
     def __init__(self):
@@ -206,8 +208,10 @@ class TUI():
             self.take_turn()
 
     def process_valid_move(self):
-        if True in self.game.check_end_game():
-            self.showEndGameResults(self.game.check_end_game())
+        won, loss = self.game.check_end_game()
+        if won or loss:  # Can't both win and lose.
+            self.showEndGameResults(won, loss)
+            self.print_real_board()
             self.run_main_menu()
         else:
             self.take_turn()
@@ -215,8 +219,10 @@ class TUI():
     # -------------------------------------------------------------------------
     # End game and quitting functions
 
-    def showEndGameResults(self):  # TODO
-        pass
+    def showEndGameResults(self, won, loss):  # TODO
+        print(TUI.WON_MSG if won else TUI.LOSS_MSG)
+        if loss:
+            self.game.reveal_board()
 
     @staticmethod
     def quit_and_end_program():

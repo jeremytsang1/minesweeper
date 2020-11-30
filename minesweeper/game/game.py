@@ -59,6 +59,9 @@ class Game:
         assert not (won and loss)
         return won, loss
 
+    def reveal_board(self):
+        pass
+
     def check_victory(self):
         pass
 
