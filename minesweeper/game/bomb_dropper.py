@@ -1,4 +1,5 @@
 import random
+from minesweeper.game.position_util import PositionUtil
 
 class BombDropper():
     """
@@ -19,8 +20,8 @@ class BombDropper():
                                    initial_click_col, bomb_count)
         self.height = height
         self.width = width
+        self.pos_util = PositionUtil(self.height, self.width)
         self.bomb_count = bomb_count
-        self.bombs = self.drop_bombs()
 
     # -------------------------------------------------------------------------
     # Validation methods
@@ -57,9 +58,6 @@ class BombDropper():
     def get_width(self):
         return self.width
 
-    def get_bombs(self):
-        return self.bombs
-
     # -------------------------------------------------------------------------
     # Bomb laying
 
@@ -68,9 +66,17 @@ class BombDropper():
 
     def drop_bombs(self):
         bombs = self.initialize_empty_bomb_field()
-        bombs_dropped = 0
-        while bombs_dropped != self.bomb_count:
-            bombs_dropped += 1
+        first_position = (self.first_click_row, self.first_click_col)
+        positions = self.pos_util.make_valid_positions()
+        positions.remove(first_position)  # Avoid instant death on first turn.
+        positions = list(positions)  # Allow for shuffling
+        random.shuffle(positions)
+
+        assert self.bomb_count <= len(positions)
+
+        for row, col in positions[:self.bomb_count]:
+            bombs[row][col] = True
+
         return bombs
 
 
