@@ -23,6 +23,9 @@ class BombDropper():
     def get_width(self):
         return self.width
 
+    def get_bombs(self):
+        return self.bombs
+
     def initialize_empty_bomb_field(self):
         return [[False for _ in range(self.width)] for _ in range(self.height)]
 
