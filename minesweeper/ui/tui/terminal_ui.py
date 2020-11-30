@@ -191,7 +191,7 @@ class TUI():
         print(TablePrinter.makeTable(self.game.get_grid()))
 
     def process_move(self, move):
-        if move:
+        if move.is_valid():
             self.turn += 1
             if True in self.game.check_end_game():
                 self.showEndGameResults(self.game.check_end_game())

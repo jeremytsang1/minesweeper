@@ -58,5 +58,5 @@ class Move():
 
         return msg
 
-    def __bool__(self):
+    def is_valid(self):
         return self.valid
