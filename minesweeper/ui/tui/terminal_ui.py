@@ -11,7 +11,7 @@ class TUI():
     MAX_INT = 1000000
     PROMPT_APPEARANCE = "\n{}\n> "
     MAIN_MENU = (
-        "1. New Game",
+        "1. New game",
         "2. Quit",
     )
     NEW_GAME_MENU = (
@@ -28,13 +28,13 @@ class TUI():
     )
     FIRST_TURN_MENU = (
         "1. Open cell",
-        "2. Quit.",
+        "2. Quit",
     )
     TURN_MENU = (
         "1. Open cell",
-        "2. Toggle Flag",
+        "2. Toggle flag",
         "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
-        "4. Quit.",
+        "4. Quit",
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
