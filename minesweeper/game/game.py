@@ -24,17 +24,17 @@ class Game:
     def open_cell(self, row, col):
         print("\nOpening!")
         # should return if move was valid or not
-        pass
+        assert False, "Not yet implemented"
 
     def toggle_flag(self, row, col):
         print("Toggling flag!")
         # should return if move was valid or not
-        pass
+        assert False, "Not yet implemented"
 
     def chord_cell(self, row, col):
         print("\nChording!")
         # should return if move was valid or not
-        pass
+        assert False, "Not yet implemented"
 
     def check_end_game(self):
         won = self.check_victory()
@@ -43,7 +43,7 @@ class Game:
         return won, loss
 
     def reveal_board(self):
-        pass
+        assert False, "Not yet implemented"
 
     # -----------------------------------------------------------------------------
     # PRIVATE # TODO rename since there is no privacy modifiers in python
@@ -58,25 +58,25 @@ class Game:
 
     def validate_shape(self):
         # TODO
-        pass
+        assert False, "Not yet implemented"
 
     def validate_bomb_count(self):
         # TODO
-        pass
+        assert False, "Not yet implemented"
 
     def validate_first_move(self):
         # TODO
-        pass
+        assert False, "Not yet implemented"
 
     def check_victory(self):
-        pass
+        assert False, "Not yet implemented"
 
     def check_loss(self):
-        pass
+        assert False, "Not yet implemented"
 
     @staticmethod
     def lay_bombs(height, width, first_click_row, first_click_col):
-        pass
+        assert False, "Not yet implemented"
 
 
 class GameError(Exception):
