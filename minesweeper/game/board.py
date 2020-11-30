@@ -47,5 +47,6 @@ class JaggedMinePositionsError(BoardError):
         super().__init__('mine_positions is a jagged 2D list! Row lengths are:'
                          ' '.join(str(len(row)) for row in mine_positions))
 
+
 if __name__ == '__main__':
     board = Board(5, 5)
