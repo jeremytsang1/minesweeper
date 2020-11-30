@@ -188,7 +188,7 @@ class TUI():
 
     def print_real_board(self):
         print('\nprint_real_board()')
-        # return TablePrinter.makeTable(self.board.get_grid())
+        print(TablePrinter.makeTable(self.game.get_grid()))
 
     def open_cell(self):
         print("\nOpening!")
