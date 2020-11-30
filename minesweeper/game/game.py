@@ -16,6 +16,7 @@ class Game:
 
         self.board = Board(Game.lay_bombs(height, width,
                                           first_click_row, first_click_col))
+        # TODO: make the first move with the board
 
     def validate_init_input(self):
         self.validate_shape()
