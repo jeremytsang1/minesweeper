@@ -109,6 +109,16 @@ class TestPositionUtil(unittest.TestCase):
         expected = {(28, 17), (28, 18), (28, 19), (29, 17), (29, 19)}
         self.cmp(shape, pos, expected)
 
+    def test_adj_grid_interior(self):
+        shape = (30, 30)
+        pos = (14, 19)
+        expected = {
+            (13, 18), (14, 18), (15, 18),
+            (13, 19),           (15, 19),
+            (13, 20), (14, 20), (15, 20)
+        }
+        self.cmp(shape, pos, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
