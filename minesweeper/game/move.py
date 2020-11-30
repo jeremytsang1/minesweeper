@@ -57,3 +57,6 @@ class Move():
             msg = msg[self.cell.get_count == self.adjFlagCount]
 
         return msg
+
+    def __bool__(self):
+        return self.valid
