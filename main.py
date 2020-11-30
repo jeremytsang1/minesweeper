@@ -9,7 +9,7 @@ from minesweeper.ui.tui.terminal_ui import TUI
 
 def main():
     ui = TUI()
-    ui.start_main_menu()
+    ui.run_main_menu()
 
 
 if __name__ == '__main__':
