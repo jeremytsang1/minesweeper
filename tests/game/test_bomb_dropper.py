@@ -1,4 +1,6 @@
 import unittest
+import functools
+import random
 from minesweeper.game.bomb_dropper import (
     BombDropper,
     InvalidComponent,
@@ -10,6 +12,9 @@ from minesweeper.game.bomb_dropper import (
 class TestBombDropper(unittest.TestCase):
     def setUp(self):
         self.bd = BombDropper()
+
+    def count_bombs(self, field):
+        return sum(functools.reduce(lambda x, y: x + y, field))
 
     def test_validation_neg_height(self):
         with self.assertRaises(InvalidComponent):
@@ -89,6 +94,18 @@ class TestBombDropper(unittest.TestCase):
         ]
         actual = self.bd.initialize_empty_bomb_field()
         self.assertEqual(actual, expected)
+
+    def test_drop_bombs_large(self):
+        height = 200
+        width = 200
+        row = random.randint(0, height - 1)
+        col = random.randint(0, width - 1)
+        bomb_count = random.randint(1, height * width - 1)
+        self.bd = BombDropper(height, width, row, col, bomb_count)
+        actual = self.count_bombs(self.bd.drop_bombs())
+        expected = bomb_count
+        self.assertEqual(actual, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
