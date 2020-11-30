@@ -162,9 +162,8 @@ class TUI():
 
         if valid_move is not None:
             self.process_move(valid_move)
-
-        # TODO: check game state
-        # TODO: increment turn
+        else:
+            pass  # Quit the program.
 
     def print_turn(self):
         print(f"\nTurns taken: {self.turn}")
