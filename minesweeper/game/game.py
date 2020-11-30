@@ -1,4 +1,5 @@
 from minesweeper.game.board import Board
+from minesweeper.game.bomb_dropper import BombDropper
 
 
 class Game:
@@ -14,8 +15,10 @@ class Game:
         if height < Game.MIN_HEIGHT or width < Game.MIN_WIDTH:
             raise GameNegativeDimsError(height, width)
 
-        self.board = Board(Game.lay_bombs(height, width,
-                                          first_click_row, first_click_col))
+        self.bomb_dropper = BombDropper(height, width, first_click_row,
+                                        first_click_col, bomb_count)
+
+        self.board = Board(self.bomb_dropper.drop_bombs())
         # TODO: make the first move with the board
 
     # -----------------------------------------------------------------------------
@@ -72,13 +75,6 @@ class Game:
         assert False, "Not yet implemented"
 
     def check_loss(self):
-        assert False, "Not yet implemented"
-
-    # ----------------------------------------
-    # Game setup
-
-    @staticmethod
-    def lay_bombs(height, width, first_click_row, first_click_col):
         assert False, "Not yet implemented"
 
 
