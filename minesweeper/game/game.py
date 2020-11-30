@@ -35,9 +35,15 @@ class Game:
         pass
 
     def open_cell(self, row, col):
+        # should return if move was valid or not
         pass
 
-    def sweep_region(self, row, col):
+    def flag_cell(self, row, col):
+        # should return if move was valid or not
+        pass
+
+    def chord_cell(self, row, col):
+        # should return if move was valid or not
         pass
 
     def check_victory(self):
