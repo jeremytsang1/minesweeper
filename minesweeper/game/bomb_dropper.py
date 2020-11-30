@@ -13,13 +13,15 @@ class BombDropper():
     def __init__(self,
                  height=DEFAULT_SIZE,
                  width=DEFAULT_SIZE,
-                 initial_click_row=DEFAULT_CLICK_ROW,
-                 initial_click_col=DEFAULT_CLICK_COL,
+                 first_click_row=DEFAULT_CLICK_ROW,
+                 first_click_col=DEFAULT_CLICK_COL,
                  bomb_count=DEFAULT_BOMB_COUNT):
-        BombDropper.validate_input(height, width, initial_click_row,
-                                   initial_click_col, bomb_count)
+        BombDropper.validate_input(height, width, first_click_row,
+                                   first_click_col, bomb_count)
         self.height = height
         self.width = width
+        self.first_click_row = first_click_row
+        self.first_click_col = first_click_col
         self.pos_util = PositionUtil(self.height, self.width)
         self.bomb_count = bomb_count
 
@@ -30,7 +32,7 @@ class BombDropper():
     def validate_input(height, width, row, col, bomb_count):
         BombDropper.validate_components(height, width)
         BombDropper.validate_bomb_count(height, width, bomb_count)
-        BombDropper.validate_initial_click(height, width, row, col)
+        BombDropper.validate_first_click(height, width, row, col)
 
     @staticmethod
     def validate_components(height, width):
@@ -45,7 +47,7 @@ class BombDropper():
             raise InvalidBombCount(height, width, bomb_count)
 
     @staticmethod
-    def validate_initial_click(height, width, row, col):
+    def validate_first_click(height, width, row, col):
         if row not in range(height) or col not in range(width):
             raise InvalidInitialClick(height, width, row, col)
 

@@ -13,7 +13,7 @@ class PositionUtil():
         if width <= 0:
             raise InvalidComponent(width, "width")
 
-    def make_valid_positions(self, height, width):
+    def make_valid_positions(self):
         return {(i, j) for j in range(self.width) for i in range(self.height)}
 
     def validate_pos(self, row, col):
