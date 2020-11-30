@@ -18,6 +18,9 @@ class Game:
                                           first_click_row, first_click_col))
         # TODO: make the first move with the board
 
+    def get_grid(self):
+        return self.board.get_grid()
+
     def validate_init_input(self):
         self.validate_shape()
         self.validate_bomb_count()
