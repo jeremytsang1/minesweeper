@@ -8,7 +8,7 @@ class BombDropper():
         BombDropper.validate_components(height, width)
         self.height = height
         self.width = width
-        self.bombs = self.initialize_empty_bomb_field()
+        self.bombs = self.drop_bombs()
 
     @staticmethod
     def validate_components(height, width):
@@ -25,6 +25,10 @@ class BombDropper():
 
     def initialize_empty_bomb_field(self):
         return [[False for _ in range(self.width)] for _ in range(self.height)]
+
+    def drop_bombs(self):
+        bombs = self.initialize_empty_bomb_field()
+        return bombs
 
 
 class BombDropperError(Exception):
