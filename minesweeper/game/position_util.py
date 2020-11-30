@@ -5,7 +5,7 @@ class PositionUtil():
         PositionUtil.validate_components(height, width)
         self.height = height
         self.width = width
-        self.valid_positions = self.make_valid_positions(width, height)
+        self.valid_positions = self.make_valid_positions()
 
     def validate_components(height, width):
         if height <= 0:
