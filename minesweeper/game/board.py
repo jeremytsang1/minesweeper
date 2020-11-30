@@ -33,9 +33,6 @@ class Board:
     def __repr__(self):
         return '\n'.join(' '.join(repr(cell) for cell in row) for row in self.grid)
 
-    def build_row(self):
-        pass
-
 
 class BoardError(Exception):
     def __init__(self, message):
