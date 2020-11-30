@@ -192,15 +192,21 @@ class TUI():
 
     def open_cell(self):
         print("\nOpening!")
-        pass
+        pos = self.get_position_from_user()
+        valid_move = self.game.open_cell(*pos)
+        return valid_move
 
     def toggle_flag(self):
-        valid_move = True
+        print("Toggling Flag!")
+        pos = self.get_position_from_user()
+        valid_move = self.game.toggle_flag(*pos)
         return valid_move
 
     def chord_cell(self):
         print("\nChording!")
-        pass
+        pos = self.get_position_from_user()
+        valid_move = self.game.chord_cell(*pos)
+        return valid_move
 
     def process_move(self, valid_move):
         if valid_move:
