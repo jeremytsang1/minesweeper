@@ -137,7 +137,8 @@ class Cell:
 
 class CellError(Exception):
     """Base exception class for objects of type Cell."""
-    pass
+    def __init__(self, message):
+        super().__init__(message)
 
 
 class AttemptToOpenFlagCell(CellError):
