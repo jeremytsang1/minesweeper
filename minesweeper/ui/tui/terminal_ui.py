@@ -31,8 +31,9 @@ class TUI():
     )
     TURN_MENU = (
         "1. Open cell",
-        "2. Chord cell (http://www.minesweeper.info/wiki/Chord)",
-        "3. Quit.",
+        "2. Flag cell",
+        "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
+        "4. Quit.",
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
@@ -149,14 +150,19 @@ class TUI():
     def take_turn(self):
         MENU_ACTIONS = {
             1: self.open_cell,
-            2: self.chord_cell,
-            3: self.quit_and_end_program,
+            2: self.flag_cell,
+            3: self.chord_cell,
+            4: self.quit_and_end_program,
         }
         self.print_turn()
         self.display_board_to_user()
 
         menu_option = self.read_menu_option(self.TURN_MENU)
-        MENU_ACTIONS[menu_option]()
+        valid_move = MENU_ACTIONS[menu_option]()
+
+        if valid_move is not None:
+            self.process_move(valid_move)
+
         # TODO: initialize board if turn 0
         # TODO: display the turn menu
         # TODO: take the action from the menu and do the MENU_ACTION
@@ -192,9 +198,19 @@ class TUI():
         print("\nOpening!")
         pass
 
+    def flag_cell(self):
+        valid_move = True
+        return valid_move
+
     def chord_cell(self):
         print("\nChording!")
         pass
+
+    def process_move(self, valid_move):
+        if valid_move:
+            pass
+        else:
+            pass
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
@@ -202,6 +218,7 @@ class TUI():
     @staticmethod
     def quit_and_end_program():
         print(f'\n{TUI.GOODBYE}')
+        return None
 
     # -------------------------------------------------------------------------
     # Input functions
