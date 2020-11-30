@@ -25,8 +25,8 @@ class TUI():
         "[1 (inclusive) ... {} (exclusive)])"
     )
     TURN_MENU = (
-        "1. Open single cell",
-        "2. Open all adjacents to a particular cell",
+        "1. Open cell",
+        "2. Chord cell (http://www.minesweeper.info/wiki/Chord)",
         "3. Quit.",
     )
     ROW_PROMPT = "\nWhich row?"
@@ -120,8 +120,8 @@ class TUI():
 
     def take_turn(self):
         MENU_ACTIONS = {
-            1: lambda: None,
-            2: lambda: None,
+            1: self.open_cell,
+            2: self.chord_cell,
             3: self.quit_and_end_program,
         }
         self.print_turn()
@@ -159,6 +159,14 @@ class TUI():
     def print_real_board(self):
         print('\nprint_real_board()')
         # return TablePrinter.makeTable(self.board.get_grid())
+
+    def open_cell(self):
+        print("\nOpening!")
+        pass
+
+    def chord_cell(self):
+        print("\nChording!")
+        pass
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
