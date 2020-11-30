@@ -38,6 +38,27 @@ class TestPositionUtil(unittest.TestCase):
         actual = self.pos_util.adj(*pos)
         self.assertEqual(actual, expected)
 
+    def test_adjacent_one_col_top(self):
+        self.pos_util = PositionUtil(5, 1)
+        pos = (0, 0)
+        expected = {(1, 0)}
+        actual = self.pos_util.adj(*pos)
+        self.assertEqual(actual, expected)
+
+    def test_adjacent_one_col_bottom(self):
+        self.pos_util = PositionUtil(5, 1)
+        pos = (4, 0)
+        expected = {(3, 0)}
+        actual = self.pos_util.adj(*pos)
+        self.assertEqual(actual, expected)
+
+    def test_adjacent_one_col_interior(self):
+        self.pos_util = PositionUtil(5, 1)
+        pos = (1, 0)
+        expected = {(0, 0), (2, 0)}
+        actual = self.pos_util.adj(*pos)
+        self.assertEqual(actual, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
