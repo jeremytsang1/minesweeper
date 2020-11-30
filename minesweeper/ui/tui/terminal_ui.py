@@ -38,7 +38,7 @@ class TUI():
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
-    GOODBYE = "Goodbye!"
+    GOODBYE = "\nGoodbye!"
 
     def __init__(self):
         self.reset_attributes()
@@ -220,7 +220,7 @@ class TUI():
 
     @staticmethod
     def quit_and_end_program():
-        print(f'\n{TUI.GOODBYE}')
+        print(f'{TUI.GOODBYE}')
         return None
 
     # -------------------------------------------------------------------------
