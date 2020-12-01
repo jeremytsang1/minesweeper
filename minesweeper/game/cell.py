@@ -70,18 +70,28 @@ class Cell:
     def get_col(self):
         return self.col
 
-    def set_flag(self):
+    def toggle_flag(self):
         if self.appearance == Cell.Appearance.UNOPENED:
             self.appearance = Cell.Appearance.FLAG
             return True
-        return False
-
-    def unset_flag(self):
-        if self.appearance == Cell.Appearance.FLAG:
+        elif self.appearance == Cell.Appearance.FLAG:
             self.appearance = Cell.Appearance.UNOPENED
-            return True
-        else:
             return False
+        else:
+            raise IllegalFlagToggle(self.row, self.col)
+
+    # def set_flag(self):
+    #     if self.appearance == Cell.Appearance.UNOPENED:
+    #         self.appearance = Cell.Appearance.FLAG
+    #         return True
+    #     return False
+
+    # def unset_flag(self):
+    #     if self.appearance == Cell.Appearance.FLAG:
+    #         self.appearance = Cell.Appearance.UNOPENED
+    #         return True
+    #     else:
+    #         return False
 
     def set_count(self, count):
         """Opens a cell and sets it number.
@@ -141,7 +151,10 @@ class CellError(Exception):
         super().__init__(message)
 
 
-class AttemptToOpenFlagCell(CellError):
+class IllegalFlagToggle(CellError):
     """When a user clicks a flag attempting to open it."""
     def __init__(self, row, col):
-        super().__init__("")
+        super().__init__(
+            f"Toggling a cell at ({row}, {col}) "
+            "which isn't unopened or flagged."
+        )
