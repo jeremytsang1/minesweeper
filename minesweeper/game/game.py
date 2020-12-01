@@ -43,6 +43,10 @@ class Game:
         # TODO increment self.turn if valid
         assert False, "Not yet implemented"
 
+    def increment_turn(self, move):
+        if move.is_valid():
+            self.turn += 1
+
     def check_end_game(self):
         won = self.check_victory()
         loss = self.check_loss()
