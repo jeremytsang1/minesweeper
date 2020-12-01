@@ -10,33 +10,37 @@ class Move():
         TOGGLE_FLAG = 2
         CHORD = 3
 
-    CHORD_MSG = "Can only chord NUMBER cells."
+    class Invalid(Enum):
+        CANT_OPEN_FLAGGED = 1
+        CANT_OPEN_NUMBER = 2
+        CANT_OPEN_EMPTY = 3
+        CANT_TOGGLE_NUMBER = 4
+        CANT_TOGGLE_EMPTY = 5
+        CAN_ONLY_CHORD_NUMBER_CELLS = 6
+        CANT_CHORD_WITH_INVALID_FLAG_ADJ = 7
 
-    MSG = {
+    VALIDITY_RULES = {
         MoveType.OPEN: {
-            Cell.Appearance.FLAG: "Can't open a FLAGGED cell! Unflag it first!",
-            Cell.Appearance.NUMBER: "Can't open a NUMBER cell!",
-            Cell.Appearance.EMPTY: "Can't open an EMPTY cell!",
+            Cell.Appearance.FLAG: Invalid.CANT_OPEN_FLAGGED,
+            Cell.Appearance.NUMBER: Invalid.CANT_OPEN_NUMBER,
+            Cell.Appearance.EMPTY: Invalid.CANT_OPEN_EMPTY,
             Cell.Appearance.UNOPENED: None,
         },
         MoveType.TOGGLE_FLAG: {
             Cell.Appearance.FLAG: None,
-            Cell.Appearance.NUMBER: "Can't toggle flag of a NUMBER cell!",
-            Cell.Appearance.EMPTY: "Can't toggle flag of an EMPTY cell!",
+            Cell.Appearance.NUMBER: Invalid.CANT_TOGGLE_NUMBER,
+            Cell.Appearance.EMPTY: Invalid.CANT_TOGGLE_EMPTY,
             Cell.Appearance.UNOPENED: None,
         },
         MoveType.CHORD: {
-            Cell.Appearance.FLAG: CHORD_MSG,
+            Cell.Appearance.FLAG: Invalid.CAN_ONLY_CHORD_NUMBER_CELLS,
+            # allow chording if flag count equals number of adjacent bombs
             Cell.Appearance.NUMBER: {
-                # whether or not the number of flagged is equal to the number
                 True: None,
-                False: (
-                    "Can only chord when the number of adjacent flags is "
-                    "equal to the number."
-                )
+                False: Invalid.CANT_CHORD_WITH_INVALID_FLAG_ADJ,
             },
-            Cell.Appearance.EMPTY: CHORD_MSG,
-            Cell.Appearance.UNOPENED: CHORD_MSG
+            Cell.Appearance.EMPTY: Invalid.CAN_ONLY_CHORD_NUMBER_CELLS,
+            Cell.Appearance.UNOPENED: Invalid.CAN_ONLY_CHORD_NUMBER_CELLS,
         },
     }
 
@@ -46,17 +50,17 @@ class Move():
         self.move_type = move_type
         self.adjFlagCount = adjFlagCount
 
-    def get_message(self):
-        app = self.cell.get_appearance()
-        msg = self.MSG[self.move_type][app]
+    def get_reason_turn_is_invalid(self):
+        appearance = self.cell.get_appearance()
+        reason = self.VALIDITY_RULES[self.move_type][appearance]
 
-        if (app == Cell.Appearance.NUMBER and self.move_type == self.MoveType.CHORD):
+        if (appearance == Cell.Appearance.NUMBER and self.move_type == self.MoveType.CHORD):
             assert type(self.adjFlagCount) == int
             assert type(self.cell.get_count) == int
-            assert type(msg) == dict
-            msg = msg[self.cell.get_count == self.adjFlagCount]
+            assert type(reason) == dict
+            reason = reason[self.cell.get_count == self.adjFlagCount]
 
-        return msg
+        return reason
 
     def is_valid(self):
         return self.valid

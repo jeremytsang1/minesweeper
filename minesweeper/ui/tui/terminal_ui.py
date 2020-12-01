@@ -1,3 +1,4 @@
+from minesweeper.ui.tui.terminal_ui_move_message import MoveMessage
 from minesweeper.ui.tui.table_printer import TablePrinter
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
@@ -195,7 +196,7 @@ class TUI():
             self.process_valid_move()
         else:
             assert type(move.get_message()) == str
-            print("", move.get_message(), sep="\n")
+            print(MoveMessage.MOVE_MSG[move.get_reason_turn_is_invalid()])
             self.take_turn()
 
     def process_valid_move(self):
