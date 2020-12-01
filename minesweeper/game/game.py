@@ -1,5 +1,6 @@
 from minesweeper.game.board import Board
 from minesweeper.game.bomb_dropper import BombDropper
+from minesweeper.game.move import Move
 
 
 class Game:
@@ -33,9 +34,10 @@ class Game:
 
     def toggle_flag(self, row, col):
         print("Toggling flag!")
-        # should return if move was valid or not
-        # TODO increment self.turn if valid
-        assert False, "Not yet implemented"
+        valid = self.board.toggle_flag(row, col)
+        move = Move(valid, self.board.get_cell(row, col), Move.MoveType.TOGGLE_FLAG)
+        self.increment_turn(move)
+        return move
 
     def chord_cell(self, row, col):
         print("\nChording!")
