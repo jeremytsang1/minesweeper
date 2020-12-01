@@ -17,6 +17,7 @@ class Board:
 
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
+        assert False, "NOT YET IMPLEMENTED: Make sure to open the first cell"
 
     def get_height(self):
         return self.height
