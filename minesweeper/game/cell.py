@@ -73,12 +73,11 @@ class Cell:
     def toggle_flag(self):
         if self.appearance == Cell.Appearance.UNOPENED:
             self.appearance = Cell.Appearance.FLAG
-            return True
         elif self.appearance == Cell.Appearance.FLAG:
             self.appearance = Cell.Appearance.UNOPENED
-            return False
         else:
-            raise IllegalFlagToggle(self.row, self.col)
+            return False  # invalid move
+        return True  # valid move
 
     # def set_flag(self):
     #     if self.appearance == Cell.Appearance.UNOPENED:

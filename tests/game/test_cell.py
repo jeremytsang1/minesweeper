@@ -56,7 +56,7 @@ class TestCell(unittest.TestCase):
 
     def test_unset_flag_of_unopened_no_bomb(self):
         self.assertTrue(self.cell.toggle_flag())
-        self.assertFalse(self.cell.toggle_flag())
+        self.assertTrue(self.cell.toggle_flag())
         self.assertEqual(self.cell.get_appearance(), Cell.Appearance.UNOPENED)
 
     def test_set_flag_of_unopened_bomb(self):
@@ -67,22 +67,18 @@ class TestCell(unittest.TestCase):
     def test_unset_flag_of_unopened_bomb(self):
         self.cell = Cell(5, 2, True)
         self.assertTrue(self.cell.toggle_flag())
-        self.assertFalse(self.cell.toggle_flag())
+        self.assertTrue(self.cell.toggle_flag())
         self.assertEqual(self.cell.appearance, Cell.Appearance.UNOPENED)
 
     def test_set_flag_of_empty(self):
         self.cell = Cell(5, 2, False)
         self.cell.set_count(0)
-
-        with self.assertRaises(IllegalFlagToggle):
-            self.cell.toggle_flag()
+        self.assertFalse(self.cell.toggle_flag())
 
     def test_set_flag_of_number(self):
         self.cell = Cell(5, 2, False)
         self.cell.set_count(4)
-
-        with self.assertRaises(IllegalFlagToggle):
-            self.cell.toggle_flag()
+        self.assertFalse(self.cell.toggle_flag())
 
     def test_print_cell(self):
         self.cell = Cell(5, 2, True)
