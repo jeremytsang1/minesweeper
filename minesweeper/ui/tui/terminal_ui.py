@@ -50,7 +50,6 @@ class TUI():
         self.height = None
         self.width = None
         self.bomb_count = None
-        self.turn = None
 
     # -------------------------------------------------------------------------
     # Main menu functions
@@ -78,7 +77,6 @@ class TUI():
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
         MENU_ACTIONS[menu_option]()
 
-        self.turn = 0
         self.take_first_turn()
 
     def start_easy(self):
@@ -133,7 +131,6 @@ class TUI():
             2: self.quit_and_end_program,
         }
         assert self.game is None
-        assert self.turn == 0
 
         self.print_turn()
         self.display_board_to_user()
@@ -144,7 +141,6 @@ class TUI():
     def open_first_cell(self):
         pos = self.get_position_from_user()
         self.game = Game(self.height, self.width, self.bomb_count, *pos)
-        self.turn += 1
         self.take_turn()
 
     # -------------------------------------------------------------------------
@@ -169,18 +165,15 @@ class TUI():
             self.process_move(move)
 
     def print_turn(self):
-        print(f"\nTurns taken: {self.turn}")
+        turns_taken = 0 if self.game is None else self.game.get_turn()
+        print(f"\nTurns taken: {turns_taken}")
 
     def display_board_to_user(self):
-        if self.turn == 0 and self.game is None:
+        if self.game is None:
             # Need the user to make a move before initializing a real board.
             self.print_dummy_board()
-        elif self.turn != 0 and self.game is not None:
+        else:
             self.print_real_board()
-        elif self.turn == 0 and self.game is not None:
-            raise DidNotErasePreviousGameError
-        else:  # self.turn != 0  and self.game is None
-            raise NoGameInstance
 
     def print_dummy_board(self):
         print('\nprint_dummy_board()')  # TODO: remove this print statement
@@ -199,7 +192,6 @@ class TUI():
     def process_move(self, move):
         assert type(move) == Move
         if move.is_valid():
-            self.turn += 1
             self.process_valid_move()
         else:
             assert type(move.get_message()) == str
@@ -278,16 +270,6 @@ class TUI():
 class TUIError(Exception):
     def __init__(self, message):
         super().__init__(message)
-
-
-class DidNotErasePreviousGameError(TUIError):
-    def __init__(self, turn):
-        super().__init__("It's turn 0 but no game still using previous game!")
-
-
-class NoGameInstance(TUIError):
-    def __init__(self, turn):
-        super().__init__("It's not turn 0 but game has not been created!")
 
 
 if __name__ == '__main__':

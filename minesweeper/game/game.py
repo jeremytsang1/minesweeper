@@ -19,6 +19,7 @@ class Game:
                                         first_click_col, bomb_count)
 
         self.board = Board(self.bomb_dropper.drop_bombs())
+        self.turn = 0
         # TODO: make the first move with the board
 
     # -----------------------------------------------------------------------------
@@ -27,16 +28,19 @@ class Game:
     def open_cell(self, row, col):
         print("\nOpening!")
         # should return if move was valid or not
+        # TODO increment self.turn if valid
         assert False, "Not yet implemented"
 
     def toggle_flag(self, row, col):
         print("Toggling flag!")
         # should return if move was valid or not
+        # TODO increment self.turn if valid
         assert False, "Not yet implemented"
 
     def chord_cell(self, row, col):
         print("\nChording!")
         # should return if move was valid or not
+        # TODO increment self.turn if valid
         assert False, "Not yet implemented"
 
     def check_end_game(self):
@@ -48,11 +52,14 @@ class Game:
     def reveal_board(self):
         assert False, "Not yet implemented"
 
-    # -----------------------------------------------------------------------------
-    # PRIVATE # TODO rename since there is no privacy modifiers in python
+    def get_turn(self):
+        return self.turn
 
     def get_grid(self):
         return self.board.get_grid()
+
+    # -----------------------------------------------------------------------------
+    # PRIVATE # TODO rename since there is no privacy modifiers in python
 
     def validate_init_input(self):
         self.validate_shape()
