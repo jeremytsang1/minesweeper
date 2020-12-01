@@ -30,6 +30,9 @@ class Board:
     def get_grid(self):
         return self.grid
 
+    def get_cell(self, row, col):
+        return self.grid[row][col]
+
     def iterate(self, fcn):
         """Call a function on each of the cells in the grid.
 
