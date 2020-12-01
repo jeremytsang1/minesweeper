@@ -64,12 +64,25 @@ class Board:
     # Player move methods
 
     def toggle_flag(self, row, col):
+        """Toggle the flag of an unopened cell or a flagged cell.
+
+        If the cell has any other appearance other than unopened or flag,
+        returns false and does not alter appearance.
+
+        Parameters
+        ----------
+        row: int
+        col: int
+
+        Returns
+        -------
+        bool
+            Whether or not the toggle was valid.
+
+        """
         cell = self.grid[row][col]
-        if cell.get_appearance() not in (Cell.Appearance.FLAG or Cell.Appearance.UNOPENED):
-            return False
-        else:
-            assert False, "Need to implement the toggling"
-            return True
+        return cell.toggle_flag()
+
 
 class BoardError(Exception):
     def __init__(self, message):

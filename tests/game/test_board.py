@@ -72,6 +72,15 @@ class TestBoard(unittest.TestCase):
         )
         self.assertEqual(repr(self.board), expected)
 
+    # -----------------------------------------------------------------------------
+    # Toggling tests
+
+    def test_toggle_each_cell_to_flag(self):
+        self.board.iterate(lambda cell: self.board.toggle_flag(cell.get_row(),
+                                                               cell.get_col()))
+        self.board.iterate(lambda cell: self.assertEqual(cell.get_appearance(),
+                                                         Cell.Appearance.FLAG))
+
 
 if __name__ == '__main__':
     unittest.main()
