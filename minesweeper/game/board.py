@@ -60,6 +60,16 @@ class Board:
     def __repr__(self):
         return '\n'.join(' '.join(repr(cell) for cell in row) for row in self.grid)
 
+    # -----------------------------------------------------------------------------
+    # Player move methods
+
+    def toggle_flag(self, row, col):
+        cell = self.grid[row][col]
+        if cell.get_appearance() not in (Cell.Appearance.FLAG or Cell.Appearance.UNOPENED):
+            return False
+        else:
+            assert False, "Need to implement the toggling"
+            return True
 
 class BoardError(Exception):
     def __init__(self, message):
