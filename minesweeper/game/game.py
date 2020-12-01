@@ -67,23 +67,6 @@ class Game:
     # -----------------------------------------------------------------------------
     # PRIVATE # TODO rename since there is no privacy modifiers in python
 
-    def validate_init_input(self):
-        self.validate_shape()
-        self.validate_bomb_count()
-        self.validate_first_move()
-
-    def validate_shape(self):
-        # TODO
-        assert False, "Not yet implemented"
-
-    def validate_bomb_count(self):
-        # TODO
-        assert False, "Not yet implemented"
-
-    def validate_first_move(self):
-        # TODO
-        assert False, "Not yet implemented"
-
     def check_victory(self):
         assert False, "Not yet implemented"
 
