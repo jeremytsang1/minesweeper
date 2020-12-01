@@ -79,19 +79,6 @@ class Cell:
             return False  # invalid move
         return True  # valid move
 
-    # def set_flag(self):
-    #     if self.appearance == Cell.Appearance.UNOPENED:
-    #         self.appearance = Cell.Appearance.FLAG
-    #         return True
-    #     return False
-
-    # def unset_flag(self):
-    #     if self.appearance == Cell.Appearance.FLAG:
-    #         self.appearance = Cell.Appearance.UNOPENED
-    #         return True
-    #     else:
-    #         return False
-
     def set_count(self, count):
         """Opens a cell and sets it number.
 
