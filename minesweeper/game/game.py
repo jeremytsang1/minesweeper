@@ -20,7 +20,9 @@ class Game:
                                         first_click_col, bomb_count)
 
         self.board = Board(self.bomb_dropper.drop_bombs())
-        self.turn = 0
+        self.turn = 1  # Always start new game after user makes the first move.
+        self.won = False
+        self.loss = False
         # TODO: make the first move with the board
 
     # -----------------------------------------------------------------------------
@@ -30,6 +32,7 @@ class Game:
         print("\nOpening!")
         # should return if move was valid or not
         # TODO increment self.turn if valid
+        self.update_end_game()
         assert False, "Not yet implemented"
 
     def toggle_flag(self, row, col):
@@ -43,17 +46,19 @@ class Game:
         print("\nChording!")
         # should return if move was valid or not
         # TODO increment self.turn if valid
+        self.update_end_game()
         assert False, "Not yet implemented"
 
     def increment_turn(self, move):
         if move.is_valid():
             self.turn += 1
 
+    def update_end_game(self):
+        assert False, "Not yet implemented"
+
     def check_end_game(self):
-        won = self.check_victory()
-        loss = self.check_loss()
-        assert not (won and loss)
-        return won, loss
+        assert not (self.won and self.loss)
+        return self.won, self.loss
 
     def reveal_board(self):
         assert False, "Not yet implemented"
