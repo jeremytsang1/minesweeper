@@ -61,7 +61,7 @@ class Game:
         assert False, "Not yet implemented"
 
     def toggle_flag(self, row, col):
-        print("Toggling flag!")
+        print("\nToggling flag!")
         valid = self.board.toggle_flag(row, col)
         move = Move(valid, self.board.get_cell(row, col), Move.MoveType.TOGGLE_FLAG)
         self.increment_turn(move)
