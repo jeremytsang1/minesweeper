@@ -166,7 +166,6 @@ class Board:
         adj_cells = self.get_adjacent_cells(cell)
         flag_count = Board.count_appearance(adj_cells)
 
-
         def is_valid_cell_to_chord():
             if cell.get_appearance() != Cell.Appearance.NUMBER:
                 return False
