@@ -177,13 +177,18 @@ class TUI():
             self.print_real_board()
 
     def print_dummy_board(self):
-        print('\nprint_dummy_board()')  # TODO: remove this print statement
+        """Print a board with all unopened cells.
+
+        Use a non-live board since don't want to create a game till the user
+        clicks to avoid them immediately dying by clicking a mine (Game will
+        lay the mines considering every cell except for the one the user
+        clicks.
+        """
         dummy_board = Board([[False for _ in range(self.width)]
                              for _ in range(self.height)])
         print(TablePrinter.makeTable(dummy_board.get_grid()))
 
     def print_real_board(self):
-        print('\nprint_real_board()')  # TODO: remove this print statement
         print(TablePrinter.makeTable(self.game.get_grid()))
 
     def perform_player_game_action(self, player_action):
