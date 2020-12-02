@@ -122,6 +122,7 @@ class Cell:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
 
     def open_cell(self, count=None):
+        """Responsible for updating the appearance of the cell after opening"""
         if self.is_bomb():
             self.appearance = Cell.Appearance.OPENED_BOMB
         elif type(count) == int:
