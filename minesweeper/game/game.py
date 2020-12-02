@@ -102,15 +102,6 @@ class Game:
     def get_grid(self):
         return self.board.get_grid()
 
-    # -----------------------------------------------------------------------------
-    # PRIVATE # TODO rename since there is no privacy modifiers in python
-
-    def check_victory(self):
-        assert False, "Not yet implemented"
-
-    def check_loss(self):
-        assert False, "Not yet implemented"
-
 
 class GameError(Exception):
     def __init__(self, message):
