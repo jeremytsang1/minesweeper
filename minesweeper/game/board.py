@@ -7,8 +7,8 @@ class Board:
 
     def __init__(self, bombs):
         Board.validate_bombs(bombs)
-        self.opened_count = 0
-        self.bombs_opened_count = 0
+        self.opened_cell_count = 0
+        self.opened_bomb_count = 0
         self.pos_util = PositionUtil(len(bombs), len(bombs[0]))
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
@@ -66,7 +66,7 @@ class Board:
         if cell.is_bomb():
             return self.open_bomb(cell)
 
-        self.opened_count += 1
+        self.opened_cell_count += 1
 
         adj_cells = self.get_adjacent_cells(opened_row, opened_col)
         adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
@@ -79,7 +79,7 @@ class Board:
         return True  # valid move
 
     def open_bomb(self, cell):
-        self.bombs_opened_count += 1
+        self.opened_bomb_count += 1
         cell.open_cell()
         return True
 
