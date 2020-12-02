@@ -58,6 +58,14 @@ class Board:
     # -----------------------------------------------------------------------------
     # Player move methods
 
+    def get_adjacent_cells(self, row, col):
+        return [self.get_cell(*pos) for pos in self.pos_util.adj(row, col)]
+
+    @staticmethod
+    def count_adjacent_bombs(adjacent_cells):
+        return sum(adj_cell.is_bomb() for adj_cell in adjacent_cells)
+
+
     def toggle_flag(self, row, col):
         """Toggle the flag of an unopened cell or a flagged cell.
 
