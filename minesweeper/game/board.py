@@ -139,7 +139,7 @@ class Board:
         -------
         int
         """
-        return sum(cell.get_appearance == appearance for cell in cells)
+        return sum(cell.get_appearance() == appearance for cell in cells)
 
     def toggle_flag(self, row, col):
         """Toggle the flag of an unopened cell or a flagged cell.
@@ -165,7 +165,8 @@ class Board:
         cell = self.get_cell(row, col)
         adj_cells = self.get_adjacent_cells(cell)
 
-        def is_valid_cell_to_chord(self):
+
+        def is_valid_cell_to_chord():
             if cell.get_appearance() != Cell.Appearance.NUMBER:
                 return False
             elif Board.count_appearance(adj_cells) != cell.get_count():

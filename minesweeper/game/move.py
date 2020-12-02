@@ -56,9 +56,9 @@ class Move():
 
         if (appearance == Cell.Appearance.NUMBER and self.move_type == self.MoveType.CHORD):
             assert type(self.adjFlagCount) == int
-            assert type(self.cell.get_count) == int
+            assert type(self.cell.get_count()) == int
             assert type(reason) == dict
-            reason = reason[self.cell.get_count == self.adjFlagCount]
+            reason = reason[self.cell.get_count() == self.adjFlagCount]
 
         return reason
 
