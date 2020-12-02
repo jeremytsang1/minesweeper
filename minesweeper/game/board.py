@@ -19,7 +19,7 @@ class Board:
             raise JaggedMinePositionsError(bombs)
 
     def get_shape(self):
-        return (self.width, self.height)
+        return len(self.grid), len(self.grid[0])
 
     def get_grid(self):
         return self.grid
