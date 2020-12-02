@@ -1,5 +1,6 @@
 from minesweeper.ui.tui.terminal_ui_move_message import MoveMessage
 from minesweeper.ui.tui.table_printer import TablePrinter
+from minesweeper.ui.tui.art import happy, dead
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
 from minesweeper.game.move import Move
@@ -39,8 +40,8 @@ class TUI():
     )
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
-    WON_MSG = "\nYOU WIN!"
-    LOSS_MSG = "\nYOU DIED!"
+    WON_MSG = f"\nYOU WIN!{happy()}"
+    LOSS_MSG = f"\nYOU DIED!{dead()}"
     GOODBYE = "\nGoodbye!"
 
     def __init__(self):
