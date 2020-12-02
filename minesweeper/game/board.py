@@ -34,7 +34,16 @@ class Board:
         return self.grid[row][col]
 
     def get_appearance(self):
-        return [[cell.get_appearance() for cell in row] for row in self.grid]
+        appearances = [[None for _ in row] for row in self.grid]
+
+        for i, row in enumerate(self.grid):
+            for j, cell in enumerate(row):
+                appearance = cell.get_appearance()
+                if appearance is Cell.Appearance.NUMBER:
+                    appearance = cell.get_count()
+                appearance[i][j] = appearance
+
+        return appearances
 
     def iterate(self, fcn):
         """Call a function on each of the cells in the grid.
