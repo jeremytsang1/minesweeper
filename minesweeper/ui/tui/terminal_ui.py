@@ -218,8 +218,6 @@ class TUI():
 
     def showEndGameResults(self, won, loss):  # TODO
         print(TUI.WON_MSG if won else TUI.LOSS_MSG)
-        if loss:
-            self.game.reveal_board()
 
     @staticmethod
     def quit_and_end_program():

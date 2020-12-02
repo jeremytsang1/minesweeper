@@ -90,6 +90,7 @@ class Game:
             return
         if self.board.get_opened_bomb_count() > 0:
             self.loss = True
+            self.board.reveal_board()
             return
 
     def check_end_game(self):
@@ -101,9 +102,6 @@ class Game:
 
     def get_grid(self):
         return self.board.get_grid()
-
-    def reveal_board(self):
-        self.board.reveal_board()
 
 
 class GameError(Exception):
