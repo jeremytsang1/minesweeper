@@ -19,7 +19,9 @@ class Game:
         self.board = Board(self.bomb_dropper.drop_bombs())
         self.won = False
         self.loss = False
-        self.turn = 0  # Always start new game after user makes the first move.
+        self.turn = 0
+
+        # Make the first move
         self.open_cell(first_click_row, first_click_col)
 
     @staticmethod
