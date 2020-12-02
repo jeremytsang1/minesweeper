@@ -72,10 +72,13 @@ class Game:
 
     def chord_cell(self, row, col):
         print("\nChording!")
-        # should return if move was valid or not
-        # TODO increment self.turn if valid
-        self.update_end_game()
-        assert False, "Not yet implemented"
+        valid, flag_count = self.board.chord_cell(row, col)
+        move = Move(valid, self.board.get_cell(row, col),
+                    Move.MoveType.CHORD, flag_count)
+        self.increment_turn(move)
+        if valid:
+            self.update_end_game()
+        return move
 
     def increment_turn(self, move):
         if move.is_valid():
