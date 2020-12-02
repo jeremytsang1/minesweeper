@@ -110,8 +110,19 @@ class Board:
         return [self.get_cell(*pos) for pos in self.adj(*opened_cell.get_pos())]
 
     @staticmethod
-    def count_adjacent_bombs(adjacent_cells):
-        return sum(adj_cell.is_bomb() for adj_cell in adjacent_cells)
+    def count_adjacent_bombs(cells):
+        """Count the number of bombs in a group of cells.
+
+        Parameters
+        ----------
+        cells: list of Cell
+            Cells to count from.
+
+        Returns
+        -------
+        int
+        """
+        return sum(cell.is_bomb() for cell in cells)
 
     @staticmethod
     def count_appearance(cells, appearance=Cell.Appearance.FLAG):
