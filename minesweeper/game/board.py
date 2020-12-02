@@ -1,4 +1,5 @@
 from minesweeper.game.cell import Cell
+from minesweeper.game.position_util import PositionUtil
 
 
 class Board:
@@ -8,6 +9,7 @@ class Board:
         Board.validate_bombs(bombs)
         self.opened_count = 0
         self.bombs_opened_count = 0
+        self.pos_util = PositionUtil(len(bombs), len(bombs[0]))
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
         assert False, "NOT YET IMPLEMENTED: Make sure to open the first cell"
