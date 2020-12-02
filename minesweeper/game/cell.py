@@ -74,6 +74,11 @@ class Cell:
     def get_count(self):
         return self.count
 
+    # ----------------------------------------
+
+    def get_pos(self):
+        return self.row, self.col
+
     # -------------------------------------------------------------------------
     # Methods for player actions.
 
