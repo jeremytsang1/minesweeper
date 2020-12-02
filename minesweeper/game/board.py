@@ -64,19 +64,19 @@ class Board:
     # Player move methods
 
     def open_cell(self, opened_row, opened_col):
-        cell = self.grid[opened_row][opened_col]
+        opened_cell = self.grid[opened_row][opened_col]
 
-        if cell.appearance != Cell.Appearance.UNOPENED:  # invalid move
+        if opened_cell.appearance != Cell.Appearance.UNOPENED:  # invalid move
             return False
 
-        if cell.is_bomb():
-            return self.open_bomb(cell)
+        if opened_cell.is_bomb():
+            return self.open_bomb(opened_cell)
 
         self.opened_cell_count += 1
 
         adj_cells = self.get_adjacent_cells(opened_row, opened_col)
         adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
-        cell.open_cell(adj_bomb_count)
+        opened_cell.open_cell(adj_bomb_count)
 
         if adj_bomb_count == 0:
             for adj_cell in adj_cells:
