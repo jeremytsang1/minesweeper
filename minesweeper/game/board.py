@@ -12,7 +12,6 @@ class Board:
         self.pos_util = PositionUtil(len(bombs), len(bombs[0]))
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
-        assert False, "NOT YET IMPLEMENTED: Make sure to open the first cell"
 
     @staticmethod
     def validate_bombs(bombs):
@@ -58,6 +57,26 @@ class Board:
     # -----------------------------------------------------------------------------
     # Player move methods
 
+    def open_cell(self, opened_row, opened_col):
+        cell = self.grid[opened_row][opened_col]
+
+        if cell.appearance != Cell.Appearance.UNOPENED:  # invalid move
+            return False
+
+        if cell.is_bomb():
+            return self.open_bomb()
+
+        self.opened_count += 1
+
+        adj_cells = self.get_adjacent_cells(opened_row, opened_col)
+        adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
+        cell.open_cell(adj_bomb_count)
+
+        if adj_bomb_count == 0:
+            for adj_cell in adj_cells:
+                self.open_cell(self.get_cell(*adj_cell.get.pos()))
+
+        return True  # valid move
 
     def open_bomb(self, cell):
         self.bombs_opened_count += 1
