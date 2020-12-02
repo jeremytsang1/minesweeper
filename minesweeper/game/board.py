@@ -93,7 +93,7 @@ class Board:
 
         if adj_bomb_count == 0:
             for adj_cell in adj_cells:
-                self.open_cell(self.get_cell(*adj_cell.get.pos()))
+                self.open_cell(*adj_cell.get_pos())
 
         return True  # valid move
 
