@@ -7,6 +7,8 @@ class Board:
     def __init__(self, bombs):
         self.height = len(bombs)
         self.width = len(bombs[0])
+        self.opened_count = 0
+        self.bombs_opened_count = 0
 
         if not all(len(bombs[0]) == len(row) for row in bombs):
             raise JaggedMinePositionsError(bombs)
