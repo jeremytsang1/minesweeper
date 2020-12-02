@@ -86,16 +86,10 @@ class Board:
 
         def open_non_bomb_cell(opened_cell):
             self.opened_cell_count += 1
-
             adj_cells = self.get_adjacent_cells(opened_cell)
             adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
             opened_cell.open_cell(adj_bomb_count)
-
-            if adj_bomb_count == 0:
-                for adj_cell in adj_cells:
-                    self.open_cell(*adj_cell.get_pos())
-
-            return True  # valid move
+            return adj_cells, adj_bomb_count
 
         opened_cell = self.grid[opened_row][opened_col]
 
@@ -105,7 +99,13 @@ class Board:
         if opened_cell.is_bomb():
             return open_bomb(opened_cell)
 
-        return open_non_bomb_cell(opened_cell)
+        adj_cells, adj_bomb_count = open_non_bomb_cell(opened_cell)
+
+        if adj_bomb_count == 0:
+            for adj_cell in adj_cells:
+                self.open_cell(*adj_cell.get_pos())
+
+        return True  # valid move
 
     def get_adjacent_cells(self, opened_cell):
         return [self.get_cell(*pos) for pos in self.adj(*opened_cell.get_pos())]
