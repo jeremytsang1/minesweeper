@@ -18,6 +18,12 @@ class Board:
         if not all(len(bombs[0]) == len(row) for row in bombs):
             raise JaggedMinePositionsError(bombs)
 
+    def get_opened_cell_count(self):
+        return self.opened_cell_count
+
+    def get_opened_bomb_count(self):
+        return self.opened_bomb_count
+
     def get_shape(self):
         return len(self.grid), len(self.grid[0])
 
