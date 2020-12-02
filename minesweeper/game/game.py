@@ -56,10 +56,10 @@ class Game:
 
     def open_cell(self, row, col):
         print("\nOpening!")
-        # should return if move was valid or not
-        # TODO increment self.turn if valid
-        self.update_end_game()
-        assert False, "Not yet implemented"
+        valid = self.board.open_cell(row, col)
+        if valid:
+            self.update_end_game()
+        return Move(valid, self.board.get_cell(row, col), Move.MoveType.OPEN)
 
     def toggle_flag(self, row, col):
         print("\nToggling flag!")
