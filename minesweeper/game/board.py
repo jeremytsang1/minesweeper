@@ -141,7 +141,7 @@ class Board:
         def is_valid_cell_to_chord(self):
             if cell_to_chord.get_appearance() != Cell.Appearance.NUMBER:
                 return False
-            elif Board.count_adjacent_bombs(cell_to_chord) != cell_to_chord.get_count():
+            elif Board.count_adjacent_bombs(adj_cells) != cell_to_chord.get_count():
                 return False
             else:
                 return True
