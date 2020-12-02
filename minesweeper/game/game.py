@@ -14,6 +14,7 @@ class Game:
         Game.validate_initial_conditions(height, width, bomb_count,
                                          first_click_row, first_click_col)
         self.bomb_count = bomb_count
+        self.cell_count = height * width
         self.bomb_dropper = BombDropper(height, width, first_click_row,
                                         first_click_col, bomb_count)
         self.board = Board(self.bomb_dropper.drop_bombs())
@@ -79,7 +80,12 @@ class Game:
             self.turn += 1
 
     def update_end_game(self):
-        assert False, "Not yet implemented"
+        if self.cell_count - self.board.get_opened_cell_count() == self.bomb_count:
+            self.won = True
+            return
+        if self.board.get_opened_bomb_count() > 0:
+            self.loss = True
+            return
 
     def check_end_game(self):
         assert not (self.won and self.loss)
