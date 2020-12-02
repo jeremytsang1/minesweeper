@@ -96,14 +96,14 @@ class Game:
         assert not (self.won and self.loss)
         return self.won, self.loss
 
-    def reveal_board(self):
-        assert False, "Not yet implemented"
-
     def get_turn(self):
         return self.turn
 
     def get_grid(self):
         return self.board.get_grid()
+
+    def reveal_board(self):
+        self.board.reveal_board()
 
 
 class GameError(Exception):

@@ -138,6 +138,10 @@ class Cell:
     def set_appearance(self, appearance):
         self.appearance = appearance
 
+    def reveal_unopened_bomb(self):
+        if self.appearance == Cell.Appearance.UNOPENED and self.bomb:
+            self.appearance = Cell.Appearance.UNENCOUNTERED_BOMB
+
     def text_appearance(self):
         if self.appearance == Cell.Appearance.NUMBER:
             return str(self.count)

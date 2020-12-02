@@ -184,6 +184,9 @@ class Board:
 
         return True, flag_count
 
+    def reveal_board(self):
+        self.iterate(lambda cell: cell.reveal_unopened_bomb())
+
 
 class BoardError(Exception):
     def __init__(self, message):

@@ -280,3 +280,4 @@ class TUIError(Exception):
 
 if __name__ == '__main__':
     tui = TUI()
+    tui.run_main_menu()
