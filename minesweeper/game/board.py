@@ -64,7 +64,7 @@ class Board:
             return False
 
         if cell.is_bomb():
-            return self.open_bomb()
+            return self.open_bomb(cell)
 
         self.opened_count += 1
 
