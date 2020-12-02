@@ -118,12 +118,12 @@ class Cell:
         else:
             pass  # Count is valid.
 
-    def open_cell(self, count=None):
+    def open_cell(self, adj_bomb_count=None):
         """Responsible for updating the appearance of the cell after opening"""
         if self.is_bomb():
             self.appearance = Cell.Appearance.OPENED_BOMB
-        elif type(count) == int:
-            self.set_count(count)
+        elif type(adj_bomb_count) == int:
+            self.set_count(adj_bomb_count)
         else:
             raise OpenInvalidArgument(self.row, self.col)
 
