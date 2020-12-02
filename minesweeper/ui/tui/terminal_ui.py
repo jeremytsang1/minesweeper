@@ -167,7 +167,7 @@ class TUI():
 
     def print_turn(self):
         turns_taken = 0 if self.game is None else self.game.get_turn()
-        print(f"\nTurns taken: {turns_taken}")
+        print(f"\n(Legal) Turns taken: {turns_taken}")
 
     def display_board_to_user(self):
         if self.game is None:
@@ -195,7 +195,7 @@ class TUI():
         if move.is_valid():
             self.process_valid_move()
         else:
-            assert type(move.get_message()) == str
+            print("Illegal move!")
             print(MoveMessage.MOVE_MSG[move.get_reason_turn_is_invalid()])
             self.take_turn()
 
