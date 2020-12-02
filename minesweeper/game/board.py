@@ -134,6 +134,24 @@ class Board:
         cell = self.grid[row][col]
         return cell.toggle_flag()
 
+    def chord_cell(self, row, col):
+        cell_to_chord = self.get_cell(row, col)
+        adj_cells = self.get_adjacent_cells(cell_to_chord)
+
+        def is_valid_cell_to_chord(self):
+            if cell_to_chord.get_appearance() != Cell.Appearance.NUMBER:
+                return False
+            elif Board.count_adjacent_bombs(cell_to_chord) != cell_to_chord.get_count():
+                return False
+            else:
+                return True
+
+        if not is_valid_cell_to_chord():
+            return False
+
+        # TODO: Do the chording
+
+        return True
 
 class BoardError(Exception):
     def __init__(self, message):
