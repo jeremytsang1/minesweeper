@@ -36,6 +36,61 @@ class TestBoard(unittest.TestCase):
     def create_all_bombs(self, height, width):
         return [[True for _ in range(height)] for _ in range(width)]
 
+    def check_all_unopened_at_start(self):
+        shape = self.board.get_shape()
+        actual = self.board.get_appearance()
+        expected = [[self.U for _ in range(shape[1])] for _ in range(shape[0])]
+        self.assertEqual(actual, expected)
+
+    def print_appearance(appearance):
+        symbols = {
+            TestBoard.F: "F",
+            TestBoard.E: "E",
+            TestBoard.U: "U",
+            TestBoard.Y: "Y",
+            TestBoard.B: "B",
+            TestBoard.X: "X",
+        }
+        rendered = [[symbols[app] if app in symbols else str(app) for app in row]
+                    for row in appearance]
+        print(
+            "\n".join(str(row) for row in rendered)
+        )
+
+    def check_moves(self, display=False):
+        self.check_all_unopened_at_start()
+        for idx, move in enumerate(self.moves):
+            self.compare_state(idx, move, display)
+
+    def compare_state(self, idx, move, display=False):
+        actual_validity = move['act'](*move['pos'])
+        expected_validity = move['val']
+        self.assertEqual(actual_validity, expected_validity)
+
+        expected_appearance = move['board']
+        actual_appearance = self.board.get_appearance()
+        self.assertEqual(actual_appearance, expected_appearance)
+
+        if display:
+            self.dis(actual_appearance, expected_appearance, idx)
+
+        expected_opened_cell_count = move['o_cnt']
+        actual_opened_cell_count = self.board.get_opened_cell_count()
+        self.assertEqual(actual_opened_cell_count, expected_opened_cell_count)
+
+        expected_opened_bomb_count = move['b_cnt']
+        actual_opened_bomb_count = self.board.get_opened_bomb_count()
+        self.assertEqual(actual_opened_bomb_count, expected_opened_bomb_count)
+
+    def dis(self, actual_appearance, expected_appearance, idx):
+        print(79 * "-")
+        print(f'idx: {idx}')
+        print("Actual")
+        TestBoard.print_appearance(actual_appearance)
+        print("Expected")
+        print(40 * "-")
+        TestBoard.print_appearance(expected_appearance)
+
     # -------------------------------------------------------------------------
 
     def test_initial_shape(self):

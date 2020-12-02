@@ -41,7 +41,8 @@ class Board:
                 appearance = cell.get_appearance()
                 if appearance is Cell.Appearance.NUMBER:
                     appearance = cell.get_count()
-                appearance[i][j] = appearance
+
+                appearances[i][j] = appearance
 
         return appearances
 
