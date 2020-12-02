@@ -57,7 +57,11 @@ class Cell:
                 pass  # Component is valid.
 
     def validate_count(self, count):
-        if type(count) != int:
+        if self.bomb:
+            raise IllegalSetCountBomb(self.row, self.col)
+        elif self.count is not None:
+            raise AttemptToResetCountError(self.row, self.col)
+        elif type(count) != int:
             raise TypeError(Cell.ERROR_COUNT_TYPE)
         elif count not in range(Cell.MIN_COUNT, Cell.MAX_COUNT + 1):
             raise ValueError(Cell.ERROR_COUNT_VALUE)
@@ -92,11 +96,9 @@ class Cell:
         -------
         None
         """
-        if self.bomb:
-            raise Exception("")
         self.validate_count(count)
         self.count = count
-        if count == 0:
+        if self.count == 0:
             self.appearance = Cell.Appearance.EMPTY
         else:
             self.appearance = Cell.Appearance.NUMBER
@@ -115,7 +117,6 @@ class Cell:
 
     def text_appearance(self):
         if self.appearance == Cell.Appearance.NUMBER:
-            self.validate_count(self.count)  # make sure not None
             return str(self.count)
         else:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
@@ -144,3 +145,20 @@ class IllegalFlagToggle(CellError):
             f"Toggling a cell at ({row}, {col}) "
             "which isn't unopened or flagged."
         )
+
+
+class IllegalSetCountBomb(CellError):
+    def __init__(self, row, col):
+        super().__init__(
+            f"Tried to set count of cell at ({row}, {col}) but it's a bomb."
+        )
+
+
+class AttemptToResetCountError(CellError):
+    def __init__(self, row, col):
+        super().__init__(
+            f"Tried to set count of cell at ({row}, {col}) but it already has "
+            "been set."
+        )
+
+

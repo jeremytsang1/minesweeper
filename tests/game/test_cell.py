@@ -43,6 +43,7 @@ class TestCell(unittest.TestCase):
 
     def test_cell_count_in_range(self):
         for i in range(Cell.MIN_COUNT, Cell.MAX_COUNT + 1):
+            self.cell = Cell(3, 6)  # Create since not allowed to reset number.
             self.cell.set_count(i)
             self.assertEqual(self.cell.get_count(), i)
 
