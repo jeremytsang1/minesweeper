@@ -58,6 +58,12 @@ class Board:
     # -----------------------------------------------------------------------------
     # Player move methods
 
+
+    def open_bomb(self, cell):
+        self.bombs_opened_count += 1
+        cell.open_cell()
+        return True
+
     def get_adjacent_cells(self, row, col):
         return [self.get_cell(*pos) for pos in self.pos_util.adj(row, col)]
 
