@@ -113,6 +113,9 @@ class Board:
     def count_adjacent_bombs(adjacent_cells):
         return sum(adj_cell.is_bomb() for adj_cell in adjacent_cells)
 
+    @staticmethod
+    def count_adjacent_appearance(appearance, adj_cells):
+        return sum(cell.get_appearance == appearance for cell in adj_cells)
 
     def toggle_flag(self, row, col):
         """Toggle the flag of an unopened cell or a flagged cell.
