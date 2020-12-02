@@ -57,9 +57,11 @@ class Game:
     def open_cell(self, row, col):
         print("\nOpening!")
         valid = self.board.open_cell(row, col)
+        move = Move(valid, self.board.get_cell(row, col), Move.MoveType.OPEN)
+        self.increment_turn(move)
         if valid:
             self.update_end_game()
-        return Move(valid, self.board.get_cell(row, col), Move.MoveType.OPEN)
+        return move
 
     def toggle_flag(self, row, col):
         print("\nToggling flag!")
