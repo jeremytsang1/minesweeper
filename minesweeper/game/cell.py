@@ -121,9 +121,13 @@ class Cell:
         else:
             return Cell.TEXT_APPEARANCE_RULES[self.appearance]
 
-    def open_cell(self, count):
+    def open_cell(self, count=None):
         if self.is_bomb():
-            self.set_appearance = Cell.Appearance.OPENED_BOMB
+            self.appearance = Cell.Appearance.OPENED_BOMB
+        elif type(count) == int:
+            self.set_count(count)
+        else:
+            raise OpenInvalidArgument(self.row, self.col)
 
     def __repr__(self):
         return self.text_appearance()
@@ -162,3 +166,9 @@ class AttemptToResetCountError(CellError):
         )
 
 
+class OpenInvalidArgument(CellError):
+    def __init__(self, row, col):
+        super().__init__(
+            f"Opening cell at ({row}, {col}) failed. Not a bomb but "
+            "adjacent bomb count is not given as an int."
+        )
