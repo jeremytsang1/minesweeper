@@ -114,8 +114,21 @@ class Board:
         return sum(adj_cell.is_bomb() for adj_cell in adjacent_cells)
 
     @staticmethod
-    def count_adjacent_appearance(appearance, adj_cells):
-        return sum(cell.get_appearance == appearance for cell in adj_cells)
+    def count_appearance(cells, appearance=Cell.Appearance.FLAG):
+        """Count the number of occurences of a given Cell appearance.
+
+        Parameters
+        ----------
+        cells: list of Cell
+            Cells to count from.
+        appearance: Cell.Appearance
+            Appearance to count.
+
+        Returns
+        -------
+        int
+        """
+        return sum(cell.get_appearance == appearance for cell in cells)
 
     def toggle_flag(self, row, col):
         """Toggle the flag of an unopened cell or a flagged cell.
@@ -138,13 +151,13 @@ class Board:
         return cell.toggle_flag()
 
     def chord_cell(self, row, col):
-        cell_to_chord = self.get_cell(row, col)
-        adj_cells = self.get_adjacent_cells(cell_to_chord)
+        cell = self.get_cell(row, col)
+        adj_cells = self.get_adjacent_cells(cell)
 
         def is_valid_cell_to_chord(self):
-            if cell_to_chord.get_appearance() != Cell.Appearance.NUMBER:
+            if cell.get_appearance() != Cell.Appearance.NUMBER:
                 return False
-            elif Board.count_adjacent_bombs(adj_cells) != cell_to_chord.get_count():
+            elif Board.count_appearance(adj_cells) != cell.get_count():
                 return False
             else:
                 return True
