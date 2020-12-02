@@ -164,22 +164,26 @@ class Board:
     def chord_cell(self, row, col):
         cell = self.get_cell(row, col)
         adj_cells = self.get_adjacent_cells(cell)
+        flag_count = Board.count_appearance(adj_cells)
 
 
         def is_valid_cell_to_chord():
             if cell.get_appearance() != Cell.Appearance.NUMBER:
                 return False
-            elif Board.count_appearance(adj_cells) != cell.get_count():
+            elif flag_count != cell.get_count():
                 return False
             else:
                 return True
 
         if not is_valid_cell_to_chord():
-            return False
+            return False, flag_count
 
-        # TODO: Do the chording
+        for adj_cell in adj_cells:
+            if adj_cell.get_appearance() != Cell.Appearance.FLAG:
+                self.open_cell(*adj_cell.get_pos())
 
-        return True
+        return True, flag_count
+
 
 class BoardError(Exception):
     def __init__(self, message):
