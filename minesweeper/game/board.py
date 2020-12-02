@@ -33,6 +33,9 @@ class Board:
     def get_cell(self, row, col):
         return self.grid[row][col]
 
+    def get_appearance(self):
+        return [[cell.get_appearance() for cell in row] for row in self.grid]
+
     def iterate(self, fcn):
         """Call a function on each of the cells in the grid.
 
