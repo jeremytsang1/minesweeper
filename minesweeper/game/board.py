@@ -5,23 +5,17 @@ class Board:
     DEFAULT_SIZE = 10
 
     def __init__(self, bombs):
-        self.height = len(bombs)
-        self.width = len(bombs[0])
+        Board.validate_bombs(bombs)
         self.opened_count = 0
         self.bombs_opened_count = 0
-
-        if not all(len(bombs[0]) == len(row) for row in bombs):
-            raise JaggedMinePositionsError(bombs)
-
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
         assert False, "NOT YET IMPLEMENTED: Make sure to open the first cell"
 
-    def get_height(self):
-        return self.height
-
-    def get_width(self):
-        return self.width
+    @staticmethod
+    def validate_bombs(bombs):
+        if not all(len(bombs[0]) == len(row) for row in bombs):
+            raise JaggedMinePositionsError(bombs)
 
     def get_shape(self):
         return (self.width, self.height)

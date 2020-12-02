@@ -34,8 +34,6 @@ class TestBoard(unittest.TestCase):
         grid = self.board.get_grid()
         self.assertEqual(len(grid), self.DEFAULT_HEIGHT)
         self.assertEqual(len(grid[0]), self.DEFAULT_WIDTH)
-        self.assertEqual(self.board.get_height(), self.DEFAULT_HEIGHT)
-        self.assertEqual(self.board.get_width(), self.DEFAULT_WIDTH)
 
     def test_initial_grid_types(self):
         self.bombs = self.create_all_bombs(32, 48)
