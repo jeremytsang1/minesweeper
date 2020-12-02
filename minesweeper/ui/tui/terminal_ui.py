@@ -99,7 +99,8 @@ class TUI():
     @staticmethod
     def read_custom_game_data():
         height = TUI.read_int(TUI.HEIGHT_PROMPT, 1, TUI.MAX_INT)
-        width = TUI.read_int(TUI.WIDTH_PROMPT, 1, TUI.MAX_INT)
+        min_cols = 1 if height != 1 else 2  # prevent 1x1 grid
+        width = TUI.read_int(TUI.WIDTH_PROMPT, min_cols, TUI.MAX_INT)
         max_bomb_count = height * width
         bomb_count = TUI.read_int(
             TUI.BOMB_PROMPT.format(max_bomb_count),
@@ -142,7 +143,7 @@ class TUI():
     def open_first_cell(self):
         pos = self.get_position_from_user()
         self.game = Game(self.height, self.width, self.bomb_count, *pos)
-        self.take_turn()
+        self.process_move(self.game.open_cell(*pos))  # enact first turn
 
     # -------------------------------------------------------------------------
     # Turn menu functions

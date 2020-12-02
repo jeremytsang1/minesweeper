@@ -22,9 +22,6 @@ class Game:
         self.loss = False
         self.turn = 0
 
-        # Make the first move
-        self.open_cell(first_click_row, first_click_col)
-
     @staticmethod
     def validate_initial_conditions(height, width, bomb_count,
                                     first_click_row, first_click_col):
