@@ -4,11 +4,7 @@ from minesweeper.game.cell import Cell
 class Board:
     DEFAULT_SIZE = 10
 
-    def __init__(self, bombs=None):
-        if bombs is None:
-            bombs = [[True for j in range(Board.DEFAULT_SIZE)]
-                     for i in range(Board.DEFAULT_SIZE)]
-
+    def __init__(self, bombs):
         self.height = len(bombs)
         self.width = len(bombs[0])
 
