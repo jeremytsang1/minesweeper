@@ -11,19 +11,42 @@ class Game:
 
     def __init__(self, height, width, bomb_count=1,
                  first_click_row=0, first_click_col=0):
+        Game.validate_initial_conditions(height, width, bomb_count,
+                                         first_click_row, first_click_col)
         self.bomb_count = bomb_count
-
-        if height < Game.MIN_HEIGHT or width < Game.MIN_WIDTH:
-            raise GameNegativeDimsError(height, width)
-
         self.bomb_dropper = BombDropper(height, width, first_click_row,
                                         first_click_col, bomb_count)
-
         self.board = Board(self.bomb_dropper.drop_bombs())
-        self.turn = 1  # Always start new game after user makes the first move.
         self.won = False
         self.loss = False
-        # TODO: make the first move with the board
+        self.turn = 0  # Always start new game after user makes the first move.
+        self.open_cell(first_click_row, first_click_col)
+
+    @staticmethod
+    def validate_initial_conditions(height, width, bomb_count,
+                                    first_click_row, first_click_col):
+        if height < Game.MIN_HEIGHT or width < Game.MIN_WIDTH:
+            raise ValueError(
+                'Cannot create Game with negative dimensions '
+                f'({height}, {width}).'
+            )
+        elif bomb_count not in range(Game.MIN_BOMB_COUNT, height * width):
+            raise ValueError(
+                'bomb_count  must be positive and less than total number of '
+                f'cells ({height * width}) but was {bomb_count}'
+            )
+        elif first_click_row not in range(0, height):
+            raise ValueError(
+                f'first_click_row must be in range(0, {height}) but was '
+                f'{first_click_row}'
+            )
+        elif first_click_col not in range(0, width):
+            raise ValueError(
+                f'first_click_col must be in range(0, {width}) but was '
+                f'{first_click_col}'
+            )
+        else:
+            pass  # Input valid
 
     # -----------------------------------------------------------------------------
     # PUBLIC # TODO rename since there is no privacy modifiers in python
@@ -82,15 +105,3 @@ class Game:
 class GameError(Exception):
     def __init__(self, message):
         super().__init__(message)
-
-
-class GameNegativeDimsError(GameError):
-    def __init__(self, height, width):
-        super().__init__('Cannot create Game with negative dimensions '
-                         f'({height}, {width}).')
-
-
-class GameInvalidBombCount(GameError):
-    def __init__(self, bomb_count):
-        super().__init__('Cannot create Game with less than '
-                         f'{Game.MIN_BOMB_COUNT} bombs.')

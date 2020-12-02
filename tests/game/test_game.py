@@ -1,8 +1,6 @@
 import unittest
 from minesweeper.game.game import (
     Game,
-    GameError,
-    GameNegativeDimsError
 )
 
 
@@ -13,15 +11,15 @@ class TestGame(unittest.TestCase):
     # -------------------------------------------------------------------------
 
     def test_negative_row(self):
-        with self.assertRaises(GameNegativeDimsError):
+        with self.assertRaises(ValueError):
             self.game = Game(-5, 24)
 
     def test_negative_col(self):
-        with self.assertRaises(GameNegativeDimsError):
+        with self.assertRaises(ValueError):
             self.game = Game(35, -5)
 
     def test_negative_row_and_col(self):
-        with self.assertRaises(GameNegativeDimsError):
+        with self.assertRaises(ValueError):
             self.game = Game(-35, -5)
 
 
