@@ -88,6 +88,25 @@ class TestBoard(unittest.TestCase):
         self.board.iterate(lambda cell: self.assertEqual(cell.get_appearance(),
                                                          Cell.Appearance.FLAG))
 
+    # -----------------------------------------------------------------------------
+    def test_3_by_3_lose_center(self):
+        self.bombs = [
+            [self.f, self.f, self.f],
+            [self.f, self.t, self.f],
+            [self.f, self.f, self.f],
+        ]
+        expected_apperances = [
+            [self.U, self.U, self.U],
+            [self.U, self.X, self.U],
+            [self.U, self.U, self.U],
+        ]
+        self.board = Board(self.bombs)
+        self.board.open_cell(1, 1)
+        self.assertEqual(self.board.get_opened_bomb_count(), 1)
+        self.assertEqual(self.board.get_opened_cell_count(), 0)
+        actual_appearance = self.board.get_appearance()
+        self.assertEqual(actual_appearance, expected_apperances)
+
 
 if __name__ == '__main__':
     unittest.main()
