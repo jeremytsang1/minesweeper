@@ -9,7 +9,8 @@ class Board:
         Board.validate_bombs(bombs)
         self.opened_cell_count = 0
         self.opened_bomb_count = 0
-        self.pos_util = PositionUtil(len(bombs), len(bombs[0]))
+        pos_util = PositionUtil(len(bombs), len(bombs[0]))
+        self.adj = pos_util.adj
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
 
@@ -32,6 +33,7 @@ class Board:
 
     def get_cell(self, row, col):
         return self.grid[row][col]
+
 
     def get_appearance(self):
         appearances = [[None for _ in row] for row in self.grid]
@@ -85,9 +87,17 @@ class Board:
         if opened_cell.is_bomb():
             return self.open_bomb(opened_cell)
 
+        return self.open_non_bomb_cell(opened_cell)
+
+    def open_bomb(self, cell):
+        self.opened_bomb_count += 1
+        cell.open_cell()
+        return True
+
+    def open_non_bomb_cell(self, opened_cell):
         self.opened_cell_count += 1
 
-        adj_cells = self.get_adjacent_cells(opened_row, opened_col)
+        adj_cells = self.get_adjacent_cells(opened_cell)
         adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
         opened_cell.open_cell(adj_bomb_count)
 
@@ -97,13 +107,8 @@ class Board:
 
         return True  # valid move
 
-    def open_bomb(self, cell):
-        self.opened_bomb_count += 1
-        cell.open_cell()
-        return True
-
-    def get_adjacent_cells(self, row, col):
-        return [self.get_cell(*pos) for pos in self.pos_util.adj(row, col)]
+    def get_adjacent_cells(self, opened_cell):
+        return [self.get_cell(*pos) for pos in self.adj(*opened_cell.get_pos())]
 
     @staticmethod
     def count_adjacent_bombs(adjacent_cells):
