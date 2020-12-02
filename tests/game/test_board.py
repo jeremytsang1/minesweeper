@@ -13,7 +13,16 @@ class TestBoard(unittest.TestCase):
     DEFAULT_HEIGHT = DEFAULT_SHAPE[0]
     DEFAULT_WIDTH = DEFAULT_SHAPE[1]
 
+    F = Cell.Appearance.FLAG
+    E = Cell.Appearance.EMPTY
+    U = Cell.Appearance.UNOPENED
+    Y = Cell.Appearance.FLAG_INCORRECT
+    B = Cell.Appearance.UNENCOUNTERED_BOMB
+    X = Cell.Appearance.OPENED_BOMB
+
     def setUp(self):
+        self.t = True
+        self.f = False
         self.bombs = self.create_all_bombs(self.DEFAULT_HEIGHT,
                                            self.DEFAULT_WIDTH)
         self.board = Board(self.bombs)
