@@ -66,16 +66,16 @@ class TestBoard(unittest.TestCase):
             self.compare_state(idx, move, display)
 
     def compare_state(self, idx, move, display=False):
+
         actual_validity = move['act'](*move['pos'])
         expected_validity = move['val']
         self.assertEqual(actual_validity, expected_validity)
 
         expected_appearance = move['board']
         actual_appearance = self.board.get_appearance()
-        self.assertEqual(actual_appearance, expected_appearance)
-
         if display:
             self.dis(actual_appearance, expected_appearance, idx)
+        self.assertEqual(actual_appearance, expected_appearance)
 
         expected_opened_cell_count = move['o_cnt']
         actual_opened_cell_count = self.board.get_opened_cell_count()
@@ -281,10 +281,203 @@ class TestBoard(unittest.TestCase):
              'b_cnt': 0,
              'act': self.board.open_cell},
         )
-        self.check_moves(True)
+        self.check_moves()
         total_cell_count = len(self.bombs) * len(self.bombs[0])
         self.assertEqual(total_cell_count - self.board.get_opened_cell_count(),
                          self.bomb_count)
+
+    def test_10_by_10_win_center(self):
+        t, f, F, E, U, Y, B, X = self.make_aliases()
+        self.bomb_count = 1
+        self.bombs = [
+            [f, f, f, f, f, f, f, f, f, f],
+            [f, f, f, f, f, f, f, t, f, f],
+            [f, f, f, t, f, f, t, f, f, f],
+            [f, f, f, t, f, f, f, f, f, f],
+            [f, f, t, f, f, f, f, f, f, f],
+            [f, t, f, f, f, t, f, f, f, f],
+            [f, f, f, f, f, f, f, t, f, f],
+            [f, f, f, t, f, f, f, f, f, f],
+            [f, f, f, f, f, f, f, t, f, f],
+            [f, f, f, f, f, f, f, f, f, f],
+        ]
+        self.board = Board(self.bombs)
+        self.moves = (
+            {'board': [
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, 2, 1, E],
+                [U, U, U, U, U, U, 1, 1, E, E],
+                [U, U, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 2, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+            ],
+             'pos': (9, 9),
+             'val': True,
+             'o_cnt': 27,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, 2, 1, E],
+                [U, U, U, U, U, U, 1, 1, E, E],
+                [U, U, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 2, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+            ],
+             'pos': (3, 6),
+             'val': False,
+             'o_cnt': 27,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, 2, 1, E],
+                [U, U, U, U, U, U, 1, 1, E, E],
+                [U, U, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, 2, 2, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+            ],
+             'pos': (7, 7),
+             'val': True,
+             'o_cnt': 28,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, U, 1, E],
+                [U, U, U, U, U, U, U, 2, 1, E],
+                [U, U, U, U, U, U, 1, 1, E, E],
+                [U, U, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, U, 1, E],
+            ],
+             'pos': (9, 0),
+             'val': True,
+             'o_cnt': 54,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [E, E, E, E, E, E, 1, U, 1, E],
+                [E, E, 1, 1, 1, 1, 2, U, 1, E],
+                [E, E, 2, U, U, U, U, 2, 1, E],
+                [E, 1, 3, U, U, U, 1, 1, E, E],
+                [1, 2, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, U, 1, E],
+            ],
+             'pos': (0, 2),
+             'val': True,
+             'o_cnt': 76,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [E, E, E, E, E, E, 1, 1, 1, E],
+                [E, E, 1, 1, 1, 1, 2, U, 1, E],
+                [E, E, 2, U, U, U, U, 2, 1, E],
+                [E, 1, 3, U, U, U, 1, 1, E, E],
+                [1, 2, U, U, U, U, 1, E, E, E],
+                [U, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, U, 1, E],
+            ],
+             'pos': (0, 7),
+             'val': True,
+             'o_cnt': 77,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [E, E, E, E, E, E, 1, 1, 1, E],
+                [E, E, 1, 1, 1, 1, 2, U, 1, E],
+                [E, E, 2, U, U, U, U, 2, 1, E],
+                [E, 1, 3, U, U, U, 1, 1, E, E],
+                [1, 2, U, U, U, U, 1, E, E, E],
+                [1, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, U, 1, E],
+            ],
+             'pos': (5, 0),
+             'val': True,
+             'o_cnt': 78,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [E, E, E, E, E, E, 1, 1, 1, E],
+                [E, E, 1, 1, 1, 1, 2, U, 1, E],
+                [E, E, 2, U, U, U, U, 2, 1, E],
+                [E, 1, 3, U, U, U, 1, 1, E, E],
+                [1, 2, U, U, U, U, 1, E, E, E],
+                [1, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, 1, 1, E],
+            ],
+             'pos': (9, 7),
+             'val': True,
+             'o_cnt': 79,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            {'board': [
+                [E, E, E, E, E, E, 1, 1, 1, E],
+                [E, E, 1, 1, 1, 1, 2, U, 1, E],
+                [E, E, 2, U, U, U, U, 2, 1, E],
+                [E, 1, 3, U, U, U, 1, 1, E, E],
+                [1, 2, U, U, 2, U, 1, E, E, E],
+                [1, U, U, U, U, U, 2, 1, 1, E],
+                [1, 1, 2, U, 2, 1, 2, U, 1, E],
+                [E, E, 1, U, 1, E, 2, 2, 2, E],
+                [E, E, 1, 1, 1, E, 1, U, 1, E],
+                [E, E, E, E, E, E, 1, 1, 1, E],
+            ],
+             'pos': (4, 4),
+             'val': True,
+             'o_cnt': 80,
+             'b_cnt': 0,
+             'act': self.board.open_cell},
+            # {'board': [
+            #     [E, E, E, E, E, E, 1, 1, 1, E],
+            #     [E, E, 1, 1, 1, 1, 2, *, 1, E],
+            #     [E, E, 2, *, U, U, *, 2, 1, E],
+            #     [E, 1, 3, *, U, U, 1, 1, E, E],
+            #     [1, 2, *, U, 2, U, 1, E, E, E],
+            #     [1, *, U, U, U, *, 2, 1, 1, E],
+            #     [1, 1, 2, U, 2, 1, 2, *, 1, E],
+            #     [E, E, 1, *, 1, E, 2, 2, 2, E],
+            #     [E, E, 1, 1, 1, E, 1, *, 1, E],
+            #     [E, E, E, E, E, E, 1, 1, 1, E],
+            # ],
+            #  'pos': (4, 4),
+            #  'val': True,
+            #  'o_cnt': 80,
+            #  'b_cnt': 0,
+            #  'act': self.board.open_cell},
+        )
+        self.check_moves()
+        total_cell_count = len(self.bombs) * len(self.bombs[0])
+
+
 
 
 
