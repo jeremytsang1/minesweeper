@@ -56,23 +56,26 @@ class Cell:
             else:
                 pass  # Component is valid.
 
-    def validate_count(self, count):
-        if self.bomb:
-            raise IllegalSetCountBomb(self.row, self.col)
-        elif self.count is not None:
-            raise AttemptToResetCountError(self.row, self.col)
-        elif type(count) != int:
-            raise TypeError(Cell.ERROR_COUNT_TYPE)
-        elif count not in range(Cell.MIN_COUNT, Cell.MAX_COUNT + 1):
-            raise ValueError(Cell.ERROR_COUNT_VALUE)
-        else:
-            pass  # Count is valid.
+    # -------------------------------------------------------------------------
+    # Getters
 
     def get_row(self):
         return self.row
 
     def get_col(self):
         return self.col
+
+    def is_bomb(self):
+        return self.bomb
+
+    def get_appearance(self):
+        return self.appearance
+
+    def get_count(self):
+        return self.count
+
+    # -------------------------------------------------------------------------
+    # Methods for player actions.
 
     def toggle_flag(self):
         if self.appearance == Cell.Appearance.UNOPENED:
@@ -103,23 +106,17 @@ class Cell:
         else:
             self.appearance = Cell.Appearance.NUMBER
 
-    def get_count(self):
-        return self.count
-
-    def is_bomb(self):
-        return self.bomb
-
-    def get_appearance(self):
-        return self.appearance
-
-    def set_appearance(self, appearance):
-        self.appearance = appearance
-
-    def text_appearance(self):
-        if self.appearance == Cell.Appearance.NUMBER:
-            return str(self.count)
+    def validate_count(self, count):
+        if self.bomb:
+            raise IllegalSetCountBomb(self.row, self.col)
+        elif self.count is not None:
+            raise AttemptToResetCountError(self.row, self.col)
+        elif type(count) != int:
+            raise TypeError(Cell.ERROR_COUNT_TYPE)
+        elif count not in range(Cell.MIN_COUNT, Cell.MAX_COUNT + 1):
+            raise ValueError(Cell.ERROR_COUNT_VALUE)
         else:
-            return Cell.TEXT_APPEARANCE_RULES[self.appearance]
+            pass  # Count is valid.
 
     def open_cell(self, count=None):
         """Responsible for updating the appearance of the cell after opening"""
@@ -129,6 +126,18 @@ class Cell:
             self.set_count(count)
         else:
             raise OpenInvalidArgument(self.row, self.col)
+
+    # -------------------------------------------------------------------------
+    # Display methods.
+
+    def set_appearance(self, appearance):
+        self.appearance = appearance
+
+    def text_appearance(self):
+        if self.appearance == Cell.Appearance.NUMBER:
+            return str(self.count)
+        else:
+            return Cell.TEXT_APPEARANCE_RULES[self.appearance]
 
     def __repr__(self):
         return self.text_appearance()
