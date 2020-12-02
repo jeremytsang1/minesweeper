@@ -79,33 +79,33 @@ class Board:
     # Player move methods
 
     def open_cell(self, opened_row, opened_col):
+        def open_bomb(cell):
+            self.opened_bomb_count += 1
+            cell.open_cell()
+            return True  # valid move
+
+        def open_non_bomb_cell(opened_cell):
+            self.opened_cell_count += 1
+
+            adj_cells = self.get_adjacent_cells(opened_cell)
+            adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
+            opened_cell.open_cell(adj_bomb_count)
+
+            if adj_bomb_count == 0:
+                for adj_cell in adj_cells:
+                    self.open_cell(*adj_cell.get_pos())
+
+            return True  # valid move
+
         opened_cell = self.grid[opened_row][opened_col]
 
         if opened_cell.appearance != Cell.Appearance.UNOPENED:  # invalid move
             return False
 
         if opened_cell.is_bomb():
-            return self.open_bomb(opened_cell)
+            return open_bomb(opened_cell)
 
-        return self.open_non_bomb_cell(opened_cell)
-
-    def open_bomb(self, cell):
-        self.opened_bomb_count += 1
-        cell.open_cell()
-        return True
-
-    def open_non_bomb_cell(self, opened_cell):
-        self.opened_cell_count += 1
-
-        adj_cells = self.get_adjacent_cells(opened_cell)
-        adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
-        opened_cell.open_cell(adj_bomb_count)
-
-        if adj_bomb_count == 0:
-            for adj_cell in adj_cells:
-                self.open_cell(*adj_cell.get_pos())
-
-        return True  # valid move
+        return open_non_bomb_cell(opened_cell)
 
     def get_adjacent_cells(self, opened_cell):
         return [self.get_cell(*pos) for pos in self.adj(*opened_cell.get_pos())]
