@@ -1,4 +1,5 @@
 from minesweeper.game.board import Board
+from minesweeper.game.cell import Cell
 from minesweeper.game.bomb_dropper import BombDropper
 from minesweeper.game.move import Move
 
@@ -14,6 +15,7 @@ class Game:
         Game.validate_initial_conditions(height, width, bomb_count,
                                          first_click_row, first_click_col)
         self.bomb_count = bomb_count
+        self.flags_left_to_place = bomb_count
         self.cell_count = height * width
         self.bomb_dropper = BombDropper(height, width, first_click_row,
                                         first_click_col, bomb_count)
@@ -64,6 +66,7 @@ class Game:
         print("\nToggling flag!")
         valid = self.board.toggle_flag(row, col)
         move = Move(valid, self.board.get_cell(row, col), Move.MoveType.TOGGLE_FLAG)
+        self.flags_left_to_place += self.change_flag_count(move, row, col)
         self.increment_turn(move)
         return move
 
@@ -76,6 +79,13 @@ class Game:
         if valid:
             self.update_end_game()
         return move
+
+    def change_flag_count(self, move, row, col):
+        if move.is_valid():
+            appearance = self.board.get_appearance()[row][col]
+            return -1 if appearance == Cell.Appearance.FLAG else 1
+        else:
+            return 0
 
     def increment_turn(self, move):
         if move.is_valid():
@@ -99,6 +109,9 @@ class Game:
 
     def get_grid(self):
         return self.board.get_grid()
+
+    def get_flags_left_to_place(self):
+        return self.flags_left_to_place
 
 
 class GameError(Exception):
