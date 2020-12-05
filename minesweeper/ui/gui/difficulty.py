@@ -23,7 +23,7 @@ class Difficulty():
         self.bomb_count = None
 
         # Initialize at easy difficulty
-        self.set_preset_level(Difficulty.Level.Easy)
+        self.set_preset_level(Difficulty.Level.EASY)
 
     def get_rows(self):
         return self.rows
