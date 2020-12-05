@@ -2,7 +2,7 @@ import pygame
 import pygame_menu
 
 pygame.init()
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((625, 300))
 
 
 def set_difficulty(value, difficulty):
@@ -13,11 +13,14 @@ def start_the_game():
     pass
 
 
+theme = pygame_menu.themes.THEME_SOLARIZED
+theme.menubar_close_button = False
+
 menu = pygame_menu.Menu(
     height=300,
     width=625,
     title='CS 325 Fall 2020: Minesweeper',
-    theme=pygame_menu.themes.THEME_SOLARIZED
+    theme=theme,
 )
 
 menu.add_selector(
