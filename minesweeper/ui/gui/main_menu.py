@@ -1,5 +1,6 @@
 import pygame
 import pygame_menu
+from minesweeper.ui.gui.difficulty import Difficulty as diff
 
 
 class MainMenu():
@@ -52,10 +53,10 @@ class MainMenu():
         self.menu.add_selector(
             title='Difficulty: ',
             items=[
-                ("EASY", 1),
-                ("MEDIUM", 2),
-                ("HARD", 3),
-                ("CUSTOM", 4),
+                ("EASY", diff.Level.EASY),
+                ("MEDIUM", diff.Level.MEDIUM),
+                ("HARD", diff.Level.HARD),
+                # ("CUSTOM", diff.Level.CUSTOM),
             ],
             onchange=self.difficulties
         )
