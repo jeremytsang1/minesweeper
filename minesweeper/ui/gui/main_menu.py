@@ -1,8 +1,6 @@
 import pygame
 import pygame_menu
 
-pygame.init()
-
 
 class MainMenu():
     """Menu GUI.
