@@ -25,6 +25,12 @@ class Difficulty():
         # Initialize at easy difficulty
         self.set_preset_level(Difficulty.Level.EASY)
 
+    def __repr__(self):
+        return (
+            '(rows, cols, bomb_count): '
+            f'{self.rows}, {self.cols}, {self.bomb_count}'
+        )
+
     def get_rows(self):
         return self.rows
 
