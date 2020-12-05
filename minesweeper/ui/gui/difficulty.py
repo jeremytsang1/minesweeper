@@ -34,9 +34,16 @@ class Difficulty():
     def get_bomb_count(self):
         return self.bomb_count
 
+    def set_difficulty(self, level):
+        if level == Difficulty.Level.CUSTOM:
+            return False
+        elif level in Difficulty.PRESETS:
+            self.set_preset_level(level)
+            return True
+        else:
+            raise ValueError("`level` is not a valid Difficulty.Level")
+
     def set_preset_level(self, level):
-        if level not in Difficulty.PRESETS:
-            raise ValueError("`level` is not a valid preset difficulty")
         self.configure_game_params(*Difficulty.PRESETS[level])
 
     def configure_game_params(self, rows, cols, bomb_count):
