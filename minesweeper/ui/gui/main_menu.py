@@ -51,7 +51,7 @@ class MainMenu():
                 ("EASY", diff.Level.EASY),
                 ("MEDIUM", diff.Level.MEDIUM),
                 ("HARD", diff.Level.HARD),
-                # ("CUSTOM", diff.Level.CUSTOM),
+                ("CUSTOM", diff.Level.CUSTOM),
             ],
             onchange=self.difficulties
         )
