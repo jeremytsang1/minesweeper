@@ -10,14 +10,17 @@ class GUI():
         self.difficulty = Difficulty()
         self.game = None
         self.gui_board = None
+        self.screen = pygame.display.set_mode((MainMenu.WIDTH,
+                                               MainMenu.HEIGHT))
         self.main_menu = MainMenu(self.set_difficulty, self.run_game)
 
     def set_difficulty(self, description, level):
         self.difficulty.set_difficulty(level)
-        print(self.difficulty)
 
     def run_main_menu(self):
-        self.main_menu.show_menu()
+        self.screen = pygame.display.set_mode((MainMenu.WIDTH,
+                                               MainMenu.HEIGHT))
+        self.main_menu.show_menu(self.screen)
 
     def run_game(self):
         raise NotImplementedError

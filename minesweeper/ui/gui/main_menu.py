@@ -7,6 +7,8 @@ class MainMenu():
     """Menu GUI.
     """
     MENU_TITLE = 'CS 325 Fall 2020: Minesweeper'
+    WIDTH = 625
+    HEIGHT = 300
 
     def __init__(self, difficulties, start_game, width=625, height=300):
         """Creates a new main menu window for starting a new game or quitting.
@@ -31,7 +33,6 @@ class MainMenu():
         self.start_game = start_game
         self.WIDTH = width
         self.HEIGHT = height
-        self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.theme = self.create_theme()
         self.menu = self.create_menu()
         self.configure_menu()
@@ -63,8 +64,8 @@ class MainMenu():
         self.menu.add_button(title='Play', action=self.start_game)
         self.menu.add_button(title='Quit', action=pygame_menu.events.EXIT)
 
-    def show_menu(self):
-        self.menu.mainloop(self.screen)
+    def show_menu(self, screen):
+        self.menu.mainloop(screen)
 
 
 if __name__ == '__main__':
