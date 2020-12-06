@@ -39,7 +39,13 @@ class GUICell(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         super().__init__()
+        self.x = x
+        self.y = y
+        self.pos = (x, y)
         self.load_image(Cell.Appearance.UNOPENED)
+
+    def position_cell(self):
+        self.rect.move_ip(*self.pos)
 
     def load_image(self, appearance):
         filename = self.IMAGES[appearance]['filename']
@@ -51,6 +57,7 @@ class GUICell(pygame.sprite.Sprite):
         self.image = self.surf
 
         self.rect = self.surf.get_rect()
+        self.position_cell()
 
     def draw(self, screen):
         # Draw rectangle around the cell.
