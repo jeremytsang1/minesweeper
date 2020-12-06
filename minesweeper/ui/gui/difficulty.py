@@ -37,6 +37,9 @@ class Difficulty():
     def get_cols(self):
         return self.cols
 
+    def get_shape(self):
+        return (self.rows, self.cols)
+
     def get_bomb_count(self):
         return self.bomb_count
 
