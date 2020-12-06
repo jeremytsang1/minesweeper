@@ -62,5 +62,8 @@ class Move():
 
         return reason
 
+    def get_appearance(self):
+        return self.cell.get_appearance()
+
     def is_valid(self):
         return self.valid
