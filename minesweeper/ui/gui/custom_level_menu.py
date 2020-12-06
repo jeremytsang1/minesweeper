@@ -13,7 +13,7 @@ class CustomLevelMenu():
     MINIMUMS = {
         'rows': 10,
         'cols': 10,
-        'bomb_count': 10,
+        'bomb_count':,
     }
 
     LABELS = {
@@ -22,11 +22,13 @@ class CustomLevelMenu():
         'bomb_count': 'Bomb Count',
     }
 
-    def __init__(self, difficulty, run_game, theme):
+    def __init__(self, difficulty, run_game, theme, screen):
         self.difficulty = difficulty
         self.run_game = run_game
         self.theme = theme
+        self.screen = screen
         self.menu = self.create_menu()
+        self.error_menu = None
         self.configure_menu()
 
     def create_menu(self):
@@ -48,8 +50,19 @@ class CustomLevelMenu():
 
         self.menu.add_button(title='Submit', action=self.submit)
 
-    def show_menu(self, screen):
-        self.menu.mainloop(screen)
+    def configure_error_menu(self, msg):
+        error_menu = pygame_menu.Menu(
+            width=CustomLevelMenu.WIDTH,
+            height=CustomLevelMenu.HEIGHT,
+            title="Invalid Input!",
+            theme=self.theme,
+        )
+        error_menu.add_label(msg)
+        error_menu.add_button(title='OK', action=self.show_menu)
+        return error_menu
+
+    def show_menu(self):
+        self.menu.mainloop(self.screen)
 
     def submit(self):
         input_data = self.menu.get_input_data()
@@ -58,7 +71,10 @@ class CustomLevelMenu():
             self.difficulty.configure_game_params(self.cast_input(input_data))
             self.run_game()
         else:
-            self.show_error_page()
+            self.error_menu = self.configure_error_menu(msg)
+            self.error_menu.mainloop(self.screen)
+            del self.error_menu
+            self.error_menu = None
 
     def validate_input_data(self, input_data):
         for key in input_data:
@@ -81,7 +97,7 @@ class CustomLevelMenu():
         if casted['bomb_count'] >= max_bomb_count:
             return (False,
                     f'{self.LABELS["bomb_count"]} cannot be more '
-                    f'than {max_bomb_count}')
+                    f'than {max_bomb_count - 1}')
 
         return True, None
 
@@ -93,9 +109,14 @@ if __name__ == '__main__':
     def run_game():
         print("hello")
 
+    def create_theme():
+        theme = pygame_menu.themes.THEME_SOLARIZED
+        theme.menubar_close_button = False
+        return theme
+
     pygame.init()
     screen = pygame.display.set_mode((CustomLevelMenu.WIDTH,
                                       CustomLevelMenu.HEIGHT))
     diff = Difficulty()
-    menu = CustomLevelMenu(diff, run_game)
-    menu.show_menu(screen)
+    menu = CustomLevelMenu(diff, run_game, create_theme(), screen)
+    menu.show_menu()
