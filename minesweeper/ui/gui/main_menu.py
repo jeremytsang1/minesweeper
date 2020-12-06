@@ -10,7 +10,7 @@ class MainMenu():
     WIDTH = 625
     HEIGHT = 300
 
-    def __init__(self, difficulties, start_game, width=625, height=300):
+    def __init__(self, difficulties, start_game):
         """Creates a new main menu window for starting a new game or quitting.
 
         Parameters
@@ -31,8 +31,6 @@ class MainMenu():
         """
         self.difficulties = difficulties
         self.start_game = start_game
-        self.WIDTH = width
-        self.HEIGHT = height
         self.theme = self.create_theme()
         self.menu = self.create_menu()
         self.configure_menu()
@@ -44,8 +42,8 @@ class MainMenu():
 
     def create_menu(self):
         return pygame_menu.Menu(
-            width=self.WIDTH,
-            height=self.HEIGHT,
+            width=MainMenu.WIDTH,
+            height=MainMenu.HEIGHT,
             title=MainMenu.MENU_TITLE,
             theme=self.theme,
         )
