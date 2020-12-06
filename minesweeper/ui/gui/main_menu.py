@@ -10,7 +10,7 @@ class MainMenu():
     WIDTH = 625
     HEIGHT = 300
 
-    def __init__(self, difficulties, start_game):
+    def __init__(self, difficulties, start_game, theme):
         """Creates a new main menu window for starting a new game or quitting.
 
         Parameters
@@ -31,14 +31,10 @@ class MainMenu():
         """
         self.difficulties = difficulties
         self.start_game = start_game
-        self.theme = self.create_theme()
+        self.theme = theme
         self.menu = self.create_menu()
         self.configure_menu()
 
-    def create_theme(self):
-        theme = pygame_menu.themes.THEME_SOLARIZED
-        theme.menubar_close_button = False
-        return theme
 
     def create_menu(self):
         return pygame_menu.Menu(

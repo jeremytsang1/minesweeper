@@ -1,4 +1,5 @@
 import pygame
+import pygame_menu
 from minesweeper.ui.gui.main_menu import MainMenu
 from minesweeper.ui.gui.difficulty import Difficulty
 from minesweeper.ui.gui.gui_board import GUIBoard
@@ -13,7 +14,13 @@ class GUI():
         self.gui_board = None
         self.screen = pygame.display.set_mode((MainMenu.WIDTH,
                                                MainMenu.HEIGHT))
-        self.main_menu = MainMenu(self.set_difficulty, self.run_game)
+        self.theme = self.create_theme()
+        self.main_menu = MainMenu(self.set_difficulty, self.press_play_button, self.theme)
+
+    def create_theme(self):
+        theme = pygame_menu.themes.THEME_SOLARIZED
+        theme.menubar_close_button = False
+        return theme
 
     def set_difficulty(self, description, level):
         self.difficulty.set_difficulty(level)

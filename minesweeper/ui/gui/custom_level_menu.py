@@ -22,17 +22,12 @@ class CustomLevelMenu():
         'bomb_count': 'Bomb Count',
     }
 
-    def __init__(self, difficulty, run_game):
+    def __init__(self, difficulty, run_game, theme):
         self.difficulty = difficulty
         self.run_game = run_game
-        self.theme = self.create_theme()
+        self.theme = theme
         self.menu = self.create_menu()
         self.configure_menu()
-
-    def create_theme(self):
-        theme = pygame_menu.themes.THEME_SOLARIZED
-        theme.menubar_close_button = False
-        return theme
 
     def create_menu(self):
         return pygame_menu.Menu(
