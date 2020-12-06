@@ -8,8 +8,9 @@ import os
 
 class GUICell(pygame.sprite.Sprite):
     """Graphical representation of a Minesweeper cell."""
-    WIDTH = 20
-    HEIGHT = 20
+    WIDTH = 512
+    HEIGHT = 512
+    BORDER_WIDTH = 2
     DIR_IMG = os.path.join('minesweeper', 'ui', 'gui', 'assets', 'img')
     DIR_BOMBS = os.path.join(DIR_IMG, 'bombs')
     DIR_NUMBERS = os.path.join(DIR_IMG, 'numbers')
@@ -19,14 +20,14 @@ class GUICell(pygame.sprite.Sprite):
     # Can't use comprehensions in class level variables:
     # https://stackoverflow.com/a/28130950
     IMAGES = {
-        1: {'filename': os.path.join(DIR_NUMBERS, '1.png'), 'fill': '#000000'},
-        2: {'filename': os.path.join(DIR_NUMBERS, '2.png'), 'fill': '#000000'},
-        3: {'filename': os.path.join(DIR_NUMBERS, '3.png'), 'fill': '#000000'},
-        4: {'filename': os.path.join(DIR_NUMBERS, '4.png'), 'fill': '#000000'},
-        5: {'filename': os.path.join(DIR_NUMBERS, '5.png'), 'fill': '#000000'},
-        6: {'filename': os.path.join(DIR_NUMBERS, '6.png'), 'fill': '#000000'},
-        7: {'filename': os.path.join(DIR_NUMBERS, '7.png'), 'fill': '#000000'},
-        8: {'filename': os.path.join(DIR_NUMBERS, '8.png'), 'fill': '#000000'},
+        1: {'filename': os.path.join(DIR_NUMBERS, '1.png'), 'fill': '#ffffff'},
+        2: {'filename': os.path.join(DIR_NUMBERS, '2.png'), 'fill': '#ffffff'},
+        3: {'filename': os.path.join(DIR_NUMBERS, '3.png'), 'fill': '#ffffff'},
+        4: {'filename': os.path.join(DIR_NUMBERS, '4.png'), 'fill': '#ffffff'},
+        5: {'filename': os.path.join(DIR_NUMBERS, '5.png'), 'fill': '#ffffff'},
+        6: {'filename': os.path.join(DIR_NUMBERS, '6.png'), 'fill': '#ffffff'},
+        7: {'filename': os.path.join(DIR_NUMBERS, '7.png'), 'fill': '#ffffff'},
+        8: {'filename': os.path.join(DIR_NUMBERS, '8.png'), 'fill': '#ffffff'},
         # 'square_black': os.path.join(DIR_SQUARES, 'square_black.png'),
         Cell.Appearance.FLAG: {'filename': os.path.join(DIR_FLAGS, 'flag.png'), 'fill': '#FFFFFF'},
         Cell.Appearance.UNOPENED: {'filename': os.path.join(DIR_SQUARES, 'square_blue.png'), 'fill': '#000000'},
@@ -44,4 +45,11 @@ class GUICell(pygame.sprite.Sprite):
         fill = self.IMAGES[appearance]['fill']
         self.surf = pygame.image.load(filename).convert()
         self.surf.set_colorkey(fill, RLEACCEL)
+
+        self.surf = pygame.transform.scale(
+            self.surf,
+            (self.WIDTH - 2 * self.BORDER_WIDTH,
+             self.HEIGHT - 2 * self.BORDER_WIDTH),
+        )
+
         self.rect = self.surf.get_rect()
