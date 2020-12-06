@@ -11,6 +11,7 @@ class GUICell(pygame.sprite.Sprite):
     WIDTH = 30
     HEIGHT = 30
     BORDER_WIDTH = 2
+    CELL_SPACING = 0
     DIR_IMG = os.path.join('minesweeper', 'ui', 'gui', 'assets', 'img')
     DIR_BOMBS = os.path.join(DIR_IMG, 'bombs')
     DIR_NUMBERS = os.path.join(DIR_IMG, 'numbers')
@@ -58,6 +59,6 @@ class GUICell(pygame.sprite.Sprite):
     def shrink_down(self, surf):
         return pygame.transform.scale(
             surf,
-            (self.WIDTH - 2 * self.BORDER_WIDTH,
-             self.HEIGHT - 2 * self.BORDER_WIDTH),
+            (self.WIDTH - self.CELL_SPACING * self.BORDER_WIDTH,
+             self.HEIGHT - self.CELL_SPACING * self.BORDER_WIDTH),
         )
