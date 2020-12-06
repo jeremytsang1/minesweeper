@@ -10,7 +10,6 @@ class GUIBoard():
         self.cols = cols
         self.offset_x = offset_x
         self.offset_y = offset_y
-        self.gui_cells = list()
         self.sprites = pygame.sprite.Group()
         self.spawn_cells()
 
@@ -40,10 +39,8 @@ class GUIBoard():
 
         """
         for i, row in enumerate(range(self.rows)):
-            self.gui_cells.append([])
             for j, col in enumerate(range(self.cols)):
                 x = j * GUICell.WIDTH
                 y = i * GUICell.HEIGHT
                 gui_cell = GUICell(x, y)
-                self.gui_cells[i].append(gui_cell)
                 self.sprites.add(gui_cell)
