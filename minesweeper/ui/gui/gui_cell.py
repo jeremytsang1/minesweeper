@@ -47,8 +47,13 @@ class GUICell(pygame.sprite.Sprite):
         self.surf.set_colorkey(fill, RLEACCEL)
 
         self.surf = self.shrink_down(self.surf)
+        self.image = self.surf
 
         self.rect = self.surf.get_rect()
+
+    def draw(self, screen):
+        # Draw rectangle around the cell.
+        pygame.draw.rect(screen, "#000000", self.rect, 2)
 
     def shrink_down(self, surf):
         return pygame.transform.scale(

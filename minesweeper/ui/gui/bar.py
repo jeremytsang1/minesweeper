@@ -46,6 +46,10 @@ while running:
     # Draw the cells
     all_sprites.draw(screen)
 
+    # then draw the borders: https://stackoverflow.com/a/46749684 (solution 2)
+    for entity in all_sprites:
+        entity.draw(screen)
+
 
     # Flip the display
     pygame.display.flip()
