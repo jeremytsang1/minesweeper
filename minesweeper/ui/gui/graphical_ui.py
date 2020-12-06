@@ -140,7 +140,10 @@ class GUI():
         if self.game is None:
             print("No number cells to chord yet!")  # TODO
         else:
-            raise Exception("TODO")
+            pos = gui_cell.get_row_col_pos()
+            move = self.game.chord_cell(*pos)
+            if move.is_valid():
+                self.update_cell_all_appearances()
 
     def update_cell_all_appearances(self):
         appearances = self.game.get_all_appearances()
