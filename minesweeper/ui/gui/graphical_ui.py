@@ -100,7 +100,7 @@ class GUI():
         elif button == self.MOUSE_MIDDLE:
             print(f"{row_col_pos}: attempting to chord")
         else:
-            print(f'Irrelevant mouse click')
+            print('Irrelevant mouse click')
 
     def add_sprites(self, sprites):
         for sprite in sprites:
