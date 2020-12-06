@@ -50,6 +50,9 @@ class GUI():
             offset_x=0,
             offset_y=0,
         )
+        self.main_game_loop()
+
+    def main_game_loop(self):
         running = True
 
         while running:
