@@ -131,7 +131,10 @@ class GUI():
         if self.game is None:
             print("No flagging on the first turn!")  # TODO
         else:
-            raise Exception("TODO")
+            pos = gui_cell.get_row_col_pos()
+            move = self.game.toggle_flag(*pos)
+            if move.is_valid():
+                gui_cell.load_image(self.game.get_single_appearance(*pos))
 
     def chord_cell(self, gui_cell):
         if self.game is None:

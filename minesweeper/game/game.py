@@ -113,6 +113,9 @@ class Game:
     def get_flags_left_to_place(self):
         return self.flags_left_to_place
 
+    def get_single_appearance(self, row, col):
+        return self.board.get_single_appearance(row, col)
+
     def get_all_appearances(self):
         return self.board.get_all_appearances()
 
