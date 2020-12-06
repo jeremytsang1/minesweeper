@@ -122,7 +122,11 @@ class GUI():
             print('Irrelevant mouse click')
 
     def open_cell(self, gui_cell):
-        pass
+        move = self.game.open_cell()
+        # TODO change the appearance if valid
+        if move.is_valid():
+            raise Exception("TODO")
+
 
     def toggle_flag(self, gui_cell):
         if self.game is None:
