@@ -98,7 +98,7 @@ class GUI():
     def end_game(self):
         self.gui_board.kill_gui_board()
         self.gui_board = None
-        self.preset = None
+        self.preset = True  # Starts off as EASY which is one of the presets.
         self.run_main_menu()
 
 
