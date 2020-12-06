@@ -34,7 +34,7 @@ class Board:
     def get_cell(self, row, col):
         return self.grid[row][col]
 
-    def get_appearance(self):
+    def get_all_appearances(self):
         appearances = [[None for _ in row] for row in self.grid]
 
         for i, row in enumerate(self.grid):

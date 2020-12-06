@@ -41,7 +41,7 @@ class TestBoard(unittest.TestCase):
 
     def check_all_unopened_at_start(self):
         shape = self.board.get_shape()
-        actual = self.board.get_appearance()
+        actual = self.board.get_all_appearances()
         expected = [[self.U for _ in range(shape[1])] for _ in range(shape[0])]
         self.assertEqual(actual, expected)
 
@@ -72,7 +72,7 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(actual_validity, expected_validity)
 
         expected_appearance = move['board']
-        actual_appearance = self.board.get_appearance()
+        actual_appearance = self.board.get_all_appearances()
         if display:
             self.dis(actual_appearance, expected_appearance, idx)
         self.assertEqual(actual_appearance, expected_appearance)
@@ -163,7 +163,7 @@ class TestBoard(unittest.TestCase):
         self.board.open_cell(1, 1)
         self.assertEqual(self.board.get_opened_bomb_count(), 1)
         self.assertEqual(self.board.get_opened_cell_count(), 0)
-        actual_appearance = self.board.get_appearance()
+        actual_appearance = self.board.get_all_appearances()
         self.assertEqual(actual_appearance, expected_apperances)
 
     def test_3_by_3_win_center(self):

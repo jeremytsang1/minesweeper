@@ -82,7 +82,7 @@ class Game:
 
     def change_flag_count(self, move, row, col):
         if move.is_valid():
-            appearance = self.board.get_appearance()[row][col]
+            appearance = self.board.get_all_appearances()[row][col]
             return -1 if appearance == Cell.Appearance.FLAG else 1
         else:
             return 0
