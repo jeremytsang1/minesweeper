@@ -43,6 +43,7 @@ class GUICell(pygame.sprite.Sprite):
         self.y = y
         self.row_col_pos = (row, col)
         self.pos = (x, y)
+        self.appearance = None  # start off with no appearance until loading
         self.load_image(Cell.Appearance.UNOPENED)
 
     def get_row_col_pos(self):
@@ -52,6 +53,10 @@ class GUICell(pygame.sprite.Sprite):
         self.rect.move_ip(*self.pos)
 
     def load_image(self, appearance):
+        # Don't bother updating if appearance hasn't changed.
+        if self.appearance == appearance:
+            return
+
         filename = self.IMAGES[appearance]['filename']
         fill = self.IMAGES[appearance]['fill']
         self.surf = pygame.image.load(filename).convert()
