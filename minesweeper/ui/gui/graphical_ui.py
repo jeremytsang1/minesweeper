@@ -71,6 +71,13 @@ class GUI():
                         running = False
 
             self.screen.fill((255, 255, 255))
+
+            # Draw all the sprites
+            self.all_sprites.draw(self.screen)
+
+            for sprite in self.gui_board.get_sprites():
+                sprite.draw(self.screen)
+
             pygame.display.flip()
 
     def add_sprites(self, sprites):
