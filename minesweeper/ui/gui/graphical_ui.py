@@ -75,6 +75,7 @@ class GUI():
             self.screen
         )
         self.custom_level_menu.show_menu()
+        del self.custom_level_menu
         self.custom_level_menu = None
     
     def end_game(self):
