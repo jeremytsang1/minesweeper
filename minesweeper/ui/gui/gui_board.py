@@ -11,6 +11,9 @@ class GUIBoard():
         self.offset_y = offset_y
         self.gui_cells = pygame.sprite.Group()
 
+    def get_gui_cells(self):
+        return self.gui_cells
+
     @staticmethod
     def compute_dimensions(rows, cols):
         width = GUICell.WIDTH * cols

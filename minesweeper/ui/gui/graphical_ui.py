@@ -19,6 +19,7 @@ class GUI():
         self.main_menu = MainMenu(self.set_difficulty, self.press_play_button, self.theme)
         self.custom_level_menu = None
         self.preset = None
+        self.all_sprites = pygame.sprite.Group()
 
     @staticmethod
     def create_theme():
@@ -50,6 +51,8 @@ class GUI():
             offset_x=0,
             offset_y=0,
         )
+        self.add_sprites(self.gui_board.get_gui_cells())
+
         self.main_game_loop()
 
     def main_game_loop(self):
@@ -69,6 +72,10 @@ class GUI():
 
             self.screen.fill((255, 255, 255))
             pygame.display.flip()
+
+    def add_sprites(self, sprites):
+        for sprite in sprites:
+            self.all_sprites.add(sprite)
 
     def ask_user_for_custom_settings(self):
         self.custom_level_menu = CustomLevelMenu(
