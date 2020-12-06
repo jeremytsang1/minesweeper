@@ -8,6 +8,11 @@ from minesweeper.game.game import Game
 
 
 class GUI():
+    # Mouse event buttons
+    MOUSE_LEFT = 1
+    MOUSE_MIDDLE = 2
+    MOUSE_RIGHT = 3
+
     def __init__(self):
         pygame.init()
         self.difficulty = Difficulty()
@@ -83,8 +88,19 @@ class GUI():
     def process_click(self, event):
         for gui_cell in self.gui_board.get_sprites():
             if gui_cell.is_mouse_up(event.pos):
-                row_col_pos = gui_cell.get_row_col_pos()
-                print(f'clicked (row, col): {row_col_pos}')
+                self.process_mouse_button(event.button, gui_cell)
+                break  # don't bother searching other cells if found click
+
+    def process_mouse_button(self, button, gui_cell):
+        row_col_pos = gui_cell.get_row_col_pos()
+        if button == self.MOUSE_LEFT:
+            print(f"{row_col_pos}: attempting to open")
+        elif button == self.MOUSE_RIGHT:
+            print(f"{row_col_pos}: attempting to toggle flag")
+        elif button == self.MOUSE_MIDDLE:
+            print(f"{row_col_pos}: attempting to chord")
+        else:
+            print(f'Irrelevant mouse click')
 
     def add_sprites(self, sprites):
         for sprite in sprites:
