@@ -8,8 +8,8 @@ import os
 
 class GUICell(pygame.sprite.Sprite):
     """Graphical representation of a Minesweeper cell."""
-    WIDTH = 512
-    HEIGHT = 512
+    WIDTH = 30
+    HEIGHT = 30
     BORDER_WIDTH = 2
     DIR_IMG = os.path.join('minesweeper', 'ui', 'gui', 'assets', 'img')
     DIR_BOMBS = os.path.join(DIR_IMG, 'bombs')
