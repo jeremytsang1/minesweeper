@@ -11,7 +11,7 @@ class GUIBoard():
         self.offset_y = offset_y
         self.gui_cells = pygame.sprite.Group()
 
-    def get_gui_cells(self):
+    def get_sprites(self):
         return self.gui_cells
 
     @staticmethod

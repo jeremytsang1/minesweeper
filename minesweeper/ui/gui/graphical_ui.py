@@ -51,7 +51,7 @@ class GUI():
             offset_x=0,
             offset_y=0,
         )
-        self.add_sprites(self.gui_board.get_gui_cells())
+        self.add_sprites(self.gui_board.get_sprites())
 
         self.main_game_loop()
 
