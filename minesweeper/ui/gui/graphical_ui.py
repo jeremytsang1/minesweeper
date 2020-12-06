@@ -142,6 +142,7 @@ class GUI():
         self.custom_level_menu = None
 
     def end_game(self):
+        self.game = None
         self.gui_board.kill_gui_board()
         self.gui_board = None
         self.preset = True  # Starts off as EASY which is one of the presets.
