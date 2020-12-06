@@ -46,10 +46,13 @@ class GUICell(pygame.sprite.Sprite):
         self.surf = pygame.image.load(filename).convert()
         self.surf.set_colorkey(fill, RLEACCEL)
 
-        self.surf = pygame.transform.scale(
-            self.surf,
+        self.surf = self.shrink_down(self.surf)
+
+        self.rect = self.surf.get_rect()
+
+    def shrink_down(self, surf):
+        return pygame.transform.scale(
+            surf,
             (self.WIDTH - 2 * self.BORDER_WIDTH,
              self.HEIGHT - 2 * self.BORDER_WIDTH),
         )
-
-        self.rect = self.surf.get_rect()
