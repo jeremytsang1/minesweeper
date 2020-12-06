@@ -113,6 +113,9 @@ class Game:
     def get_flags_left_to_place(self):
         return self.flags_left_to_place
 
+    def get_all_appearances(self):
+        return self.board.get_all_appearances()
+
 
 class GameError(Exception):
     def __init__(self, message):

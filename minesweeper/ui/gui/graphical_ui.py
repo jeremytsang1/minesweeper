@@ -140,6 +140,12 @@ class GUI():
         else:
             raise Exception("TODO")
 
+    def update_cell_all_appearances(self):
+        appearances = self.game.get_all_appearances()
+        for gui_cell in self.gui_board.get_sprites():
+            row, col = gui_cell.get_row_col_pos()
+            gui_cell.load_image(appearances[row][col])
+
     def create_game(self, gui_cell):
         self.game = Game(
             *self.difficulty.get_shape(),
