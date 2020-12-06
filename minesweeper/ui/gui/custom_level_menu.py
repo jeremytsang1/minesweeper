@@ -96,8 +96,8 @@ class CustomLevelMenu():
         max_bomb_count = casted['rows'] * casted['cols']
         if casted['bomb_count'] >= max_bomb_count:
             return (False,
-                    f'{self.LABELS["bomb_count"]} cannot be more '
-                    f'than {max_bomb_count - 1}')
+                    f'Bombs must be less than rows * cols'
+                    f' ({max_bomb_count - 1})')
 
         return True, None
 
