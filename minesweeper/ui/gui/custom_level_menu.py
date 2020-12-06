@@ -13,7 +13,7 @@ class CustomLevelMenu():
     MINIMUMS = {
         'rows': 10,
         'cols': 10,
-        'bomb_count':,
+        'bomb_count': 1,
     }
 
     LABELS = {
@@ -68,7 +68,7 @@ class CustomLevelMenu():
         input_data = self.menu.get_input_data()
         valid, msg = self.validate_input_data(input_data)
         if valid:
-            self.difficulty.configure_game_params(self.cast_input(input_data))
+            self.difficulty.configure_game_params(*self.cast_input(input_data))
             self.run_game()
         else:
             self.error_menu = self.configure_error_menu(msg)
