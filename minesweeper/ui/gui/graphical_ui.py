@@ -61,7 +61,7 @@ class GUI():
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP:
-                    print(pygame.mouse.get_pressed())
+                    self.process_click(event)
                 if event.type == pygame.QUIT:  # Go back to main menu
                     self.end_game()
                     running = False
@@ -79,6 +79,12 @@ class GUI():
                 sprite.draw(self.screen)
 
             pygame.display.flip()
+
+    def process_click(self, event):
+        for gui_cell in self.gui_board.get_sprites():
+            if gui_cell.is_mouse_up(event.pos):
+                row_col_pos = gui_cell.get_row_col_pos()
+                print(f'clicked (row, col): {row_col_pos}')
 
     def add_sprites(self, sprites):
         for sprite in sprites:

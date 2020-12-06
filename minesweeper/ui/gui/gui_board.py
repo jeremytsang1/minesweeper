@@ -38,9 +38,9 @@ class GUIBoard():
             return description
 
         """
-        for i, row in enumerate(range(self.rows)):
-            for j, col in enumerate(range(self.cols)):
-                x = j * GUICell.WIDTH
-                y = i * GUICell.HEIGHT
-                gui_cell = GUICell(x, y)
+        for row in range(self.rows):
+            for col in range(self.cols):
+                x = col * GUICell.WIDTH
+                y = row * GUICell.HEIGHT
+                gui_cell = GUICell(x, y, row, col)
                 self.sprites.add(gui_cell)

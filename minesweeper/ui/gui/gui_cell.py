@@ -37,12 +37,16 @@ class GUICell(pygame.sprite.Sprite):
         Cell.Appearance.OPENED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_red.png'), 'fill': '#000000'},
     }
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, row, col):
         super().__init__()
         self.x = x
         self.y = y
+        self.row_col_pos = (row, col)
         self.pos = (x, y)
         self.load_image(Cell.Appearance.UNOPENED)
+
+    def get_row_col_pos(self):
+        return self.row_col_pos
 
     def position_cell(self):
         self.rect.move_ip(*self.pos)
@@ -69,3 +73,8 @@ class GUICell(pygame.sprite.Sprite):
             (self.WIDTH - self.CELL_SPACING * self.BORDER_WIDTH,
              self.HEIGHT - self.CELL_SPACING * self.BORDER_WIDTH),
         )
+
+    def is_mouse_up(self, mouse):
+        if self.rect.collidepoint(mouse):
+            return True
+        return False
