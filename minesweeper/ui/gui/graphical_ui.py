@@ -18,7 +18,7 @@ class GUI():
         self.theme = self.create_theme()
         self.main_menu = MainMenu(self.set_difficulty, self.press_play_button, self.theme)
         self.custom_level_menu = None
-        self.preset = None
+        self.preset = True  # Starts off as EASY which is one of the presets.
         self.all_sprites = pygame.sprite.Group()
 
     @staticmethod
