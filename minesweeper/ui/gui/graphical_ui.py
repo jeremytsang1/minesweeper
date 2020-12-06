@@ -35,8 +35,24 @@ class GUI():
         running = True
 
         while running:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONUP:
+                    print(pygame.mouse.get_pressed())
+                if event.type == pygame.QUIT:  # Go back to main menu
+                    self.end_game()
+                    running = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_q:  # Go back to main menu
+                        self.end_game()
+                        running = False
+
             self.screen.fill((255, 255, 255))
             pygame.display.flip()
+
+    def end_game(self):
+        self.gui_board.kill_gui_board()
+        self.gui_board = None
+        self.run_main_menu()
 
 
 if __name__ == '__main__':
