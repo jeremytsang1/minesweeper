@@ -8,6 +8,20 @@ class CustomLevelMenu():
     WIDTH = 625
     HEIGHT = 300
 
+    KEYS = ['rows', 'cols', 'bomb_count']
+
+    MINIMUMS = {
+        'rows': 10,
+        'cols': 10,
+        'bomb_count': 10,
+    }
+
+    LABELS = {
+        'rows': 'Rows',
+        'cols': 'Cols',
+        'bomb_count': 'Bomb Count',
+    }
+
     def __init__(self, difficulty, run_game):
         self.difficulty = difficulty
         self.run_game = run_game
@@ -29,9 +43,14 @@ class CustomLevelMenu():
         )
 
     def configure_menu(self):
-        self.menu.add_text_input('Rows: ', default='10', textinput_id='rows')
-        self.menu.add_text_input('Cols: ', default='10', textinput_id='cols')
-        self.menu.add_text_input('Bomb Count: ', default='10', textinput_id='bomb_count')
+        keys = ['rows', 'cols', 'bomb_count']
+        for key in keys:
+            self.menu.add_text_input(
+                title=f"{self.LABELS[key]}: ",
+                default=10,
+                textinput_id=key
+            )
+
         self.menu.add_button(title='Submit', action=self.submit)
 
     def show_menu(self, screen):
@@ -47,7 +66,32 @@ class CustomLevelMenu():
             self.show_error_page()
 
     def validate_input_data(self, input_data):
-        pass
+        for key in input_data:
+            try:
+                int(input_data[key])
+            except ValueError:
+                return False, "All input must be integers!"
+
+        casted = {key: int(input_data[key]) for key in input_data}
+
+        # Check minimums
+        for key in casted:
+            if casted[key] < self.MINIMUMS[key]:
+                return (False,
+                        f'{self.LABELS[key]} must be'
+                        f' greater than {self.MINIMUMS[key]}')
+
+        # Check maximum
+        max_bomb_count = casted['rows'] * casted['cols']
+        if casted['bomb_count'] >= max_bomb_count:
+            return (False,
+                    f'{self.LABELS["bomb_count"]} cannot be more '
+                    f'than {max_bomb_count}')
+
+        return True, None
+
+    def cast_input(self, input_data):
+        return [int(input_data[key]) for key in self.KEYS]
 
 
 if __name__ == '__main__':
