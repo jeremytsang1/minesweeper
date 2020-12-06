@@ -97,8 +97,8 @@ class GUI():
             print(f"{row_col_pos}: attempting to open")
             if self.game is None:
                 self.create_game(gui_cell)
-            else:
-                self.open_cell(gui_cell)
+
+            self.open_cell(gui_cell)
         elif button == self.MOUSE_RIGHT:
             print(f"{row_col_pos}: attempting to toggle flag")
             self.toggle_flag(gui_cell)
@@ -124,7 +124,11 @@ class GUI():
             raise Exception("TODO")
 
     def create_game(self, gui_cell):
-        pass
+        self.game = Game(
+            *self.difficulty.get_shape(),
+            self.difficulty.get_bomb_count(),
+            *gui_cell.get_row_col_pos()
+        )
 
     def add_sprites(self, sprites):
         for sprite in sprites:
