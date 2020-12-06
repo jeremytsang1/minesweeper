@@ -86,6 +86,12 @@ class GUI():
             pygame.display.flip()
 
     def is_game_active(self):
+        """Predicate to check if the game has not been won or lost.
+
+        Returns
+        -------
+        bool
+        """
         if self.game is None:
             return True
         else:
