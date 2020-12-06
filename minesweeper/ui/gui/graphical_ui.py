@@ -65,7 +65,7 @@ class GUI():
 
         while running:
             for event in pygame.event.get():
-                if event.type == pygame.MOUSEBUTTONUP:
+                if self.is_game_active() and event.type == pygame.MOUSEBUTTONUP:
                     self.process_click(event)
                 if event.type == pygame.QUIT:  # Go back to main menu
                     self.end_game()
@@ -84,6 +84,13 @@ class GUI():
                 sprite.draw(self.screen)
 
             pygame.display.flip()
+
+    def is_game_active(self):
+        if self.game is None:
+            return True
+        else:
+            won, loss = self.game.check_end_game()
+            return not won and not loss
 
     def process_click(self, event):
         for gui_cell in self.gui_board.get_sprites():
