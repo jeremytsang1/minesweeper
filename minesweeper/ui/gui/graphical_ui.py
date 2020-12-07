@@ -123,6 +123,9 @@ class GUI():
         else:
             print('Irrelevant mouse click')
 
+        if not self.is_game_active():
+            self.update_all_cell_appearances()
+
     def open_cell(self, gui_cell):
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
 
@@ -156,6 +159,12 @@ class GUI():
             row, col = pos
             appearance = appearances[row][col]
             gui_cells_2D[row][col].load_image(appearance)
+
+    def update_all_cell_appearances(self):
+        appearances = self.game.get_all_appearances()
+        for gui_cell in self.gui_board.get_sprites():
+            row, col = gui_cell.get_row_col_pos()
+            gui_cell.load_image(appearances[row][col])
 
     def create_game(self, gui_cell):
         self.game = Game(
