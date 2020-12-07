@@ -78,7 +78,7 @@ python3 main.py
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 ** Graphical User Interface (GUI)
 *** Controls
-- Left click anywhere to start the game
+- After pressing ~Play~ left click anywhere to start the game.
 
 - Mouse controls
   |--------------+-------------|
