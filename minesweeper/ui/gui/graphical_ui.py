@@ -126,7 +126,7 @@ class GUI():
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
 
         if move.is_valid():
-            self.update_cell_all_appearances()
+            self.update_affected_cell_appearances(move)
 
     def toggle_flag(self, gui_cell):
         if self.game is None:
@@ -135,7 +135,7 @@ class GUI():
             pos = gui_cell.get_row_col_pos()
             move = self.game.toggle_flag(*pos)
             if move.is_valid():
-                gui_cell.load_image(self.game.get_single_appearance(*pos))
+                self.update_affected_cell_appearances(move)
 
     def chord_cell(self, gui_cell):
         if self.game is None:
@@ -144,13 +144,17 @@ class GUI():
             pos = gui_cell.get_row_col_pos()
             move = self.game.chord_cell(*pos)
             if move.is_valid():
-                self.update_cell_all_appearances()
+                self.update_affected_cell_appearances(move)
 
-    def update_cell_all_appearances(self):
+    def update_affected_cell_appearances(self, move):
+        affected_positions = move.get_affected_positions()
         appearances = self.game.get_all_appearances()
-        for gui_cell in self.gui_board.get_sprites():
-            row, col = gui_cell.get_row_col_pos()
-            gui_cell.load_image(appearances[row][col])
+        gui_cells_2D = self.gui_board.get_gui_cells_2D()
+
+        for pos in affected_positions:
+            row, col = pos
+            appearance = appearances[row][col]
+            gui_cells_2D[row][col].load_image(appearance)
 
     def create_game(self, gui_cell):
         self.game = Game(
