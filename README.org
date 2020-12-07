@@ -8,6 +8,7 @@
 My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesweeper_(video_game)][Minesweeper game]].
 * Requirements
 - Python ~>= 3.6~
+- For specific Python packages see ~requirements.txt~.
 * Installation
 - ~cd~ into the top root directory of the repository
 - install requirements
