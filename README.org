@@ -16,8 +16,10 @@
 - [[#usage][Usage]]
 - [[#modes][Modes]]
   - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
+    - [[#video][Video]]
     - [[#controls][Controls]]
   - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
+    - [[#video][Video]]
     - [[#controls][Controls]]
 - [[#credits][Credits]]
   - [[#icons][Icons]]
@@ -49,9 +51,12 @@ python3 main.py
 - follow on screen instructions
 * Modes
 ** Terminal User Interface (TUI)
+*** Video
+[[yt:https://youtu.be/h8XMqZ9Ff1M]]
 *** Controls
 - Follow menu directions on screen.
 ** Graphical User Interface (GUI)
+*** Video
 *** Controls
 |-------------+--------------|
 | action      | control      |
