@@ -34,8 +34,8 @@ class GUICell(pygame.sprite.Sprite):
         Cell.Appearance.FLAG: {'filename': os.path.join(DIR_FLAGS, 'flag.png'), 'fill': '#FFFFFF'},
         Cell.Appearance.UNOPENED: {'filename': os.path.join(DIR_SQUARES, 'square_blue.png'), 'fill': '#000000'},
         Cell.Appearance.EMPTY: {'filename': os.path.join(DIR_SQUARES, 'square_empty.png'), 'fill': '#000000'},
-        Cell.Appearance.UNENCOUNTERED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_black.png'), 'fill': '#000000'},
-        Cell.Appearance.OPENED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_red.png'), 'fill': '#000000'},
+        Cell.Appearance.UNENCOUNTERED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_unencountered.png'), 'fill': '#000000'},
+        Cell.Appearance.OPENED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_opened.png'), 'fill': '#000000'},
     }
 
     def __init__(self, x, y, row, col):
