@@ -23,9 +23,10 @@ class GUI():
         'win': os.path.join(DIR_END_GAME, 'win_sound.ogg'),
     }
 
-    def __init__(self):
+    def __init__(self, sound_on=False):
         pygame.init()
-        self.sounds = self.load_sounds()
+        self.sound_on = sound_on
+        self.sounds = self.load_sounds() if self.sound_on else None
         self.difficulty = Difficulty()
         self.game = None
         self.gui_board = None
@@ -147,10 +148,11 @@ class GUI():
 
         won, loss = self.game.check_end_game()
 
-        if won:
-            self.sounds['win'].play()
-        if loss:
-            self.sounds['explosion'].play()
+        if self.sound_on:
+            if won:
+                self.sounds['win'].play()
+            if loss:
+                self.sounds['explosion'].play()
 
     def open_cell(self, gui_cell):
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
