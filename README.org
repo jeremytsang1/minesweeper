@@ -22,6 +22,7 @@
     - [[#video][Video]]
   - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
     - [[#controls][Controls]]
+    - [[#screenshots][Screenshots]]
     - [[#video][Video]]
 - [[#credits][Credits]]
   - [[#icons][Icons]]
@@ -95,7 +96,10 @@ python3 main.py
   |-----+-------------------|
   | ~q~ | Quit to main menu |
   |-----+-------------------|
+*** Screenshots
+
 *** Video
+[[https://www.youtube.com/watch?v=P8IPWk0izN4][Youtube: Minesweeper GUI Demo]]
 * Credits
 ** Icons
 *** Numbers
