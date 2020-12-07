@@ -12,6 +12,7 @@ class GUI():
     MOUSE_LEFT = 1
     MOUSE_MIDDLE = 2
     MOUSE_RIGHT = 3
+    SCREEN_FILL_COLOR = '#b2c4cd'
 
     def __init__(self):
         pygame.init()
@@ -28,7 +29,7 @@ class GUI():
 
     @staticmethod
     def create_theme():
-        theme = pygame_menu.themes.THEME_SOLARIZED
+        theme = pygame_menu.themes.THEME_BLUE
         theme.menubar_close_button = False
         return theme
 
@@ -75,7 +76,7 @@ class GUI():
                         self.end_game()
                         running = False
 
-            self.screen.fill((255, 255, 255))
+            self.screen.fill(self.SCREEN_FILL_COLOR)
 
             # Draw all the sprites
             self.all_sprites.draw(self.screen)
