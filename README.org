@@ -52,3 +52,6 @@ Emoticon Icons made by Pixel perfect from www.flaticon.com
   - https://www.flaticon.com/free-icon/smile_590000
   - https://www.flaticon.com/free-icon/smiling_590002
 ** Sounds
+*** End Game
+- [[https://opengameart.org/content/rumbleexplosion][Explosion sound made by Michel Baradari]]
+- [[https://opengameart.org/content/win-sound-effect][Win Sound made by Listener]]
