@@ -124,7 +124,18 @@ class GUI():
             print('Irrelevant mouse click')
 
         if not self.is_game_active():
-            self.update_all_cell_appearances()
+            self.handle_game_over()
+
+    def handle_game_over(self):
+        # Reveal/flag all bombs and reveal incorrect flags.
+        self.update_all_cell_appearances()
+
+        won, loss = self.game.check_end_game()
+
+        if won:
+            return
+        if loss:
+            return
 
     def open_cell(self, gui_cell):
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
