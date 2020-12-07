@@ -184,10 +184,11 @@ class GUI():
 
         won, loss = self.game.check_end_game()
 
-        if self.sound_on:
-            if won:
+        if won:
+            if self.sound_on:
                 self.sounds['win'].play()
-            if loss:
+        if loss:
+            if self.sound_on:
                 self.sounds['explosion'].play()
 
     def open_cell(self, gui_cell):
