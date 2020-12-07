@@ -8,8 +8,8 @@ import os
 
 class GUICell(pygame.sprite.Sprite):
     """Graphical representation of a Minesweeper cell."""
-    WIDTH = 30
-    HEIGHT = 30
+    WIDTH = 40
+    HEIGHT = 40
     BORDER_WIDTH = 2
     CELL_SPACING = 0
     BORDER_COLOR = "#183a4c"
