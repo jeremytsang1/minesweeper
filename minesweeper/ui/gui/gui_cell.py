@@ -13,7 +13,7 @@ class GUICell(pygame.sprite.Sprite):
     BORDER_WIDTH = 1
     CELL_SPACING = 0
     BORDER_COLOR = "#183a4c"
-    DIR_IMG = os.path.join('minesweeper', 'ui', 'gui', 'assets', 'img')
+    DIR_IMG = os.path.join('assets', 'img')
     DIR_BOMBS = os.path.join(DIR_IMG, 'bombs')
     DIR_NUMBERS = os.path.join(DIR_IMG, 'numbers')
     DIR_FLAGS = os.path.join(DIR_IMG, 'flags')
