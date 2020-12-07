@@ -7,6 +7,7 @@ class MainMenu():
     """Menu GUI.
     """
     MENU_TITLE = 'CS 325 Fall 2020: Minesweeper'
+    SELECTOR_KEY = 'difficulty'
     WIDTH = 625
     HEIGHT = 300
 
@@ -53,13 +54,18 @@ class MainMenu():
                 ("HARD", diff.Level.HARD),
                 ("CUSTOM", diff.Level.CUSTOM),
             ],
-            onchange=self.difficulties
+            onchange=self.difficulties,
+            selector_id=self.SELECTOR_KEY,
         )
         self.menu.add_button(title='Play', action=self.start_game)
         self.menu.add_button(title='Quit', action=pygame_menu.events.EXIT)
 
     def show_menu(self, screen):
         self.menu.mainloop(screen)
+
+    def is_on_a_preset_difficulty(self):
+        difficulty_str, _ = self.menu.get_input_data()[self.SELECTOR_KEY]
+        return difficulty_str != "CUSTOM"
 
 
 if __name__ == '__main__':

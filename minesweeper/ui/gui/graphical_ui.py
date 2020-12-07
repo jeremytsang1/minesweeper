@@ -182,7 +182,11 @@ class GUI():
         self.game = None
         self.gui_board.kill_gui_board()
         self.gui_board = None
-        self.preset = True  # Starts off as EASY which is one of the presets.
+
+        # Make sure correct difficulty is selected if user does not
+        # alter the selector.
+        self.preset = self.main_menu.is_on_a_preset_difficulty()
+
         self.run_main_menu()
 
 
