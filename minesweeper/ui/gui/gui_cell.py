@@ -90,6 +90,7 @@ class GUICell(pygame.sprite.Sprite):
 
     def draw(self, screen):
         # Draw rectangle around the cell.
+        # CITE: solution 2 from here https://stackoverflow.com/a/46749684
         pygame.draw.rect(screen, self.BORDER_COLOR, self.rect, self.BORDER_WIDTH)
 
     def shrink_down(self, surf):
