@@ -52,7 +52,7 @@ python3 main.py
 * Modes
 ** Terminal User Interface (TUI)
 *** Video
-[[yt:https://youtu.be/h8XMqZ9Ff1M]]
+[[yt:h8XMqZ9Ff1M]]
 *** Controls
 - Follow menu directions on screen.
 ** Graphical User Interface (GUI)
