@@ -78,13 +78,23 @@ python3 main.py
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 ** Graphical User Interface (GUI)
 *** Controls
-|-------------+--------------|
-| action      | control      |
-|-------------+--------------|
-| open cell   | left click   |
-| toggle flag | right click  |
-| [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
-|-------------+--------------|
+- Left click anywhere to start the game
+
+- Mouse controls
+  |--------------+-------------|
+  | control      | action      |
+  |--------------+-------------|
+  | left click   | open cell   |
+  | right click  | toggle flag |
+  | middle click | [[http://www.minesweeper.info/wiki/Chord][chord cell]]  |
+  |--------------+-------------|
+
+- Keyboard controls
+  |-----+-------------------|
+  | key | action            |
+  |-----+-------------------|
+  | ~q~ | Quit to main menu |
+  |-----+-------------------|
 *** Video
 * Credits
 ** Icons
