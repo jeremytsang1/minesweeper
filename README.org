@@ -4,6 +4,31 @@
 #+LATEX_HEADER: \usepackage[margin={0.5in, 1in}]{geometry}
 #+LATEX_HEADER: \usepackage{indentfirst}
 # #+LATEX: \setlength\parindent{0pt}  # no indentations
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include siblings :depth 3
+:END:
+:CONTENTS:
+- [[#table-of-contents][Table of Contents]]
+- [[#description][Description]]
+- [[#requirements][Requirements]]
+- [[#installation][Installation]]
+- [[#usage][Usage]]
+- [[#modes][Modes]]
+  - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
+    - [[#controls][Controls]]
+  - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
+    - [[#controls][Controls]]
+- [[#credits][Credits]]
+  - [[#icons][Icons]]
+    - [[#numbers][Numbers]]
+    - [[#bombs][Bombs]]
+    - [[#flags][Flags]]
+    - [[#squares][Squares]]
+    - [[#emoticons][Emoticons]]
+  - [[#sounds][Sounds]]
+    - [[#end-game][End Game]]
+:END:
 * Description
 My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesweeper_(video_game)][Minesweeper game]].
 * Requirements
@@ -55,3 +80,6 @@ Emoticon Icons made by Pixel perfect from www.flaticon.com
 *** End Game
 - [[https://opengameart.org/content/rumbleexplosion][Explosion sound made by Michel Baradari]]
 - [[https://opengameart.org/content/win-sound-effect][Win Sound made by Listener]]
+# Local Variables:
+# before-save-hook: org-make-toc
+# End:
