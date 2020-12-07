@@ -56,7 +56,9 @@ class Game:
     def open_cell(self, row, col):
         print("\nOpening!")
         valid = self.board.open_cell(row, col)
-        move = Move(valid, self.board.get_cell(row, col), Move.MoveType.OPEN)
+        move = Move(valid=valid,
+                    cell=self.board.get_cell(row, col),
+                    move_type=Move.MoveType.OPEN)
         self.increment_turn(move)
         if valid:
             self.update_end_game()
@@ -65,7 +67,9 @@ class Game:
     def toggle_flag(self, row, col):
         print("\nToggling flag!")
         valid = self.board.toggle_flag(row, col)
-        move = Move(valid, self.board.get_cell(row, col), Move.MoveType.TOGGLE_FLAG)
+        move = Move(valid=valid,
+                    cell=self.board.get_cell(row, col),
+                    move_type=Move.MoveType.TOGGLE_FLAG)
         self.flags_left_to_place += self.change_flag_count(move, row, col)
         self.increment_turn(move)
         return move
@@ -73,8 +77,10 @@ class Game:
     def chord_cell(self, row, col):
         print("\nChording!")
         valid, flag_count = self.board.chord_cell(row, col)
-        move = Move(valid, self.board.get_cell(row, col),
-                    Move.MoveType.CHORD, flag_count)
+        move = Move(valid=valid,
+                    cell=self.board.get_cell(row, col),
+                    move_type=Move.MoveType.CHORD,
+                    adjFlagCount=flag_count)
         self.increment_turn(move)
         if valid:
             self.update_end_game()

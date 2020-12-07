@@ -44,10 +44,17 @@ class Move():
         },
     }
 
-    def __init__(self, valid, cell, move_type, adjFlagCount=None):
+    def __init__(self,
+                 valid,
+                 cell,
+                 move_type,
+                 affected_positions=None,
+                 adjFlagCount=None):
         self.valid = valid
         self.cell = cell
         self.move_type = move_type
+        self.affected_positions = ([] if affected_positions is None else
+                                   affected_positions)
         self.adjFlagCount = adjFlagCount
 
     def get_reason_turn_is_invalid(self):
