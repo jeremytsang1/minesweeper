@@ -80,6 +80,7 @@ class GUI():
             # Draw all the sprites
             self.all_sprites.draw(self.screen)
 
+            # Use to GUICell.draw() to draw borders around each cell.
             for sprite in self.gui_board.get_sprites():
                 sprite.draw(self.screen)
 
