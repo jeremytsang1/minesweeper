@@ -26,13 +26,10 @@ class GUI():
 
     # Component Heights
     STATUS_HEIGHT = 100
-    ECHO_HEIGHT = 50
 
     # Spacings between components
     ABOVE_STATUS = 10
     BETWEEN_STATUS_AND_BOARD = 10
-    BETWEEN_BOARD_AND_ECHO = 10
-    BELOW_ECHO = 10
 
     def __init__(self, sound_on=False):
         pygame.init()
@@ -88,10 +85,7 @@ class GUI():
                 self.ABOVE_STATUS
                 + self.STATUS_HEIGHT
                 + self.BETWEEN_STATUS_AND_BOARD
-                + board_height
-                + self.BETWEEN_BOARD_AND_ECHO
-                + self.ECHO_HEIGHT
-                + self.BELOW_ECHO]
+                + board_height]
 
     def create_components(self):
         """Needs to be run after creating self.screen."""
