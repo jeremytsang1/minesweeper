@@ -53,7 +53,7 @@ class Move():
         self.valid = valid
         self.cell = cell
         self.move_type = move_type
-        self.affected_positions = ([] if affected_positions is None else
+        self.affected_positions = (set() if affected_positions is None else
                                    affected_positions)
         self.adjFlagCount = adjFlagCount
 
