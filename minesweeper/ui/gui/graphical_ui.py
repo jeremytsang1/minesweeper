@@ -130,6 +130,8 @@ class GUI():
                         self.end_game()
                         running = False
 
+            # Fill the background color (and thus opened cells since they are
+            # clear)
             self.screen.fill(self.SCREEN_FILL_COLOR)
 
             # Draw all the sprites
