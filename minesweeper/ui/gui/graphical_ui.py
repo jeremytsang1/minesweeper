@@ -23,6 +23,10 @@ class GUI():
         'win': os.path.join(DIR_END_GAME, 'win_sound.ogg'),
     }
 
+    # COMPONENT Heights
+    STATUS_HEIGHT = 100
+    ECHO_HEIGHT = 50
+
     def __init__(self, sound_on=False):
         pygame.init()
         self.sound_on = sound_on
@@ -71,18 +75,16 @@ class GUI():
         self.gui_board = GUIBoard(
             *self.difficulty.get_shape(),
             offset_x=0,
-            offset_y=100,
+            offset_y=self.STATUS_HEIGHT,
         )
         self.add_sprites(self.gui_board.get_sprites())
 
         self.main_game_loop()
 
     def determine_screen_size(self):
-        status_height = 100
-        dimensions_board = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
-        echo_height = 50
-        return [dimensions_board[0],
-                status_height + dimensions_board[1] + echo_height]
+        board_width, board_height = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
+        return [board_width,
+                self.STATUS_HEIGHT + board_height + self.ECHO_HEIGHT]
 
     def main_game_loop(self):
         running = True
