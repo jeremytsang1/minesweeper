@@ -97,7 +97,7 @@ python3 main.py
   | ~q~ | Quit to main menu |
   |-----+-------------------|
 *** Screenshots
-
+[[file:screenshots/screenshot_gui_hard.png]]
 *** Video
 [[https://www.youtube.com/watch?v=P8IPWk0izN4][Youtube: Minesweeper GUI Demo]]
 * Credits
