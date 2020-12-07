@@ -1,4 +1,4 @@
-#+OPTIONS: toc:nil num:nil tasks:nil ^:nil tags:nil
+#+OPTIONS: tasks:nil ^:nil tags:nil
 #+TITLE: Minesweeper
 #+AUTHOR: Jeremy Tsang
 #+LATEX_HEADER: \usepackage[margin={0.5in, 1in}]{geometry}
@@ -40,6 +40,7 @@ pip install -r requirements.txt
 python3 main.py
   #+end_src
 - Follow instructions on terminal to choose TUI or GUI mode.
+\newpage
 ** Option 2: ~repl.it~
 1) Navigate to the following link: [[https://repl.it/@jatsang52/minesweeper#main.py]]
    [[file:screenshots/repl-it-step-1.png]]   
@@ -55,11 +56,9 @@ python3 main.py
 ** Terminal User Interface (TUI)
 *** Screenshots
 - Starting an *EASY* difficulty game.
-  #+CAPTION: Starting an EASY difficulty game.
   [[file:screenshots/screenshot_tui_easy.png]]
 
 - Starting an *CUSTOM* difficulty game.
-  #+CAPTION: Starting a CUSTOM difficulty game.
   [[file:screenshots/screenshot_tui_custom.png]]
 *** Video
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
@@ -68,13 +67,14 @@ python3 main.py
 ** Graphical User Interface (GUI)
 *** Video
 *** Controls
-|-------------+--------------|
-| action      | control      |
-|-------------+--------------|
-| open cell   | left click   |
-| toggle flag | right click  |
-| [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
-|-------------+--------------|
+| / | < | >           | >            |
+|---+---+-------------+--------------|
+|   |   | action      | control      |
+|---+---+-------------+--------------|
+|   |   | open cell   | left click   |
+|   |   | toggle flag | right click  |
+|   |   | [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
+|---+---+-------------+--------------|
 * Credits
 ** Icons
 *** Numbers
