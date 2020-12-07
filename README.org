@@ -32,7 +32,7 @@ python3 main.py
 |-------------+--------------|
 | open cell   | left click   |
 | toggle flag | right click  |
-| chord cell  | middle click |
+| [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
 |-------------+--------------|
 * Credits
 ** Icons
