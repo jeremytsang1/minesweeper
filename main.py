@@ -88,7 +88,17 @@ def run_tui():
 
 def run_gui():
     print("\nStarting in GUI mode.")
-    gui = GUI()
+    SOUND_CHOICE = 'sound choice'
+    DESCRIPTION = 'description'
+
+    menu_options = (
+        {SOUND_CHOICE: False,
+         DESCRIPTION: "Sound off (required for repl.it)"},
+        {SOUND_CHOICE: True,
+         DESCRIPTION: "Sound on"},
+    )
+    usr_input = get_input([option[DESCRIPTION] for option in menu_options])
+    gui = GUI(menu_options[usr_input][SOUND_CHOICE])
     gui.run_main_menu()
 
 
