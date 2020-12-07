@@ -5,6 +5,7 @@ from minesweeper.ui.gui.custom_level_menu import CustomLevelMenu
 from minesweeper.ui.gui.difficulty import Difficulty
 from minesweeper.ui.gui.gui_board import GUIBoard
 from minesweeper.game.game import Game
+import os
 
 
 class GUI():
@@ -14,8 +15,17 @@ class GUI():
     MOUSE_RIGHT = 3
     SCREEN_FILL_COLOR = '#21516a'
 
+    # Directories and paths
+    DIR_SOUND = os.path.join('assets', 'sound')
+    DIR_END_GAME = os.path.join(DIR_SOUND, 'end_game')
+    SOUNDS = {
+        'explosion': os.path.join(DIR_END_GAME, 'rumble.ogg'),
+        'win': os.path.join(DIR_END_GAME, 'win_sound.ogg'),
+    }
+
     def __init__(self):
         pygame.init()
+        self.explosion_sound = pygame.mixer.Sound(self.SOUNDS['explosion'])
         self.difficulty = Difficulty()
         self.game = None
         self.gui_board = None
@@ -135,7 +145,7 @@ class GUI():
         if won:
             return
         if loss:
-            return
+            self.explosion_sound.play()
 
     def open_cell(self, gui_cell):
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
