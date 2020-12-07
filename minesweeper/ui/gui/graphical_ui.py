@@ -3,6 +3,7 @@ import pygame_menu
 from minesweeper.ui.gui.main_menu import MainMenu
 from minesweeper.ui.gui.custom_level_menu import CustomLevelMenu
 from minesweeper.ui.gui.difficulty import Difficulty
+from minesweeper.ui.gui.status_icon import StatusIcon
 from minesweeper.ui.gui.gui_board import GUIBoard
 from minesweeper.game.game import Game
 import os
@@ -33,6 +34,7 @@ class GUI():
         self.sounds = self.load_sounds() if self.sound_on else None
         self.difficulty = Difficulty()
         self.game = None
+        self.status_icon = None
         self.gui_board = None
         self.screen = pygame.display.set_mode((MainMenu.WIDTH,
                                                MainMenu.HEIGHT))
@@ -69,22 +71,31 @@ class GUI():
 
     def run_game(self):
         self.game = None
-
         dimensions = self.determine_screen_size()
         self.screen = pygame.display.set_mode(dimensions)
-        self.gui_board = GUIBoard(
-            *self.difficulty.get_shape(),
-            offset_x=0,
-            offset_y=self.STATUS_HEIGHT,
-        )
-        self.add_sprites(self.gui_board.get_sprites())
-
+        self.create_components()
         self.main_game_loop()
 
     def determine_screen_size(self):
         board_width, board_height = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
         return [board_width,
                 self.STATUS_HEIGHT + board_height + self.ECHO_HEIGHT]
+
+    def create_components(self):
+        """Needs to be run after creating self.screen."""
+        self.status_icon = StatusIcon(
+            x=0,
+            y=0,
+            width=self.STATUS_HEIGHT,
+            height=self.STATUS_HEIGHT)   # Make it a square.
+        self.all_sprites.add(self.status_icon)
+
+        self.gui_board = GUIBoard(
+            *self.difficulty.get_shape(),
+            offset_x=0,
+            offset_y=self.STATUS_HEIGHT,
+        )
+        self.add_sprites(self.gui_board.get_sprites())
 
     def main_game_loop(self):
         running = True
@@ -227,6 +238,10 @@ class GUI():
 
     def end_game(self):
         self.game = None
+
+        self.status_icon.kill()
+        self.status_icon = None
+
         self.gui_board.kill_gui_board()
         self.gui_board = None
 
