@@ -6,7 +6,7 @@
 # #+LATEX: \setlength\parindent{0pt}  # no indentations
 * Table of Contents
 :PROPERTIES:
-:TOC:      :include siblings :depth 3
+:TOC:      :include siblings :depth 2
 :END:
 :CONTENTS:
 - [[#table-of-contents][Table of Contents]]
@@ -16,20 +16,10 @@
 - [[#usage][Usage]]
 - [[#modes][Modes]]
   - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
-    - [[#video][Video]]
-    - [[#controls][Controls]]
   - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
-    - [[#video][Video]]
-    - [[#controls][Controls]]
 - [[#credits][Credits]]
   - [[#icons][Icons]]
-    - [[#numbers][Numbers]]
-    - [[#bombs][Bombs]]
-    - [[#flags][Flags]]
-    - [[#squares][Squares]]
-    - [[#emoticons][Emoticons]]
   - [[#sounds][Sounds]]
-    - [[#end-game][End Game]]
 :END:
 * Description
 My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesweeper_(video_game)][Minesweeper game]].
@@ -51,8 +41,14 @@ python3 main.py
 - follow on screen instructions
 * Modes
 ** Terminal User Interface (TUI)
+*** Screenshots
+#+CAPTION: Starting an EASY difficulty game.
+[[file:screenshots/screenshot_tui_easy.png]]
+
+#+CAPTION: Starting a CUSTOM difficulty game.
+[[file:screenshots/screenshot_tui_custom.png]]
 *** Video
-[[yt:h8XMqZ9Ff1M]]
+[[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 *** Controls
 - Follow menu directions on screen.
 ** Graphical User Interface (GUI)
