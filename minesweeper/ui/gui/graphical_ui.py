@@ -185,10 +185,12 @@ class GUI():
         won, loss = self.game.check_end_game()
 
         if won:
+            self.status_icon.load_image(StatusIcon.Status.WIN)
             if self.sound_on:
                 self.sounds['win'].play()
         if loss:
             if self.sound_on:
+                self.status_icon.load_image(StatusIcon.Status.LOSS)
                 self.sounds['explosion'].play()
 
     def open_cell(self, gui_cell):
