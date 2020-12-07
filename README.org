@@ -62,7 +62,8 @@ python3 main.py
 4) In the repl.it terminal choose TUI or GUI mode.
    [[file:screenshots/repl-it-step-4.png]]
 5) In the repl.it terminal if you choose GUI mode make sure to choose option ~1~ to disable sound (repl.it doesn't play nicely with pygame apps with sound)
-   [[file:screenshots/repl-it-step-5.png]]
+   [[file:screenshots/repl-it-step-5a.png]]
+   [[file:screenshots/repl-it-step-5b.png]]   
 * Modes
 ** Terminal User Interface (TUI)
 *** Controls
