@@ -6,7 +6,7 @@
 # #+LATEX: \setlength\parindent{0pt}  # no indentations
 * Table of Contents
 :PROPERTIES:
-:TOC:      :include siblings :depth 2
+:TOC:      :include siblings :depth 3
 :END:
 :CONTENTS:
 - [[#table-of-contents][Table of Contents]]
@@ -17,10 +17,21 @@
   - [[#option-2-replit][Option 2: repl.it]]
 - [[#modes][Modes]]
   - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
+    - [[#controls][Controls]]
+    - [[#screenshots][Screenshots]]
+    - [[#video][Video]]
   - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
+    - [[#controls][Controls]]
+    - [[#video][Video]]
 - [[#credits][Credits]]
   - [[#icons][Icons]]
+    - [[#numbers][Numbers]]
+    - [[#bombs][Bombs]]
+    - [[#flags][Flags]]
+    - [[#squares][Squares]]
+    - [[#emoticons][Emoticons]]
   - [[#sounds][Sounds]]
+    - [[#end-game][End Game]]
 :END:
 * Description
 My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesweeper_(video_game)][Minesweeper game]].
