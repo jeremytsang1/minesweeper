@@ -1,0 +1,6 @@
+#+OPTIONS: toc:nil num:nil tasks:nil ^:nil tags:nil
+#+TITLE: HW 8: Portfolio Project
+#+AUTHOR: Jeremy Tsang
+#+LATEX_HEADER: \usepackage[margin={0.5in, 1in}]{geometry}
+#+LATEX_HEADER: \usepackage{indentfirst}
+# #+LATEX: \setlength\parindent{0pt}  # no indentations
