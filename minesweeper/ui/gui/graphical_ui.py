@@ -25,7 +25,7 @@ class GUI():
 
     def __init__(self):
         pygame.init()
-        self.explosion_sound = pygame.mixer.Sound(self.SOUNDS['explosion'])
+        self.sounds = self.load_sounds()
         self.difficulty = Difficulty()
         self.game = None
         self.gui_board = None
@@ -36,6 +36,11 @@ class GUI():
         self.custom_level_menu = None
         self.preset = True  # Starts off as EASY which is one of the presets.
         self.all_sprites = pygame.sprite.Group()
+
+    def load_sounds(self):
+        return {
+            name: pygame.mixer.Sound(self.SOUNDS[name]) for name in self.SOUNDS
+        }
 
     @staticmethod
     def create_theme():
@@ -143,9 +148,9 @@ class GUI():
         won, loss = self.game.check_end_game()
 
         if won:
-            return
+            self.sounds['win'].play()
         if loss:
-            self.explosion_sound.play()
+            self.sounds['explosion'].play()
 
     def open_cell(self, gui_cell):
         move = self.game.open_cell(*gui_cell.get_row_col_pos())
