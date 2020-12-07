@@ -38,12 +38,12 @@ class GUICell(pygame.sprite.Sprite):
         Cell.Appearance.OPENED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_opened.png'), 'fill': '#000000'},
     }
 
-    def __init__(self, x, y, row, col):
+    def __init__(self, row, col):
         super().__init__()
-        self.x = x
-        self.y = y
+        self.x = col * GUICell.WIDTH
+        self.y = row * GUICell.HEIGHT
         self.row_col_pos = (row, col)
-        self.pos = (x, y)
+        self.pos = (self.x, self.y)
         self.appearance = None  # start off with no appearance until loading
         self.load_image(Cell.Appearance.UNOPENED)
 
