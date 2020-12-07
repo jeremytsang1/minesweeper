@@ -72,5 +72,8 @@ class Move():
     def get_appearance(self):
         return self.cell.get_appearance()
 
+    def get_affected_positions(self):
+        return self.affected_positions
+
     def is_valid(self):
         return self.valid
