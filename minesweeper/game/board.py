@@ -167,7 +167,7 @@ class Board:
         cell = self.grid[row][col]
         valid = cell.toggle_flag()
         if valid:
-            self.affected_positions.add(cell.get_pos)
+            self.affected_positions.add(cell.get_pos())
         return valid
 
     def chord_cell(self, row, col):
