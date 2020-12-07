@@ -54,6 +54,8 @@ python3 main.py
    [[file:screenshots/repl-it-step-5.png]]
 * Modes
 ** Terminal User Interface (TUI)
+*** Controls
+- Follow menu directions on screen.
 *** Screenshots
 - Starting an *EASY* difficulty game.
   [[file:screenshots/screenshot_tui_easy.png]]
@@ -62,19 +64,16 @@ python3 main.py
   [[file:screenshots/screenshot_tui_custom.png]]
 *** Video
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
-*** Controls
-- Follow menu directions on screen.
 ** Graphical User Interface (GUI)
-*** Video
 *** Controls
-| / | < | >           | >            |
-|---+---+-------------+--------------|
-|   |   | action      | control      |
-|---+---+-------------+--------------|
-|   |   | open cell   | left click   |
-|   |   | toggle flag | right click  |
-|   |   | [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
-|---+---+-------------+--------------|
+|-------------+--------------|
+| action      | control      |
+|-------------+--------------|
+| open cell   | left click   |
+| toggle flag | right click  |
+| [[http://www.minesweeper.info/wiki/Chord][chord cell]]  | middle click |
+|-------------+--------------|
+*** Video
 * Credits
 ** Icons
 *** Numbers
