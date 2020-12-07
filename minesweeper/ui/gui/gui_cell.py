@@ -43,6 +43,10 @@ class GUICell(pygame.sprite.Sprite):
             'filename': os.path.join(DIR_SQUARES, 'square_empty.png'),
             'fill': '#000000'
         },
+        Cell.Appearance.FLAG_INCORRECT: {
+            'filename': os.path.join(DIR_BOMBS, 'square_empty.png'),
+            'fill': '#000000'
+        },
         Cell.Appearance.UNENCOUNTERED_BOMB: {
             'filename': os.path.join(DIR_BOMBS, 'bomb_unencountered.png'),
             'fill': '#000000'
