@@ -120,6 +120,8 @@ class GUI():
             for event in pygame.event.get():
                 if self.is_game_active() and event.type == pygame.MOUSEBUTTONUP:
                     self.process_click(event)
+                if self.is_game_active() and event.type == pygame.MOUSEBUTTONDOWN:
+                    self.status_icon.load_image(StatusIcon.Status.MOUSE_DOWN)
                 if event.type == pygame.QUIT:  # Go back to main menu
                     self.end_game()
                     running = False
@@ -177,6 +179,8 @@ class GUI():
 
         if not self.is_game_active():
             self.handle_game_over()
+        else:
+            self.status_icon.load_image(StatusIcon.Status.ALIVE)
 
     def handle_game_over(self):
         # Reveal/flag all bombs and reveal incorrect flags.
@@ -188,7 +192,7 @@ class GUI():
             self.status_icon.load_image(StatusIcon.Status.WIN)
             if self.sound_on:
                 self.sounds['win'].play()
-        if loss:
+        elif loss:
             if self.sound_on:
                 self.status_icon.load_image(StatusIcon.Status.LOSS)
                 self.sounds['explosion'].play()
