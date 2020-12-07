@@ -12,13 +12,15 @@ def main():
     play_mode_menu()
 
 
-def get_input(prompts):
+def get_input(prompts, offset=1):
     """Given a list of prompts asks the user to input one of the them (by index).
 
     Parameters
     ----------
     prompts: iterable of str
         Descriptions of menu options to display to user.
+    offset: int
+        Number to start menu options on.
 
     Returns
     -------
@@ -26,8 +28,8 @@ def get_input(prompts):
         The user's choice.
     """
     usr_input = None
-    option_numbers = range(len(prompts))
-    menu_str = format_prompts(prompts)
+    option_numbers = range(len(prompts) + offset)
+    menu_str = format_prompts(prompts, offset)
 
     while usr_input not in option_numbers:
         usr_input = input(menu_str)
@@ -38,16 +40,18 @@ def get_input(prompts):
         except ValueError:
             print("\nPlease enter an integer!")
 
-    return usr_input
+    return usr_input - offset
 
 
-def format_prompts(descriptions):
+def format_prompts(descriptions, offset=1):
     """Concatenate menu options into a single multiline string.
 
     Parameters
     ----------
     descriptions: iterable of str
         Descriptions for individual menu options.
+    offset: int
+        Number to start menu options on.
 
     Returns
     -------
@@ -56,8 +60,8 @@ def format_prompts(descriptions):
         to enter their choice.
 
     """
-    return '\n'.join(
-        [f'{i}. {description}' for i, description in enumerate(descriptions)]
+    return "\n" + '\n'.join(
+        [f'{i + offset}. {line}' for i, line in enumerate(descriptions)]
         + ["> "])
 
 
