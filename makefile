@@ -1,5 +1,8 @@
-run: clean test
+run: install clean test
 	python main.py
+
+install:
+	pip install -r requirements.txt
 
 clean:
 	find . -name '*.pyc' -exec rm --force {} +
