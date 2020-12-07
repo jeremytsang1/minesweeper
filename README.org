@@ -46,9 +46,11 @@ My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesw
   2) containing a the number of adjacent cells that contain bombs
   3) empty (no adjacent cells contain bombs)
 
+- Note that in this particular implementation mines will not be laid until the player firsts opens a cell. This is a usability measure to prevent the player from dying on their first cell opening. Mines are laid randomly with the only non-random position being the first cell that the player opens.
+
 - The player is capable of the 3 following actions
 ** Opening a cell
-This will open a single cell. If the cell contains a bomb the player dies. If it contains a number then only the opened cell is opened. If is empty all adjacent cells are opened (i.e. opening all cells reachable to the opened cell stopping only at number cells).
+This will open a single cell. If the cell contains a bomb the player dies. If it contains a number then only the opened cell is opened. If is empty all adjacent cells are opened. That is empty cells can perform a Depth First Search that terminates on number cells.
 ** Toggling a flag on a cell
 This can be used to mark a cell as having a bomb. This is useful for /chording/ as seen below.
 ** Chording a cell
