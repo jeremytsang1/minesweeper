@@ -1,0 +1,53 @@
+#+OPTIONS: toc:nil num:nil tasks:nil ^:nil tags:nil
+#+TITLE: Minesweeper
+#+AUTHOR: Jeremy Tsang
+#+LATEX_HEADER: \usepackage[margin={0.5in, 1in}]{geometry}
+#+LATEX_HEADER: \usepackage{indentfirst}
+# #+LATEX: \setlength\parindent{0pt}  # no indentations
+* Description
+My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesweeper_(video_game)][Minesweeper game]].
+* Requirements
+- Python ~>= 3.6~
+* Installation
+- ~cd~ into the top root directory of the repository
+- install requirements
+  #+begin_src bash
+pip install -r requirements.txt
+  #+end_src
+* Usage
+- run the main script
+  #+begin_src bash
+python3 main.py
+  #+end_src
+
+- follow on screen instructions
+* Modes
+** Terminal User Interface (TUI)
+*** Controls
+- Follow menu directions on screen.
+** Graphical User Interface (GUI)
+*** Controls
+|-------------+--------------|
+| action      | control      |
+|-------------+--------------|
+| open cell   | left click   |
+| toggle flag | right click  |
+| chord cell  | middle click |
+|-------------+--------------|
+* Credits
+** Icons
+*** Numbers
+[[https://www.flaticon.com/packs/alphabet-and-numbers?k=1607167589704][Number icons made by Freepik from www.flaticon.com]]
+*** Bombs
+[[https://www.flaticon.com/free-icon/bomb_3014234?related_item_id=3014234&term=bomb][Bomb Icons made by Freepik from www.flaticon.com]]
+*** Flags
+[[https://www.flaticon.com/free-icon/flag_741161?term=red%20flag&page=1&position=15&related_item_id=741161][Flag Icons made by Vectors Market from www.flaticon.com]]
+*** Squares
+[[https://www.flaticon.com/free-icon/square_3810050?term=square&page=1&position=63][Square Icons made by Freepik from www.flaticon.com]]
+*** Emoticons
+Emoticon Icons made by Pixel perfect from www.flaticon.com
+  - https://www.flaticon.com/free-icon/dead_589932
+  - https://www.flaticon.com/free-icon/confused_589927
+  - https://www.flaticon.com/free-icon/smile_590000
+  - https://www.flaticon.com/free-icon/smiling_590002
+** Sounds
