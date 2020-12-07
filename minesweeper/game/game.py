@@ -51,7 +51,6 @@ class Game:
             pass  # Input valid
 
     # -----------------------------------------------------------------------------
-    # PUBLIC # TODO rename since there is no privacy modifiers in python
 
     def open_cell(self, row, col):
         print("\nOpening!")

@@ -218,7 +218,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # End game and quitting functions
 
-    def showEndGameResults(self, won, loss):  # TODO
+    def showEndGameResults(self, won, loss):
         print(TUI.WON_MSG if won else TUI.LOSS_MSG)
 
     @staticmethod

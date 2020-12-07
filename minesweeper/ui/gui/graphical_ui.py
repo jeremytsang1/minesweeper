@@ -201,7 +201,7 @@ class GUI():
 
     def toggle_flag(self, gui_cell):
         if self.game is None:
-            print("No flagging on the first turn!")  # TODO
+            print("No flagging on the first turn!")
         else:
             pos = gui_cell.get_row_col_pos()
             move = self.game.toggle_flag(*pos)
@@ -210,7 +210,7 @@ class GUI():
 
     def chord_cell(self, gui_cell):
         if self.game is None:
-            print("No number cells to chord yet!")  # TODO
+            print("No number cells to chord yet!")
         else:
             pos = gui_cell.get_row_col_pos()
             move = self.game.chord_cell(*pos)
