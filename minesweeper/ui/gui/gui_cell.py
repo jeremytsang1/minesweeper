@@ -31,11 +31,26 @@ class GUICell(pygame.sprite.Sprite):
         7: {'filename': os.path.join(DIR_NUMBERS, '7.png'), 'fill': '#ffffff'},
         8: {'filename': os.path.join(DIR_NUMBERS, '8.png'), 'fill': '#ffffff'},
         # 'square_black': os.path.join(DIR_SQUARES, 'square_black.png'),
-        Cell.Appearance.FLAG: {'filename': os.path.join(DIR_FLAGS, 'flag.png'), 'fill': '#FFFFFF'},
-        Cell.Appearance.UNOPENED: {'filename': os.path.join(DIR_SQUARES, 'square_blue.png'), 'fill': '#000000'},
-        Cell.Appearance.EMPTY: {'filename': os.path.join(DIR_SQUARES, 'square_empty.png'), 'fill': '#000000'},
-        Cell.Appearance.UNENCOUNTERED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_unencountered.png'), 'fill': '#000000'},
-        Cell.Appearance.OPENED_BOMB: {'filename': os.path.join(DIR_BOMBS, 'bomb_opened.png'), 'fill': '#000000'},
+        Cell.Appearance.FLAG: {
+            'filename': os.path.join(DIR_FLAGS, 'flag.png'),
+            'fill': '#FFFFFF'
+        },
+        Cell.Appearance.UNOPENED: {
+            'filename': os.path.join(DIR_SQUARES, 'square_blue.png'),
+            'fill': '#000000'
+        },
+        Cell.Appearance.EMPTY: {
+            'filename': os.path.join(DIR_SQUARES, 'square_empty.png'),
+            'fill': '#000000'
+        },
+        Cell.Appearance.UNENCOUNTERED_BOMB: {
+            'filename': os.path.join(DIR_BOMBS, 'bomb_unencountered.png'),
+            'fill': '#000000'
+        },
+        Cell.Appearance.OPENED_BOMB: {
+            'filename': os.path.join(DIR_BOMBS, 'bomb_opened.png'),
+            'fill': '#000000'
+        },
     }
 
     def __init__(self, row, col):
