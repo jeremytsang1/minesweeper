@@ -42,11 +42,13 @@ python3 main.py
 * Modes
 ** Terminal User Interface (TUI)
 *** Screenshots
-#+CAPTION: Starting an EASY difficulty game.
-[[file:screenshots/screenshot_tui_easy.png]]
+- Starting an *EASY* difficulty game.
+  #+CAPTION: Starting an EASY difficulty game.
+  [[file:screenshots/screenshot_tui_easy.png]]
 
-#+CAPTION: Starting a CUSTOM difficulty game.
-[[file:screenshots/screenshot_tui_custom.png]]
+- Starting an *CUSTOM* difficulty game.
+  #+CAPTION: Starting a CUSTOM difficulty game.
+  [[file:screenshots/screenshot_tui_custom.png]]
 *** Video
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 *** Controls
