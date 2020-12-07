@@ -12,7 +12,7 @@ class GUI():
     MOUSE_LEFT = 1
     MOUSE_MIDDLE = 2
     MOUSE_RIGHT = 3
-    SCREEN_FILL_COLOR = '#b2c4cd'
+    SCREEN_FILL_COLOR = '#21516a'
 
     def __init__(self):
         pygame.init()

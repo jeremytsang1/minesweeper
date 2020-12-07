@@ -12,6 +12,7 @@ class GUICell(pygame.sprite.Sprite):
     HEIGHT = 30
     BORDER_WIDTH = 2
     CELL_SPACING = 0
+    BORDER_COLOR = "#183a4c"
     DIR_IMG = os.path.join('minesweeper', 'ui', 'gui', 'assets', 'img')
     DIR_BOMBS = os.path.join(DIR_IMG, 'bombs')
     DIR_NUMBERS = os.path.join(DIR_IMG, 'numbers')
@@ -70,7 +71,7 @@ class GUICell(pygame.sprite.Sprite):
 
     def draw(self, screen):
         # Draw rectangle around the cell.
-        pygame.draw.rect(screen, "#000000", self.rect, 2)
+        pygame.draw.rect(screen, self.BORDER_COLOR, self.rect, self.BORDER_WIDTH)
 
     def shrink_down(self, surf):
         return pygame.transform.scale(
