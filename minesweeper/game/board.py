@@ -13,6 +13,7 @@ class Board:
         self.adj = pos_util.adj
         self.grid = [[Cell(i, j, bomb=bomb) for j, bomb in enumerate(row)]
                      for i, row in enumerate(bombs)]
+        self.affected_positions = set()
 
     @staticmethod
     def validate_bombs(bombs):
@@ -84,6 +85,7 @@ class Board:
         def open_bomb(cell):
             self.opened_bomb_count += 1
             cell.open_cell()
+            self.affected_positions.add(cell.get_pos())
             return True  # valid move
 
         def open_non_bomb_cell(opened_cell):
@@ -91,6 +93,7 @@ class Board:
             adj_cells = self.get_adjacent_cells(opened_cell)
             adj_bomb_count = Board.count_adjacent_bombs(adj_cells)
             opened_cell.open_cell(adj_bomb_count)
+            self.affected_positions.add(opened_cell.get_pos())
             return adj_cells, adj_bomb_count
 
         opened_cell = self.grid[opened_row][opened_col]
@@ -162,7 +165,10 @@ class Board:
 
         """
         cell = self.grid[row][col]
-        return cell.toggle_flag()
+        valid = cell.toggle_flag()
+        if valid:
+            self.affected_positions.add(cell.get_pos)
+        return valid
 
     def chord_cell(self, row, col):
         cell = self.get_cell(row, col)
@@ -188,6 +194,12 @@ class Board:
 
     def reveal_board(self):
         self.iterate(lambda cell: cell.reveal_unopened_bomb())
+
+    def get_affected_positions(self):
+        return self.affected_positions
+
+    def reset_affected_positions(self):
+        self.affected_positions = set()
 
 
 class BoardError(Exception):
