@@ -24,9 +24,15 @@ class GUI():
         'win': os.path.join(DIR_END_GAME, 'win_sound.ogg'),
     }
 
-    # COMPONENT Heights
+    # Component Heights
     STATUS_HEIGHT = 100
     ECHO_HEIGHT = 50
+
+    # Spacings between components
+    ABOVE_STATUS = 10
+    BETWEEN_STATUS_AND_BOARD = 10
+    BETWEEN_BOARD_AND_ECHO = 10
+    BELOW_ECHO = 10
 
     def __init__(self, sound_on=False):
         pygame.init()
@@ -79,13 +85,23 @@ class GUI():
     def determine_screen_size(self):
         board_width, board_height = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
         return [board_width,
-                self.STATUS_HEIGHT + board_height + self.ECHO_HEIGHT]
+                self.ABOVE_STATUS
+                + self.STATUS_HEIGHT
+                + self.BETWEEN_STATUS_AND_BOARD
+                + board_height
+                + self.BETWEEN_BOARD_AND_ECHO
+                + self.ECHO_HEIGHT
+                + self.BELOW_ECHO]
 
     def create_components(self):
         """Needs to be run after creating self.screen."""
+        screen_size = self.screen.get_size()
+
         self.status_icon = StatusIcon(
-            x=0,
-            y=0,
+            # NOTE: Since status icon is a square it's height and width are
+            # EQUAL
+            x=(screen_size[0] // 2) - self.STATUS_HEIGHT // 2,  # center the icon
+            y=self.ABOVE_STATUS,
             width=self.STATUS_HEIGHT,
             height=self.STATUS_HEIGHT)   # Make it a square.
         self.all_sprites.add(self.status_icon)
@@ -93,7 +109,7 @@ class GUI():
         self.gui_board = GUIBoard(
             *self.difficulty.get_shape(),
             offset_x=0,
-            offset_y=self.STATUS_HEIGHT,
+            offset_y=self.ABOVE_STATUS + self.STATUS_HEIGHT + self.BETWEEN_STATUS_AND_BOARD,
         )
         self.add_sprites(self.gui_board.get_sprites())
 
