@@ -115,6 +115,7 @@ class Game:
     def update_end_game(self):
         if self.cell_count - self.board.get_opened_cell_count() == self.bomb_count:
             self.won = True
+            self.board.convert_all_bombs_to_flags()
             return
         if self.board.get_opened_bomb_count() > 0:
             self.loss = True

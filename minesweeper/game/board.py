@@ -195,6 +195,9 @@ class Board:
     def reveal_board(self):
         self.iterate(lambda cell: cell.reveal_unopened_bomb())
 
+    def convert_all_bombs_to_flags(self):
+        self.iterate(lambda cell: cell.set_flag_if_bomb())
+
     def get_affected_positions(self):
         return self.affected_positions
 

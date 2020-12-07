@@ -91,6 +91,10 @@ class Cell:
             return False  # invalid move
         return True  # valid move
 
+    def set_flag_if_bomb(self):
+        if self.bomb:
+            self.appearance = Cell.Appearance.FLAG
+
     def set_count(self, count):
         """Opens a cell and sets it number.
 
