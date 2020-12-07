@@ -40,10 +40,10 @@ class GUICell(pygame.sprite.Sprite):
 
     def __init__(self, row, col):
         super().__init__()
-        self.x = col * GUICell.WIDTH
-        self.y = row * GUICell.HEIGHT
+        x = col * GUICell.WIDTH
+        y = row * GUICell.HEIGHT
         self.row_col_pos = (row, col)
-        self.pos = (self.x, self.y)
+        self.spatial_pos = (x, y)
         self.appearance = None  # start off with no appearance until loading
         self.load_image(Cell.Appearance.UNOPENED)
 
@@ -51,7 +51,7 @@ class GUICell(pygame.sprite.Sprite):
         return self.row_col_pos
 
     def position_cell(self):
-        self.rect.move_ip(*self.pos)
+        self.rect.move_ip(*self.spatial_pos)
 
     def load_image(self, appearance):
         # Don't bother updating if appearance hasn't changed.
