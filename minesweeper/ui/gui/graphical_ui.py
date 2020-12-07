@@ -66,16 +66,23 @@ class GUI():
     def run_game(self):
         self.game = None
 
-        dimensions = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
+        dimensions = self.determine_screen_size()
         self.screen = pygame.display.set_mode(dimensions)
         self.gui_board = GUIBoard(
             *self.difficulty.get_shape(),
             offset_x=0,
-            offset_y=0,
+            offset_y=200,
         )
         self.add_sprites(self.gui_board.get_sprites())
 
         self.main_game_loop()
+
+    def determine_screen_size(self):
+        height_status = 200
+        dimensions_board = GUIBoard.compute_dimensions(*self.difficulty.get_shape())
+        height_echo = 200
+        return [dimensions_board[0],
+                height_status + dimensions_board[1] + height_echo]
 
     def main_game_loop(self):
         running = True

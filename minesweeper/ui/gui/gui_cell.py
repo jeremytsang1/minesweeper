@@ -57,10 +57,10 @@ class GUICell(pygame.sprite.Sprite):
         },
     }
 
-    def __init__(self, row, col):
+    def __init__(self, row, col, offset_x, offset_y):
         super().__init__()
-        x = col * GUICell.WIDTH
-        y = row * GUICell.HEIGHT
+        x = col * GUICell.WIDTH + offset_x
+        y = row * GUICell.HEIGHT + offset_y
         self.row_col_pos = (row, col)
         self.spatial_pos = (x, y)
         self.appearance = None  # start off with no appearance until loading

@@ -45,6 +45,6 @@ class GUIBoard():
         for row in range(self.rows):
             self.gui_cells_2D.append([])
             for col in range(self.cols):
-                gui_cell = GUICell(row, col)
+                gui_cell = GUICell(row, col, self.offset_x, self.offset_y)
                 self.gui_cells_2D[row].append(gui_cell)
                 self.sprites.add(gui_cell)
