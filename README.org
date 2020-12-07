@@ -13,7 +13,8 @@
 - [[#description][Description]]
 - [[#requirements][Requirements]]
 - [[#installation][Installation]]
-- [[#usage][Usage]]
+  - [[#option-1-local][Option 1: Local]]
+  - [[#option-2-replit][Option 2: repl.it]]
 - [[#modes][Modes]]
   - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
   - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
@@ -27,18 +28,29 @@ My personal implementation of the classic [[https://en.wikipedia.org/wiki/Minesw
 - Python ~>= 3.6~
 - For specific Python packages see ~requirements.txt~.
 * Installation
-- ~cd~ into the top root directory of the repository
-- install requirements
+** Option 1: Local
+- Unzip the ~.zip~ file.
+- ~cd~ into the top root directory of the unzipped file.
+- Install dependencies
   #+begin_src bash
 pip install -r requirements.txt
   #+end_src
-* Usage
-- run the main script
-  #+begin_src bash
+- Run the main script
+  #+begin_src 
 python3 main.py
   #+end_src
-
-- follow on screen instructions
+- Follow instructions on terminal to choose TUI or GUI mode.
+** Option 2: ~repl.it~
+1) Navigate to the following link: [[https://repl.it/@jatsang52/minesweeper#main.py]]
+   [[file:screenshots/repl-it-step-1.png]]   
+2) In the repl.it terminal, install dependencies with ~pip install -r requirements.txt~
+   [[file:screenshots/repl-it-step-2.png]]   
+3) After the installation completes press the ~Run~ button.
+   [[file:screenshots/repl-it-step-3.png]]
+4) In the repl.it terminal choose TUI or GUI mode.
+   [[file:screenshots/repl-it-step-4.png]]
+5) In the repl.it terminal if you choose GUI mode make sure to choose option ~1~ to disable sound (repl.it doesn't play nicely with pygame apps with sound)
+   [[file:screenshots/repl-it-step-5.png]]
 * Modes
 ** Terminal User Interface (TUI)
 *** Screenshots
