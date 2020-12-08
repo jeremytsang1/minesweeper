@@ -22,11 +22,11 @@
   - [[#option-1-local][Option 1: Local]]
   - [[#option-2-replit][Option 2: repl.it]]
 - [[#modes][Modes]]
-  - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
+  - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
     - [[#controls][Controls]]
     - [[#screenshots][Screenshots]]
     - [[#video][Video]]
-  - [[#graphical-user-interface-gui][Graphical User Interface (GUI)]]
+  - [[#terminal-user-interface-tui][Terminal User Interface (TUI)]]
     - [[#controls][Controls]]
     - [[#screenshots][Screenshots]]
     - [[#video][Video]]
@@ -95,17 +95,6 @@ python3 main.py
    [[file:screenshots/repl-it-step-5a.png]]
    [[file:screenshots/repl-it-step-5b.png]]   
 * Modes
-** Terminal User Interface (TUI)
-*** Controls
-- Follow menu directions on screen.
-*** Screenshots
-- Starting an *EASY* difficulty game.
-  [[file:screenshots/screenshot_tui_easy.png]]
-
-- Starting an *CUSTOM* difficulty game.
-  [[file:screenshots/screenshot_tui_custom.png]]
-*** Video
-[[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 ** Graphical User Interface (GUI)
 *** Controls
 - After pressing ~Play~ left click anywhere to start the game.
@@ -129,6 +118,17 @@ python3 main.py
 [[file:screenshots/screenshot_gui_hard.png]]
 *** Video
 [[https://www.youtube.com/watch?v=P8IPWk0izN4][Youtube: Minesweeper GUI Demo]]
+** Terminal User Interface (TUI)
+*** Controls
+- Follow menu directions on screen.
+*** Screenshots
+- Starting an *EASY* difficulty game.
+  [[file:screenshots/screenshot_tui_easy.png]]
+
+- Starting an *CUSTOM* difficulty game.
+  [[file:screenshots/screenshot_tui_custom.png]]
+*** Video
+[[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
 * Credits
 ** Icons
 *** Numbers
