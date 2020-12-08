@@ -189,8 +189,8 @@ class GUI():
             if self.sound_on:
                 self.sounds['win'].play()
         elif loss:
+            self.status_icon.load_image(StatusIcon.Status.LOSS)
             if self.sound_on:
-                self.status_icon.load_image(StatusIcon.Status.LOSS)
                 self.sounds['explosion'].play()
 
     def open_cell(self, gui_cell):
