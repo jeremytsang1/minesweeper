@@ -12,7 +12,7 @@ From Kaye (Springer-Verlag New York, Volume 22, Number 2, 2000) the decision pro
 
 This problem is NP-complete. A proof by Kaye is given in the aforementioned paper where he goes on to show that SAT can reduce to the Minesweeper problem. He goes to show that one can construct the basic logic gates AND, OR, and NOT (and therefore an entire computer) using regions of a Minesweeper board to model a wire carrying voltage. This can be done by assigning a "direction" to the region where the unopened cells are the digital logical inputs. Hence, by strategically placing the unopened cells it is possible recover the inputs of SAT.
 * The Verification Algorithm of User's Solution
-Store the mines in a 2D Boolean array with $m$ rows and $n$ columns, where if True than the row-col coordinate holds a mine. Consider the player's moves as nested array each row being a 2-element positions. This array's length is at most $m \cdot n$ since the user can't open more cells than there are on the grid.
+Store the mines in a 2D Boolean array with $m$ rows and $n$ columns, where if True than the row-col coordinate holds a mine. Consider the player's moves as nested array each row being a 2-element positions. This array's length is at most $m \cdot n$ since the user can't open more cells than there are on the grid. Note that after we discover how many mines are on the board we know that must be equal to the number of opened cells (total cells minus opened cells) for the player to win.
 #+begin_example
 # opened_cells: 2D array of bool. Each row is length 2.
 # move_count: number of rows in opened_cells
@@ -26,7 +26,7 @@ verification(opened_cells, move_count, mines, m, n):
             if mines[i][j]:
                 mine_count += 1
 
-    if move_count != mine_count:
+    if (m * n) - move_count != mine_count:
         return False
 
     for i in range(move_count):
