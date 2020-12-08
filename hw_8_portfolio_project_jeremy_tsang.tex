@@ -1,0 +1,55 @@
+% Created 2020-12-07 Mon 22:20
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[margin={0.5in, 1in}]{geometry}
+\usepackage{indentfirst}
+\author{Jeremy Tsang}
+\date{\today}
+\title{HW 8: Portfolio Project}
+\hypersetup{
+ pdfauthor={Jeremy Tsang},
+ pdftitle={HW 8: Portfolio Project},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\section*{The Problem}
+\label{sec:org957d26f}
+In Minesweeper a player is given board of \(m\) rows and \(n\) columns with \(k < m\cdot n\) mines. The goal is for the player to open all cells that do not contain a mine.
+\section*{Decision Question}
+\label{sec:org7975c47}
+From Kaye (Springer-Verlag New York, Volume 22, Number 2, 2000) the decision problem is: "Given an arbitrary set of mines and numbers on a rectangular grid, can mines be placed consistently, following the usual minesweeper rules?"
+
+This problem is NP-complete. A proof by Kaye is given in the aforementioned paper where he goes on to show that SAT can reduce to the Minesweeper problem. He goes to show that one can construct the basic logic gates AND, OR, and NOT (and therefore an entire computer) using regions of a Minesweeper board to model a wire carrying voltage. This can be done by assigning a "direction" to the region where the unopened cells are the digital logical inputs. Hence, by strategically placing the unopened cells it is possible recover the inputs of SAT.
+\section*{The Verification Algorithm of User's Solution}
+\label{sec:org06cbb56}
+Store the mines in a 2D array with \(m\) rows and \(n\) columns. Consider the player's moves as single bit string (certificates) of length \(m \cdot n\) where bit \(i\) represent the cell at row \(\lfloor i / n \rfloor\) and column \(i \% m\) we can easily check whether or not a player has "exploded" by simply checking the cell at.
+\begin{verbatim}
+# bit_string: string of bool. Length m*n
+# mines: 2D array of bool with height m and width n
+# m: int height of the minesweeper board
+# n: int width of the minesweeper board
+verification(bit_string, mines, m, n):
+    for i in len(bit_string):
+        if bit_string[i] == mines[i / n][i % m]:
+            return False
+    return True
+\end{verbatim}
+This simple brute force algorithm has a single \texttt{for} loop which has at most \(m \cdot n\) iterations. Hence it's runtime is \(\mathcal{O}(m \cdot n)\) which is polynomial in the number of cells in the board.
+\end{document}

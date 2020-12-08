@@ -12,15 +12,15 @@ From Kaye (Springer-Verlag New York, Volume 22, Number 2, 2000) the decision pro
 
 This problem is NP-complete. A proof by Kaye is given in the aforementioned paper where he goes on to show that SAT can reduce to the Minesweeper problem. He goes to show that one can construct the basic logic gates AND, OR, and NOT (and therefore an entire computer) using regions of a Minesweeper board to model a wire carrying voltage. This can be done by assigning a "direction" to the region where the unopened cells are the digital logical inputs. Hence, by strategically placing the unopened cells it is possible recover the inputs of SAT.
 * The Verification Algorithm of User's Solution
-Store the mines in a 2D array with $m$ rows and $n$ columns. Consider the player's moves as single bit array (certificates) of length $m \cdot n$ where bit $i$ represent the cell at row $\lfloor i / n \rfloor$ and column $i \% m$ we can easily check whether or not a player has "exploded" by simply checking the cell at.
+Store the mines in a 2D array with $m$ rows and $n$ columns. Consider the player's moves as single bit string (certificates) of length $m \cdot n$ where bit $i$ represent the cell at row $\lfloor i / n \rfloor$ and column $i \% m$ we can easily check whether or not a player has "exploded" by simply checking the cell at.
 #+begin_example
-# bit_ary: iterable of bool. Length m*n
+# bit_string: string of bool. Length m*n
 # mines: 2D array of bool with height m and width n
 # m: int height of the minesweeper board
 # n: int width of the minesweeper board
-verification(bit_ary, mines, m, n):
-    for i in len(bit_ary):
-        if bit_ary[i] == mines[i / n][i % m]:
+verification(bit_string, mines, m, n):
+    for i in len(bit_string):
+        if bit_string[i] == mines[i / n][i % m]:
             return False
     return True
 #+end_example
