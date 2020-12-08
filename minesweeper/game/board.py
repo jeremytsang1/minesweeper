@@ -82,6 +82,23 @@ class Board:
     # Player move methods
 
     def open_cell(self, opened_row, opened_col):
+        """Opens a cell. If cell is empty performs Depth First Search on with cells
+        considered vertices. DFS terminates on reaching a number cell.
+
+
+        Parameters
+        ----------
+        opened_row: int
+            Row to open.
+        opened_col: int
+            Col to open.
+
+        Returns
+        -------
+        bool
+            Whether or not the opening was valid. Can only open unopened cells.
+
+        """
         def open_bomb(cell):
             self.opened_bomb_count += 1
             cell.open_cell()
