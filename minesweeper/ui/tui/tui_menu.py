@@ -5,6 +5,17 @@ class TUIMenu():
     PROMPT_APPEARANCE = "\n{}\n> "
 
     def __init__(self, prompts, actions):
+        """Creates a text based menu.
+
+        Parameters
+        ----------
+        prompts: iterable of str
+            Lines to display to the user for each option.
+        actions: iterable of callable
+            Actions to perform for each of the menu options. Must be same
+            length as `prompts`.
+
+        """
         self.prompts = prompts
         self.actions = actions
 
