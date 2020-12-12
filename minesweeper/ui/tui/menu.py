@@ -66,7 +66,7 @@ class Menu():
         """
         return f'{option_num + offset}.'
 
-    def run_menu(self, offset=1):
+    def ask_use_option(self, offset=1):
         """Ask the user for input and perform the selected action once a valid choice
         has been given.
 
@@ -77,7 +77,8 @@ class Menu():
 
         Returns
         -------
-        None
+        int
+            The option number of the option the user chose.
 
         """
         menu_str = self.format_prompts(offset)
@@ -87,5 +88,5 @@ class Menu():
 
 if __name__ == '__main__':
     menu = Menu(['a', 'b', 'c'], [])
-    usr = menu.run_menu()
+    usr = menu.ask_use_option()
     print(f'usr: {usr}')
