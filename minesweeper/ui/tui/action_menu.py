@@ -20,8 +20,29 @@ class ActionMenu(Menu):
         super().__init__(option_descriptions)
         self.actions = actions
 
+    def run_action_for_user_option(self, offset=1):
+        """Call the action function specified by the user's menu choice.
+
+        Parameters
+        ----------
+        offset: int
+            Number to start displaying menu options from.
+
+        Returns
+        -------
+        Dependent on the function for the option the user calls.
+
+        """
+        # Subtract offset to account for difference in prentation option number
+        # and index that lists start counting from (i.e. index 0).
+        user_option = self.ask_user_option(offset) - offset
+        return self.actions[user_option]()
+
 
 if __name__ == '__main__':
-    menu = ActionMenu(['foo', 'bar', 'baz'], [])
-    usr = menu.ask_user_option()
-    print(f'usr: {usr}')
+    menu = ActionMenu(['foo', 'bar', 'baz'], [
+        lambda: print('A'),
+        lambda: print('B'),
+        lambda: print('C'),
+    ])
+    menu.run_action_for_user_option()
