@@ -1,10 +1,13 @@
+from minesweeper.ui.tui.tui_io import IO
+
+
 class TUIMenu():
     """Menu for Terminal User Interface.
 
     """
-    PROMPT_APPEARANCE = "\n{}\n> "
+    PROMPT_CHAR = "> "
 
-    def __init__(self, prompts, actions):
+    def __init__(self, option_descriptions, actions):
         """Creates a text based menu.
 
         Parameters
@@ -16,7 +19,8 @@ class TUIMenu():
             length as `prompts`.
 
         """
-        self.prompts = prompts
+        self.option_descriptions = option_descriptions
+        self.count = len(option_descriptions)
         self.actions = actions
 
     def format_prompts(self, offset=1):
@@ -36,40 +40,52 @@ class TUIMenu():
             user to enter their choice.
 
         """
+        concatenated_menu_options = "\n"
 
-        return "\n" + '\n'.join(
-            [f'{i + offset}. {line}' for i, line in enumerate(self.prompts)]
-            + ["> "]
-        )
+        for raw_num, option_description in enumerate(self.option_descriptions):
+            option_num = self.format_option_number(raw_num, offset)
+            concatenated_menu_options += f'\n{option_num} {option_description}'
 
-    @staticmethod
-    def read_menu_option(menu):
-        return TUIMenu.read_int(TUIMenu.make_menu_str(menu), 1, len(menu) + 1)
+        return f'{concatenated_menu_options}\n{self.PROMPT_CHAR} '
 
     @staticmethod
-    def read_int(self, msg, min_val, max_val):
-        usr_input = None
-        while usr_input is None:
-            try:
-                usr_input = int(input(TUIMenu.PROMPT_APPEARANCE.format(msg)))
-                usr_input = TUIMenu.validate_range(usr_input, min_val, max_val)
-            except ValueError:
-                print("\nPlease enter an integer!")
-                usr_input = None
-        return usr_input
+    def format_option_number(option_num, offset):
+        """Determine formatting for the numbering for each menu option.
 
-    @staticmethod
-    def validate_range(val, min_val, max_val):
-        if val in range(min_val, max_val):
-            return val
-        else:
-            print(
-                "\nPlease enter an int in the interval",
-                TUIMenu.make_range_string(min_val, max_val)
-            )
+        Parameters
+        ----------
+        option_num: int
+            Menu option number starting at (start counting at 0).
+        offset: int
+            Number to start the menu options at.
 
-            return None
+        Returns
+        -------
+        str
+            Formatted number, in this case of the form "1.", "2.", etc.
+        """
+        return f'{option_num + offset}.'
 
-    @staticmethod
-    def make_range_string(min_val, max_val):
-        return f"[{min_val} (inclusive) ... {max_val} (exclusive)]"
+    def run_menu(self, offset=1):
+        """Ask the user for input and perform the selected action once a valid choice
+        has been given.
+
+        Parameters
+        ----------
+        offset: int
+            Number to start options from.
+
+        Returns
+        -------
+        None
+
+        """
+        menu_str = self.format_prompts(offset)
+        menu_option = IO.read_int(menu_str, offset, self.count + offset)
+        return menu_option
+
+
+if __name__ == '__main__':
+    menu = TUIMenu(['a', 'b', 'c'], [])
+    usr = menu.run_menu()
+    print(f'usr: {usr}')
