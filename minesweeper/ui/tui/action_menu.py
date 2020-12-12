@@ -18,7 +18,19 @@ class ActionMenu(Menu):
 
         """
         super().__init__(option_descriptions)
+        self._validate_actions(option_descriptions, actions)
         self.actions = actions
+
+    @staticmethod
+    def _validate_actions(options_descriptions, actions):
+        if len(options_descriptions) != len(actions):
+            raise ValueError(
+                "`options_descriptions` and `actions` length mismatch"
+            )
+
+        for action in actions:
+            if not callable(action):
+                raise ValueError("`actions` contains a non-callable element")
 
     def run_action_for_user_option(self, offset=1):
         """Call the action function specified by the user's menu choice.
