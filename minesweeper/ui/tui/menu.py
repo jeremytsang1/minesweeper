@@ -1,7 +1,7 @@
-from minesweeper.ui.tui.tui_io import IO
+from minesweeper.ui.tui.io import IO
 
 
-class TUIMenu():
+class Menu():
     """Menu for Terminal User Interface.
 
     """
@@ -86,6 +86,6 @@ class TUIMenu():
 
 
 if __name__ == '__main__':
-    menu = TUIMenu(['a', 'b', 'c'], [])
+    menu = Menu(['a', 'b', 'c'], [])
     usr = menu.run_menu()
     print(f'usr: {usr}')
