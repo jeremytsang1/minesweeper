@@ -16,6 +16,11 @@ class Menu():
         option_descriptions: iterable of str
             Lines to display to the user for each option.
 
+        Raises
+        ------
+        TypeError
+            If one of the elements of option_descriptions is not a string.
+
         """
         self._validate_option_descriptions(option_descriptions)
         self.option_descriptions = option_descriptions
@@ -25,8 +30,8 @@ class Menu():
     def _validate_option_descriptions(option_descriptions):
         for description in option_descriptions:
             if type(description) != str:
-                raise ValueError(
-                    "`option_descriptions` has a non-string element"
+                raise TypeError(
+                    "``option_descriptions`` has a non-string element"
                 )
 
     def _format_prompts(self, offset=1):

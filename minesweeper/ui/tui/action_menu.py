@@ -16,6 +16,14 @@ class ActionMenu(Menu):
             Actions to perform for each of the menu options. Must be same
             length as `option_descriptions`.
 
+        Raises
+        ------
+        TypeError
+            If one of the elements of option_descriptions is not a string.
+        ValueError
+            If ``option_descriptions`` and ``actions`` have differing length.
+            If one of the elements of ``actions`` is not callable.
+
         """
         super().__init__(option_descriptions)
         self._validate_actions(option_descriptions, actions)
