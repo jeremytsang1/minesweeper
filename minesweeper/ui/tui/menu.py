@@ -2,7 +2,8 @@ from minesweeper.ui.tui.io import IO
 
 
 class Menu():
-    """Menu for Terminal User Interface.
+    """Defines simple text based Menu that allows user to enter an integer value
+    for options. Is able to grab the user's choice as an int.
 
     """
     PROMPT_CHAR = "> "
