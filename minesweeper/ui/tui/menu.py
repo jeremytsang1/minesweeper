@@ -7,7 +7,7 @@ class Menu():
     """
     PROMPT_CHAR = "> "
 
-    def __init__(self, option_descriptions, actions):
+    def __init__(self, option_descriptions):
         """Creates a text based menu.
 
         Parameters
@@ -21,7 +21,6 @@ class Menu():
         """
         self.option_descriptions = option_descriptions
         self.count = len(option_descriptions)
-        self.actions = actions
 
     def format_prompts(self, offset=1):
         """Concatenate menu options into a single multiline string.
@@ -87,6 +86,6 @@ class Menu():
 
 
 if __name__ == '__main__':
-    menu = Menu(['a', 'b', 'c'], [])
-    usr = menu.ask_use_option()
-    print(f'usr: {usr}')
+    menu = Menu(['a', 'b', 'c'])
+    usr_choice = menu.ask_use_option()
+    print(f'usr_choice: {usr_choice}')
