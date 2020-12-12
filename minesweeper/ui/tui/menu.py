@@ -20,7 +20,7 @@ class Menu():
         self.option_descriptions = option_descriptions
         self.count = len(option_descriptions)
 
-    def format_prompts(self, offset=1):
+    def _format_prompts(self, offset=1):
         """Concatenate menu options into a single multiline string.
 
         Parameters
@@ -40,13 +40,13 @@ class Menu():
         concatenated_menu_options = "\n"
 
         for raw_num, option_description in enumerate(self.option_descriptions):
-            option_num = self.format_option_number(raw_num, offset)
+            option_num = self._format_option_number(raw_num, offset)
             concatenated_menu_options += f'\n{option_num} {option_description}'
 
         return f'{concatenated_menu_options}\n{self.PROMPT_CHAR} '
 
     @staticmethod
-    def format_option_number(option_num, offset):
+    def _format_option_number(option_num, offset):
         """Determine formatting for the numbering for each menu option.
 
         Parameters
@@ -63,7 +63,7 @@ class Menu():
         """
         return f'{option_num + offset}.'
 
-    def ask_use_option(self, offset=1):
+    def ask_user_option(self, offset=1):
         """Ask the user for input and perform the selected action once a valid choice
         has been given.
 
@@ -78,12 +78,12 @@ class Menu():
             The option number of the option the user chose.
 
         """
-        menu_str = self.format_prompts(offset)
+        menu_str = self._format_prompts(offset)
         menu_option = IO.read_int(menu_str, offset, self.count + offset)
         return menu_option
 
 
 if __name__ == '__main__':
     menu = Menu(['a', 'b', 'c'])
-    usr_choice = menu.ask_use_option()
+    usr_choice = menu.ask_user_option()
     print(f'usr_choice: {usr_choice}')

@@ -23,5 +23,5 @@ class ActionMenu(Menu):
 
 if __name__ == '__main__':
     menu = ActionMenu(['foo', 'bar', 'baz'], [])
-    usr = menu.ask_use_option()
+    usr = menu.ask_user_option()
     print(f'usr: {usr}')
