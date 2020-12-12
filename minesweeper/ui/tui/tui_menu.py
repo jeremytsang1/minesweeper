@@ -4,9 +4,32 @@ class TUIMenu():
     """
     PROMPT_APPEARANCE = "\n{}\n> "
 
-    def __init__(self, prompts, offset=1):
+    def __init__(self, prompts, actions):
         self.prompts = prompts
-        self.offset = offset
+        self.actions = actions
+
+    def format_prompts(self, offset=1):
+        """Concatenate menu options into a single multiline string.
+
+        Parameters
+        ----------
+        descriptions: iterable of str
+            Descriptions for individual menu options.
+        offset: int
+            Number to start menu options on.
+
+        Returns
+        -------
+        str
+            One description per line with an extra line for the prompt for the
+            user to enter their choice.
+
+        """
+
+        return "\n" + '\n'.join(
+            [f'{i + offset}. {line}' for i, line in enumerate(self.prompts)]
+            + ["> "]
+        )
 
     @staticmethod
     def read_menu_option(menu):
