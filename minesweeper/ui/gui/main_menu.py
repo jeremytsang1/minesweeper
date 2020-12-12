@@ -1,6 +1,6 @@
 import pygame
 import pygame_menu
-from minesweeper.ui.gui.difficulty import Difficulty as diff
+from minesweeper.game.difficulty import Difficulty as diff
 
 
 class MainMenu():

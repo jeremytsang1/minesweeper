@@ -2,7 +2,7 @@ import pygame
 import pygame_menu
 from minesweeper.ui.gui.main_menu import MainMenu
 from minesweeper.ui.gui.custom_level_menu import CustomLevelMenu
-from minesweeper.ui.gui.difficulty import Difficulty
+from minesweeper.game.difficulty import Difficulty
 from minesweeper.ui.gui.status_icon import StatusIcon
 from minesweeper.ui.gui.gui_board import GUIBoard
 from minesweeper.game.game import Game
