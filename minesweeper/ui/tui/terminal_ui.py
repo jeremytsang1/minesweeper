@@ -15,10 +15,12 @@ class TUI():
 
     """
     MAX_INT = 1000000
+
     MAIN_MENU_DESCRIPTIONS = (
         "New game",
         "Quit",
     )
+
     NEW_GAME_MENU_DESCRIPTIONS = (
         "Easy",
         "Medium",
@@ -31,20 +33,25 @@ class TUI():
         "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
     )
+
     FIRST_TURN_MENU_DESCRIPTIONS = (
         "Open cell",
         "Quit",
     )
+
     TURN_MENU_DESCRIPTIONS = (
         "Open cell",
         "Toggle flag",
         "Chord cell (http://www.minesweeper.info/wiki/Chord)",
         "Quit",
     )
+
     ROW_PROMPT = f"\nWhich row?{Menu.PROMPT_CHAR}"
     COL_PROMPT = f"\nWhich col?{Menu.PROMPT_CHAR}"
+
     WON_MSG = f"\nYOU WIN!{AsciiArt.HAPPY}"
     LOSS_MSG = f"\nYOU DIED!{AsciiArt.DEAD}"
+
     GOODBYE = "\nGoodbye!"
 
     def __init__(self):
