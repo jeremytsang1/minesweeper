@@ -1,4 +1,4 @@
-from minesweeper.ui.tui.command_line_grid import CommandLineGrid
+from minesweeper.ui.tui.grid_printing.command_line_grid import CommandLineGrid
 
 
 class TablePrinter():

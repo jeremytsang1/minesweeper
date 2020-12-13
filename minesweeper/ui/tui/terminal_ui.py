@@ -2,7 +2,7 @@ from minesweeper.ui.tui.menus.menu import Menu
 from minesweeper.ui.tui.menus.action_menu import ActionMenu
 from minesweeper.ui.tui.io import IO
 from minesweeper.ui.tui.move_message import MoveMessage
-from minesweeper.ui.tui.table_printer import TablePrinter
+from minesweeper.ui.tui.grid_printing.table_printer import TablePrinter
 from minesweeper.ui.tui.art import happy, dead
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
