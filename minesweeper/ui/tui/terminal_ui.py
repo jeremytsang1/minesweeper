@@ -3,7 +3,7 @@ from minesweeper.ui.tui.menus.action_menu import ActionMenu
 from minesweeper.ui.tui.io import IO
 from minesweeper.ui.tui.move_message import MoveMessage
 from minesweeper.ui.tui.grid_printing.table_printer import TablePrinter
-from minesweeper.ui.tui.art import happy, dead
+from minesweeper.ui.tui.ascii_art import AsciiArt
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
 from minesweeper.game.move import Move
@@ -44,8 +44,8 @@ class TUI():
     )
     ROW_PROMPT = f"\nWhich row?{Menu.PROMPT_CHAR}"
     COL_PROMPT = f"\nWhich col?{Menu.PROMPT_CHAR}"
-    WON_MSG = f"\nYOU WIN!{happy()}"
-    LOSS_MSG = f"\nYOU DIED!{dead()}"
+    WON_MSG = f"\nYOU WIN!{AsciiArt.HAPPY}"
+    LOSS_MSG = f"\nYOU DIED!{AsciiArt.DEAD}"
     GOODBYE = "\nGoodbye!"
 
     def __init__(self):

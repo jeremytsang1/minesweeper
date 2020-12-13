@@ -1,8 +1,10 @@
 # ASCII art drawn using Emacs artist-mode
 # See https://www.emacswiki.org/emacs/ArtistMode
 
-def happy():
-    return (
+class AsciiArt():
+    """Art for end game messages."""
+
+    HAPPY = (
         "\n                                  ---------------"
         "\n                             ----/               \\----"
         "\n                          --/                         \\--"
@@ -22,8 +24,7 @@ def happy():
         "\n                                  ---------------"
     )
 
-def dead():
-    return (
+    DEAD = (
         "\n    -%+.--..                      ---------------                       ...."
         "\n .  m+m+m--..                ----/               \\----               .- ##--.   ."
         "\n  - .#*%*#...             --/                         \\--            .%###-++-..."
