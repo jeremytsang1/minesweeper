@@ -1,9 +1,13 @@
+from minesweeper.ui.tui.menu import Menu
+from minesweeper.ui.tui.action_menu import ActionMenu
+from minesweeper.ui.tui.io import IO
 from minesweeper.ui.tui.terminal_ui_move_message import MoveMessage
 from minesweeper.ui.tui.table_printer import TablePrinter
 from minesweeper.ui.tui.art import happy, dead
 from minesweeper.game.board import Board
 from minesweeper.game.game import Game
 from minesweeper.game.move import Move
+from minesweeper.game.difficulty import Difficulty
 
 
 class TUI():
@@ -231,8 +235,8 @@ class TUI():
 
     def get_position_from_user(self):
         """Assumes a game is currently running."""
-        row = self.read_int(f"{TUI.ROW_PROMPT}", 0, self.height)
-        col = self.read_int(f"{TUI.COL_PROMPT}", 0, self.width)
+        row = IO.read_int(f"{TUI.ROW_PROMPT}", 0, self.height)
+        col = IO.read_int(f"{TUI.COL_PROMPT}", 0, self.width)
         return row, col
 
     @staticmethod
