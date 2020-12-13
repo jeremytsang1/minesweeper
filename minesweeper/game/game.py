@@ -52,6 +52,9 @@ class Game:
 
     # -----------------------------------------------------------------------------
 
+    def get_actions(self):
+        return self.open_cell, self.toggle_flag, self.chord_cell
+
     def open_cell(self, row, col):
         print("\nOpening!")
         self.board.reset_affected_positions()

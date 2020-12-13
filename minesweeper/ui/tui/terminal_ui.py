@@ -36,7 +36,7 @@ class TUI():
         "1. Open cell",
         "2. Quit",
     )
-    TURN_MENU = (
+    TURN_MENU_DESCRIPTIONS = (
         "1. Open cell",
         "2. Toggle flag",
         "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
@@ -50,6 +50,7 @@ class TUI():
 
     def __init__(self):
         self.reset_attributes()
+        self.turn_menu = None
 
     def reset_attributes(self):
         self.game = None
@@ -148,28 +149,16 @@ class TUI():
     def open_first_cell(self):
         pos = self.get_position_from_user()
         self.game = Game(self.height, self.width, self.bomb_count, *pos)
+
+        self.turn_menu = ActionMenu(
+            self.TURN_MENU_DESCRIPTIONS,
+            (*(self.take_turn(action) for action in self.game.get_actions()),
+             self.quit_and_end_program),
+        )
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
     # -------------------------------------------------------------------------
     # Turn menu functions
-
-    def take_turn(self):
-        MENU_ACTIONS = {
-            1: self.game.open_cell,
-            2: self.game.toggle_flag,
-            3: self.game.chord_cell,
-            4: self.quit_and_end_program,
-        }
-        self.print_turn()
-        self.display_board_to_user()
-
-        menu_option = self.read_menu_option(self.TURN_MENU)
-
-        if MENU_ACTIONS[menu_option] == self.quit_and_end_program:
-            MENU_ACTIONS[menu_option]()  # Quit the program.
-        else:
-            move = self.perform_player_game_action(MENU_ACTIONS[menu_option])
-            self.process_move(move)
 
     def print_turn(self):
         turns_taken = 0 if self.game is None else self.game.get_turn()
@@ -197,9 +186,14 @@ class TUI():
     def print_real_board(self):
         print(TablePrinter.makeTable(self.game.get_grid()))
 
-    def perform_player_game_action(self, player_action):
-        pos = self.get_position_from_user()
-        return player_action(*pos)   # Returns a move
+    def take_turn(self, player_action):
+
+        def perform_player_action():
+            pos = self.get_position_from_user()
+            move = player_action(*pos)   # Returns a move
+            self.process_move(move)
+
+        return perform_player_action
 
     def process_move(self, move):
         assert type(move) == Move
@@ -208,7 +202,8 @@ class TUI():
         else:
             print("Illegal move!")
             print(MoveMessage.MOVE_MSG[move.get_reason_turn_is_invalid()])
-            self.take_turn()
+            self.display_board_to_user()
+            self.turn_menu.run_action_for_user_option()
 
     def process_valid_move(self):
         won, loss = self.game.check_end_game()
@@ -217,7 +212,8 @@ class TUI():
             self.print_real_board()
             self.run_main_menu()
         else:
-            self.take_turn()
+            self.display_board_to_user()
+            self.turn_menu.run_action_for_user_option()
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
