@@ -51,11 +51,13 @@ class Difficulty():
         return self.current_level
 
     def set_difficulty(self, level):
+        self.current_level = level
+
+        # TODO: find way to set rows, cols, bombs here
+
         if level == Difficulty.Level.CUSTOM:
-            self.level = level  # TODO: find way to set rows, cols, bombs here
             return False
         elif level in Difficulty.PRESETS:
-            self.current_level = level
             self.set_preset_level(level)
             return True
         else:
