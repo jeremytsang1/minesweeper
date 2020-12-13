@@ -140,7 +140,6 @@ class TUI():
         }
         assert self.game is None
 
-        self.print_turn()
         self.display_board_to_user()
 
         menu_option = self.read_menu_option(TUI.FIRST_TURN_MENU)
@@ -165,6 +164,7 @@ class TUI():
         print(f"\n(Legal) Turns taken: {turns_taken}")
 
     def display_board_to_user(self):
+        self.print_turn()
         if self.game is None:
             # Need the user to make a move before initializing a real board.
             self.print_dummy_board()
