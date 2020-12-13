@@ -72,10 +72,8 @@ class TUI():
         # dependent on said attribute's existence.
         self.main_menu = ActionMenu(
             self.MAIN_MENU_DESCRIPTIONS,
-            (
-                self.new_game_menu.run_action_for_user_option,
-                self.quit_and_end_program,
-            )
+            (self.new_game_menu.run_action_for_user_option,
+             self.quit_and_end_program),
         )
 
     # -------------------------------------------------------------------------
