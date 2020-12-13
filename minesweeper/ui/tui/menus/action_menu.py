@@ -1,4 +1,4 @@
-from minesweeper.ui.tui.menu import Menu
+from minesweeper.ui.tui.menus.menu import Menu
 
 
 class ActionMenu(Menu):
