@@ -32,7 +32,7 @@ class TUI():
         "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
     )
-    FIRST_TURN_MENU = (
+    FIRST_TURN_MENU_DESCRIPTIONS = (
         "1. Open cell",
         "2. Quit",
     )
@@ -50,6 +50,11 @@ class TUI():
 
     def __init__(self):
         self.reset_attributes()
+        self.first_turn_menu = ActionMenu(
+            self.FIRST_TURN_MENU_DESCRIPTIONS,
+            (self.open_first_cell,
+             self.quit_and_end_program),
+        )
         self.turn_menu = None
 
     def reset_attributes(self):
@@ -84,7 +89,8 @@ class TUI():
         menu_option = self.read_menu_option(self.NEW_GAME_MENU)
         MENU_ACTIONS[menu_option]()
 
-        self.take_first_turn()
+        self.display_board_to_user()
+        self.first_turn_menu.run_action_for_user_option()
 
     def start_easy(self):
         self.make_game_info(10, 10, 10)
@@ -133,18 +139,6 @@ class TUI():
     # -----------------------------------------------------------------------------
     # First turn menu functions
 
-    def take_first_turn(self):
-        MENU_ACTION = {
-            1: self.open_first_cell,
-            2: self.quit_and_end_program,
-        }
-        assert self.game is None
-
-        self.display_board_to_user()
-
-        menu_option = self.read_menu_option(TUI.FIRST_TURN_MENU)
-        MENU_ACTION[menu_option]()
-
     def open_first_cell(self):
         pos = self.get_position_from_user()
         self.game = Game(self.height, self.width, self.bomb_count, *pos)
@@ -154,6 +148,7 @@ class TUI():
             (*(self.take_turn(action) for action in self.game.get_actions()),
              self.quit_and_end_program),
         )
+        self.display_board_to_user()
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
     # -------------------------------------------------------------------------
