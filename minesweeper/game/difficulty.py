@@ -62,9 +62,9 @@ class Difficulty():
             raise ValueError("`level` is not a valid Difficulty.Level")
 
     def set_preset_level(self, level):
-        self.configure_game_params(*Difficulty.PRESETS[level])
+        self.set_specs(*Difficulty.PRESETS[level])
 
-    def configure_game_params(self, rows, cols, bomb_count):
+    def set_specs(self, rows, cols, bomb_count):
         self.rows = rows
         self.cols = cols
         self.bomb_count = bomb_count

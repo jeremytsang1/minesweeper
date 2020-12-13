@@ -91,7 +91,7 @@ class TUI():
             is_preset = self.difficulty.set_difficulty(level)
 
             if not is_preset:
-                self.difficulty.configure_game_params(*self.read_custom_game_data())
+                self.difficulty.set_specs(*self.read_custom_specs())
 
             self.display_start_game()
             self.display_board_to_user()
@@ -101,7 +101,7 @@ class TUI():
         return difficulty_callable
 
     @staticmethod
-    def read_custom_game_data():
+    def read_custom_specs():
         height = TUI.read_int(TUI.HEIGHT_PROMPT, 1, TUI.MAX_INT)
         min_cols = 1 if height != 1 else 2  # prevent 1x1 grid
         width = TUI.read_int(TUI.WIDTH_PROMPT, min_cols, TUI.MAX_INT)
