@@ -213,8 +213,8 @@ class TUI():
 
     def get_position_from_user(self):
         """Assumes a game is currently running."""
-        row = IO.read_int(f"{TUI.ROW_PROMPT}", 0, self.difficulty.get_rows())
-        col = IO.read_int(f"{TUI.COL_PROMPT}", 0, self.difficulty.get_cols())
+        row = IO.read_int(TUI.ROW_PROMPT, 0, self.difficulty.get_rows())
+        col = IO.read_int(TUI.COL_PROMPT, 0, self.difficulty.get_cols())
         return row, col
 
 
