@@ -50,6 +50,8 @@ class TUI():
 
     def __init__(self):
         self.difficulty = Difficulty()
+        # self.game should be None before a game starts and during the time
+        # after a game ends and before another one starts.
         self.game = None
 
         # --------------------
@@ -192,6 +194,7 @@ class TUI():
         if won or loss:  # Can't both win and lose.
             self.showEndGameResults(won, loss)
             self.print_real_board()
+            self.game = None  # Remove the old game for display_board_to_user()
             self.start()
         else:
             self.display_board_to_user()
