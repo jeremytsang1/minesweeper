@@ -82,14 +82,44 @@ class TUI():
     # Main menu functions
 
     def start(self):
+        """Start the TUI game by running its main menu.
+
+        Returns
+        -------
+        None
+
+        """
         self.main_menu.run_action_for_user_option()
 
     # -------------------------------------------------------------------------
     # New game menu functions
 
     def choose_level(self, level):
+        """Makes a callable dependent on the level. Callable is responsible for
+        setting difficulty to the given ``level`` and then starting the game.
 
+        Parameters
+        ----------
+        level: Difficulty.Level
+            Level to set the difficulty to.
+
+        Returns
+        -------
+        callable
+
+        """
         def difficulty_callable():
+            """Set the games difficulty to ``level``
+
+            Preconditions
+            -------------
+            - self.game is None before called.
+
+            Postconditions
+            --------------
+            - The difficulty specs will be set per the user's choice.
+
+            """
             is_preset = self.difficulty.set_difficulty(level)
 
             if not is_preset:
@@ -148,6 +178,17 @@ class TUI():
         print(f"\n(Legal) Turns taken: {turns_taken}")
 
     def display_board_to_user(self):
+        """Prints game statistics and either dummy or real board.
+
+        Prints dummy board if it's the first turn (i.e. self.game not
+        initialized since game is not initialized until after the user makes
+        their first move due to bomb generation to prevent instant death).
+
+        Returns
+        -------
+        None
+
+        """
         self.print_turn()
         if self.game is None:
             # Need the user to make a move before initializing a real board.
