@@ -16,7 +16,7 @@ class TUI():
     """
     MAX_INT = 1000000
     PROMPT_APPEARANCE = "\n{}\n> "
-    MAIN_MENU = (
+    MAIN_MENU_DESCRIPTIONS = (
         "1. New game",
         "2. Quit",
     )
@@ -59,19 +59,21 @@ class TUI():
             (self.open_first_cell,
              self.quit_and_end_program),
         )
+        self.main_menu = ActionMenu(
+            self.MAIN_MENU_DESCRIPTIONS,
+            (
+                self.new_game_menu.run_action_for_user_option,
+                self.quit_and_end_program,
+            )
+        )
         self.turn_menu = None
         self.game = None
 
     # -------------------------------------------------------------------------
     # Main menu functions
 
-    def run_main_menu(self):
-        MENU_ACTIONS = {
-            1: self.new_game_menu.run_action_for_user_option,
-            2: self.quit_and_end_program
-        }
-        menu_option = self.read_menu_option(self.MAIN_MENU)
-        MENU_ACTIONS[menu_option]()
+    def start(self):
+        self.main_menu.run_action_for_user_option()
 
     # -------------------------------------------------------------------------
     # New game menu functions
@@ -183,7 +185,7 @@ class TUI():
         if won or loss:  # Can't both win and lose.
             self.showEndGameResults(won, loss)
             self.print_real_board()
-            self.run_main_menu()
+            self.start()
         else:
             self.display_board_to_user()
             self.turn_menu.run_action_for_user_option()
@@ -253,4 +255,4 @@ class TUIError(Exception):
 
 if __name__ == '__main__':
     tui = TUI()
-    tui.run_main_menu()
+    tui.start()
