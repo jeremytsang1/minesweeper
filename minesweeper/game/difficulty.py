@@ -21,6 +21,7 @@ class Difficulty():
         self.rows = None
         self.cols = None
         self.bomb_count = None
+        self.current_level = None
 
         # Initialize at easy difficulty
         self.set_preset_level(Difficulty.Level.EASY)
@@ -43,10 +44,18 @@ class Difficulty():
     def get_bomb_count(self):
         return self.bomb_count
 
+    def get_diff_specs(self):
+        return self.rows, self.cols, self.bomb_count
+
+    def get_current_level(self):
+        return self.current_level
+
     def set_difficulty(self, level):
         if level == Difficulty.Level.CUSTOM:
+            self.level = level  # TODO: find way to set rows, cols, bombs here
             return False
         elif level in Difficulty.PRESETS:
+            self.current_level = level
             self.set_preset_level(level)
             return True
         else:
@@ -59,3 +68,12 @@ class Difficulty():
         self.rows = rows
         self.cols = cols
         self.bomb_count = bomb_count
+
+    @staticmethod
+    def get_levels():
+        return (
+            Difficulty.Level.EASY,
+            Difficulty.Level.MEDIUM,
+            Difficulty.Level.HARD,
+            Difficulty.Level.CUSTOM,
+        )

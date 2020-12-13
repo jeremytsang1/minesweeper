@@ -20,7 +20,7 @@ class TUI():
         "1. New game",
         "2. Quit",
     )
-    NEW_GAME_MENU = (
+    NEW_GAME_MENU_DESCRIPTIONS = (
         "1. Easy",
         "2. Medium",
         "3. Hard",
@@ -49,26 +49,25 @@ class TUI():
     GOODBYE = "\nGoodbye!"
 
     def __init__(self):
-        self.reset_attributes()
+        self.difficulty = Difficulty()
+        self.new_game_menu = ActionMenu(
+            self.NEW_GAME_MENU_DESCRIPTIONS,
+            [self.choose_level(level) for level in Difficulty.get_levels()],
+        )
         self.first_turn_menu = ActionMenu(
             self.FIRST_TURN_MENU_DESCRIPTIONS,
             (self.open_first_cell,
              self.quit_and_end_program),
         )
         self.turn_menu = None
-
-    def reset_attributes(self):
         self.game = None
-        self.height = None
-        self.width = None
-        self.bomb_count = None
 
     # -------------------------------------------------------------------------
     # Main menu functions
 
     def run_main_menu(self):
         MENU_ACTIONS = {
-            1: self.new_game,
+            1: self.new_game_menu.run_action_for_user_option,
             2: self.quit_and_end_program
         }
         menu_option = self.read_menu_option(self.MAIN_MENU)
@@ -77,36 +76,20 @@ class TUI():
     # -------------------------------------------------------------------------
     # New game menu functions
 
-    def new_game(self):
-        self.reset_attributes()
+    def choose_level(self, level):
 
-        MENU_ACTIONS = {
-            1: self.start_easy,
-            2: self.start_medium,
-            3: self.start_hard,
-            4: self.start_custom,
-        }
-        menu_option = self.read_menu_option(self.NEW_GAME_MENU)
-        MENU_ACTIONS[menu_option]()
+        def difficulty_callable():
+            is_preset = self.difficulty.set_difficulty(level)
 
-        self.display_board_to_user()
-        self.first_turn_menu.run_action_for_user_option()
+            if not is_preset:
+                self.difficulty.configure_game_params(*self.read_custom_game_data())
 
-    def start_easy(self):
-        self.make_game_info(10, 10, 10)
-        self.display_start_game("EASY")
+            self.display_start_game()
+            self.display_board_to_user()
 
-    def start_medium(self):
-        self.make_game_info(16, 16, 40)
-        self.display_start_game("MEDIUM")
+            self.first_turn_menu.run_action_for_user_option()
 
-    def start_hard(self):
-        self.make_game_info(16, 30, 99)
-        self.display_start_game("HARD")
-
-    def start_custom(self):
-        self.make_game_info(*self.read_custom_game_data())
-        self.display_start_game("CUSTOM")
+        return difficulty_callable
 
     @staticmethod
     def read_custom_game_data():
@@ -121,18 +104,13 @@ class TUI():
         )
         return height, width, bomb_count
 
-    def make_game_info(self, height, width, bomb_count):
-        self.height = height
-        self.width = width
-        self.bomb_count = bomb_count
-
-    def display_start_game(self, difficulty):
+    def display_start_game(self):
         print(
             "",
-            f"Starting {difficulty} game!",
-            f"height: {self.height}",
-            f" width: {self.width}",
-            f" bombs: {self.bomb_count}",
+            f"Starting {self.difficulty.get_current_level()} game!",
+            f"height: {self.difficulty.get_rows()}",
+            f" width: {self.difficulty.get_cols()}",
+            f" bombs: {self.difficulty.get_bomb_count()}",
             sep="\n",
         )
 
@@ -141,7 +119,7 @@ class TUI():
 
     def open_first_cell(self):
         pos = self.get_position_from_user()
-        self.game = Game(self.height, self.width, self.bomb_count, *pos)
+        self.game = Game(*self.difficulty.get_diff_specs(), *pos)
 
         self.turn_menu = ActionMenu(
             self.TURN_MENU_DESCRIPTIONS,
@@ -174,8 +152,8 @@ class TUI():
         lay the mines considering every cell except for the one the user
         clicks.
         """
-        dummy_board = Board([[False for _ in range(self.width)]
-                             for _ in range(self.height)])
+        dummy_board = Board([[False for _ in range(self.difficulty.get_cols())]
+                             for _ in range(self.difficulty.get_rows())])
         print(TablePrinter.makeTable(dummy_board.get_grid()))
 
     def print_real_board(self):
@@ -226,8 +204,8 @@ class TUI():
 
     def get_position_from_user(self):
         """Assumes a game is currently running."""
-        row = IO.read_int(f"{TUI.ROW_PROMPT}", 0, self.height)
-        col = IO.read_int(f"{TUI.COL_PROMPT}", 0, self.width)
+        row = IO.read_int(f"{TUI.ROW_PROMPT}", 0, self.difficulty.get_rows())
+        col = IO.read_int(f"{TUI.COL_PROMPT}", 0, self.difficulty.get_cols())
         return row, col
 
     @staticmethod
