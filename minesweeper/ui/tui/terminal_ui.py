@@ -17,14 +17,14 @@ class TUI():
     MAX_INT = 1000000
     PROMPT_APPEARANCE = "\n{}\n> "
     MAIN_MENU_DESCRIPTIONS = (
-        "1. New game",
-        "2. Quit",
+        "New game",
+        "Quit",
     )
     NEW_GAME_MENU_DESCRIPTIONS = (
-        "1. Easy",
-        "2. Medium",
-        "3. Hard",
-        "4. Custom",
+        "Easy",
+        "Medium",
+        "Hard",
+        "Custom",
     )
     HEIGHT_PROMPT = "How many rows?"
     WIDTH_PROMPT = "How many cols?"
@@ -33,14 +33,14 @@ class TUI():
         "[1 (inclusive) ... {} (exclusive)])"
     )
     FIRST_TURN_MENU_DESCRIPTIONS = (
-        "1. Open cell",
-        "2. Quit",
+        "Open cell",
+        "Quit",
     )
     TURN_MENU_DESCRIPTIONS = (
-        "1. Open cell",
-        "2. Toggle flag",
-        "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
-        "4. Quit",
+        "Open cell",
+        "Toggle flag",
+        "Chord cell (http://www.minesweeper.info/wiki/Chord)",
+        "Quit",
     )
     ROW_PROMPT = f"\nWhich row?{Menu.PROMPT_CHAR}"
     COL_PROMPT = f"\nWhich col?{Menu.PROMPT_CHAR}"
