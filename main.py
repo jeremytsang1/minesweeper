@@ -83,7 +83,7 @@ def play_mode_menu():
 def run_tui():
     print("\nStarting in TUI mode.")
     tui = TUI()
-    tui.start_game()
+    tui.start()
 
 
 def run_gui():
