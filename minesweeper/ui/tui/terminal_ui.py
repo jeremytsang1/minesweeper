@@ -155,7 +155,7 @@ class TUI():
             sep="\n",
         )
 
-    # -----------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     # First turn menu functions
 
     def open_first_cell(self):
@@ -171,11 +171,7 @@ class TUI():
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
     # -------------------------------------------------------------------------
-    # Turn menu functions
-
-    def print_turn(self):
-        turns_taken = 0 if self.game is None else self.game.get_turn()
-        print(f"\n(Legal) Turns taken: {turns_taken}")
+    # Board printing methods.
 
     def display_board_to_user(self):
         """Prints game statistics and either dummy or real board.
@@ -196,6 +192,10 @@ class TUI():
         else:
             self.print_real_board()
 
+    def print_turn(self):
+        turns_taken = 0 if self.game is None else self.game.get_turn()
+        print(f"\n(Legal) Turns taken: {turns_taken}")
+
     def print_dummy_board(self):
         """Print a board with all unopened cells.
 
@@ -210,6 +210,9 @@ class TUI():
 
     def print_real_board(self):
         print(TablePrinter.makeTable(self.game.get_grid()))
+
+    # --------------------------------------------------------------------------
+    # Turn menu methods
 
     def take_turn(self, player_action):
 
