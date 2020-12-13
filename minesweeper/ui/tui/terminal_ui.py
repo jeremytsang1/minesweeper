@@ -15,7 +15,6 @@ class TUI():
 
     """
     MAX_INT = 1000000
-    PROMPT_APPEARANCE = "\n{}\n> "
     MAIN_MENU_DESCRIPTIONS = (
         "New game",
         "Quit",
