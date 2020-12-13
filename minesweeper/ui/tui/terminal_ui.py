@@ -50,15 +50,26 @@ class TUI():
 
     def __init__(self):
         self.difficulty = Difficulty()
-        self.new_game_menu = ActionMenu(
-            self.NEW_GAME_MENU_DESCRIPTIONS,
-            [self.choose_level(level) for level in Difficulty.get_levels()],
-        )
+        self.game = None
+
+        # --------------------
+        # Menu attributes (listed in reverse order of when they are called)
+
+        self.turn_menu = None  # Not initialized till self.game is initialized.
+
         self.first_turn_menu = ActionMenu(
             self.FIRST_TURN_MENU_DESCRIPTIONS,
             (self.open_first_cell,
              self.quit_and_end_program),
         )
+
+        self.new_game_menu = ActionMenu(
+            self.NEW_GAME_MENU_DESCRIPTIONS,
+            [self.choose_level(level) for level in Difficulty.get_levels()],
+        )
+
+        # Must be initialized after self.new_game_menu since it's action is
+        # dependent on said attribute's existence.
         self.main_menu = ActionMenu(
             self.MAIN_MENU_DESCRIPTIONS,
             (
@@ -66,8 +77,6 @@ class TUI():
                 self.quit_and_end_program,
             )
         )
-        self.turn_menu = None
-        self.game = None
 
     # -------------------------------------------------------------------------
     # Main menu functions
