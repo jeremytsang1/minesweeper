@@ -31,14 +31,14 @@ class IO():
         while usr_input is None:
             try:
                 usr_input = int(input(msg))
-                usr_input = IO.validate_range(usr_input, min_val, max_val)
+                usr_input = IO._validate_range(usr_input, min_val, max_val)
             except ValueError:
                 print("\nPlease enter an integer!")
                 usr_input = None
         return usr_input
 
     @staticmethod
-    def validate_range(val, min_val, max_val):
+    def _validate_range(val, min_val, max_val):
         """Checks if a value is in a given range.
 
         In addition, prints a message if the value is not within range.
