@@ -13,14 +13,13 @@ def main():
 
 
 def play_mode_menu():
-    action_menu = ActionMenu(
-        ("Play in TUI (text mode) ",
-         "Play in GUI (graphical mode)",
-         "Quit"),
-        (run_tui,
-         run_gui,
-         quit_game),
-    )
+    action_menu = ActionMenu(("Play in TUI (text mode) ",
+                              "Play in GUI (graphical mode)",
+                              "Quit"),
+                             (run_tui,
+                              run_gui,
+                              quit_game))
+
     action_menu.run_action_for_user_option()
 
 
@@ -40,10 +39,11 @@ def run_gui():
 
     print("\nStarting in GUI mode.")
 
-    action_menu = ActionMenu(
-        ("sound on", "Sound off (required for repl.it)"),
-        (choose_settings(sound_on=True), choose_settings(sound_on=False)),
-    )
+    action_menu = ActionMenu(("sound on",
+                              "Sound off (required for repl.it)"),
+                             (choose_settings(sound_on=True),
+                              choose_settings(sound_on=False)))
+
     action_menu.run_action_for_user_option()
 
 
