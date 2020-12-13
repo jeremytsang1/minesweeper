@@ -42,8 +42,8 @@ class TUI():
         "3. Chord cell (http://www.minesweeper.info/wiki/Chord)",
         "4. Quit",
     )
-    ROW_PROMPT = "\nWhich row?"
-    COL_PROMPT = "\nWhich col?"
+    ROW_PROMPT = f"\nWhich row?{Menu.PROMPT_CHAR}"
+    COL_PROMPT = f"\nWhich col?{Menu.PROMPT_CHAR}"
     WON_MSG = f"\nYOU WIN!{happy()}"
     LOSS_MSG = f"\nYOU DIED!{dead()}"
     GOODBYE = "\nGoodbye!"
