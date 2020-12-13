@@ -102,11 +102,11 @@ class TUI():
 
     @staticmethod
     def read_custom_specs():
-        height = TUI.read_int(TUI.HEIGHT_PROMPT, 1, TUI.MAX_INT)
+        height = IO.read_int(TUI.HEIGHT_PROMPT, 1, TUI.MAX_INT)
         min_cols = 1 if height != 1 else 2  # prevent 1x1 grid
-        width = TUI.read_int(TUI.WIDTH_PROMPT, min_cols, TUI.MAX_INT)
+        width = IO.read_int(TUI.WIDTH_PROMPT, min_cols, TUI.MAX_INT)
         max_bomb_count = height * width
-        bomb_count = TUI.read_int(
+        bomb_count = IO.read_int(
             TUI.BOMB_PROMPT.format(max_bomb_count),
             min_val=1,
             max_val=max_bomb_count,
@@ -216,43 +216,6 @@ class TUI():
         row = IO.read_int(f"{TUI.ROW_PROMPT}", 0, self.difficulty.get_rows())
         col = IO.read_int(f"{TUI.COL_PROMPT}", 0, self.difficulty.get_cols())
         return row, col
-
-    @staticmethod
-    def read_menu_option(menu):
-        return TUI.read_int(TUI.make_menu_str(menu), 1, len(menu) + 1)
-
-    @staticmethod
-    def read_int(msg, min_val=0, max_val=MAX_INT):
-        usr_input = None
-        while usr_input is None:
-            try:
-                usr_input = int(input(TUI.PROMPT_APPEARANCE.format(msg)))
-                usr_input = TUI.validate_range(usr_input, min_val, max_val)
-            except ValueError:
-                print("\nPlease enter an integer!")
-                usr_input = None
-        return usr_input
-
-    @staticmethod
-    def validate_range(val, min_val, max_val):
-        if val in range(min_val, max_val):
-            return val
-        else:
-            print(
-                "\nPlease enter an int in the interval",
-                TUI.make_range_string(min_val, max_val)
-            )
-
-            return None
-
-    @staticmethod
-    def make_range_string(min_val, max_val):
-        return f"[{min_val} (inclusive) ... {max_val} (exclusive)]"
-
-    @staticmethod
-    def make_menu_str(menu):
-        """Use to concatenate menu iterables into single string."""
-        return "\n".join(menu)
 
 
 class TUIError(Exception):
