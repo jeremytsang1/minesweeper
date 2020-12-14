@@ -4,10 +4,10 @@ from minesweeper.ui.tui.io import IO
 from minesweeper.ui.tui.move_message import MoveMessage
 from minesweeper.ui.tui.grid_printing.table_printer import TablePrinter
 from minesweeper.ui.tui.ascii_art import AsciiArt
-from minesweeper.game.board import Board
 from minesweeper.game.game import Game
 from minesweeper.game.move import Move
 from minesweeper.game.difficulty import Difficulty
+from minesweeper.game.cell import Cell
 
 
 class TUI():
@@ -53,6 +53,23 @@ class TUI():
     LOSS_MSG = f"\nYOU DIED!{AsciiArt.DEAD}"
 
     GOODBYE = "\nGoodbye!"
+
+    APPEARANCES = {
+        Cell.Appearance.FLAG: 'F',
+        Cell.Appearance.EMPTY: ' ',
+        Cell.Appearance.UNOPENED: '?',
+        Cell.Appearance.FLAG_INCORRECT: '#',
+        Cell.Appearance.UNENCOUNTERED_BOMB: '*',
+        Cell.Appearance.OPENED_BOMB: '!',
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6',
+        7: '7',
+        8: '8',
+     }
 
     def __init__(self):
         self.difficulty = Difficulty()
@@ -192,30 +209,23 @@ class TUI():
 
         """
         self.print_turn()
-        if self.game is None:
-            # Need the user to make a move before initializing a real board.
-            self.print_dummy_board()
-        else:
-            self.print_real_board()
+        self.print_board()
 
     def print_turn(self):
         turns_taken = 0 if self.game is None else self.game.get_turn()
         print(f"\n(Legal) Turns taken: {turns_taken}")
 
-    def print_dummy_board(self):
-        """Print a board with all unopened cells.
+    def print_board(self):
+        if self.game is None:  # print dummy board
+            rows, cols, _ = self.difficulty.get_diff_specs()
+            unopened_char = self.APPEARANCES[Cell.Appearance.UNOPENED]
+            board_strings = [[unopened_char for _ in range(cols)]
+                             for _ in range(rows)]
+        else:  # print real board
+            board_strings = [[self.APPEARANCES[appearance] for appearance in row]
+                             for row in self.game.get_all_appearances()]
 
-        Use a non-live board since don't want to create a game till the user
-        clicks to avoid them immediately dying by clicking a mine (Game will
-        lay the mines considering every cell except for the one the user
-        clicks.
-        """
-        dummy_board = Board([[False for _ in range(self.difficulty.get_cols())]
-                             for _ in range(self.difficulty.get_rows())])
-        print(TablePrinter.makeTable(dummy_board.get_grid()))
-
-    def print_real_board(self):
-        print(TablePrinter.makeTable(self.game.get_grid()))
+        print(TablePrinter.makeTable(board_strings))
 
     # --------------------------------------------------------------------------
     # Turn menu methods
