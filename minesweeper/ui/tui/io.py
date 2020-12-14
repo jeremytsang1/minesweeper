@@ -1,11 +1,12 @@
 class IO():
+    PROMPT = "\n> "
     OUT_OF_RANGE_MESSAGE = (
         "\nPlease enter an int in the interval"
         "[{} (inclusive) ... {} (exclusive)]"
     )
 
     @staticmethod
-    def read_int(msg, min_val, max_val):
+    def read_int(msg, min_val, max_val, prompt=PROMPT):
         """Display a prompt message to the user and get input within a given
         range.
 
@@ -20,6 +21,8 @@ class IO():
             Smallest value (inclusive) to allow user to enter.
         max_val: int
             Largest value (exclusive)_ to allow user to enter.
+        prompt: str
+            Optional string to help locate the user's cursor.
 
         Returns
         -------
@@ -30,7 +33,7 @@ class IO():
         usr_input = None
         while usr_input is None:
             try:
-                usr_input = int(input(msg))
+                usr_input = int(input(f'{msg}{prompt}'))
                 usr_input = IO._validate_range(usr_input, min_val, max_val)
             except ValueError:
                 print("\nPlease enter an integer!")

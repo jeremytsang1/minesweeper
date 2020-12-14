@@ -28,8 +28,8 @@ class TUI():
         "Hard",
         "Custom",
     )
-    HEIGHT_PROMPT = f"How many rows?{Menu.PROMPT_CHAR}"
-    WIDTH_PROMPT = f"How many cols?{Menu.PROMPT_CHAR}"
+    HEIGHT_PROMPT = "How many rows?"
+    WIDTH_PROMPT = "How many cols?"
     BOMB_PROMPT = (
         "How many bombs? (must be in the range "
         f"[{MIN_BOMB_COUNT} (inclusive) ... {{}} (exclusive)])"
@@ -47,8 +47,8 @@ class TUI():
         "Quit",
     )
 
-    ROW_PROMPT = f"\nWhich row?{Menu.PROMPT_CHAR}"
-    COL_PROMPT = f"\nWhich col?{Menu.PROMPT_CHAR}"
+    ROW_PROMPT = "\nWhich row?"
+    COL_PROMPT = "\nWhich col?"
 
     WON_MSG = f"\nYOU WIN!{AsciiArt.HAPPY}"
     LOSS_MSG = f"\nYOU DIED!{AsciiArt.DEAD}"

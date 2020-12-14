@@ -6,8 +6,6 @@ class Menu():
     for options. Is able to grab the user's choice as an int.
 
     """
-    PROMPT_CHAR = "\n> "
-
     def __init__(self, option_descriptions):
         """Creates a text based menu.
 
@@ -57,7 +55,7 @@ class Menu():
             option_num = self._format_option_number(raw_num, offset)
             concatenated_menu_options += f'\n{option_num} {option_description}'
 
-        return f'{concatenated_menu_options}{self.PROMPT_CHAR} '
+        return f'{concatenated_menu_options}'
 
     @staticmethod
     def _format_option_number(option_num, offset):
