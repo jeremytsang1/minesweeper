@@ -224,6 +224,14 @@ class TUI():
         print(f"\n(Legal) Turns taken: {turns_taken}")
 
     def make_board_output(self):
+        """Create grid version of board with row and column numbers.
+
+        Returns
+        -------
+        str
+            Representation of the board of the current state of the game.
+
+        """
         # Use dummy board if it is before first turn because game not
         # initialized till after player's first turn (in order to lay bombs in
         # a way to prevent instant death).
