@@ -49,7 +49,7 @@ class Menu():
             user to enter their choice.
 
         """
-        concatenated_menu_options = "\n"
+        concatenated_menu_options = ""
 
         for raw_num, option_description in enumerate(self.option_descriptions):
             option_num = self._format_option_number(raw_num, offset)
