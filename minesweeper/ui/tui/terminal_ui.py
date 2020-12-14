@@ -176,6 +176,14 @@ class TUI():
 
     @staticmethod
     def read_custom_specs():
+        """Prompt the player to enter in number of rows, columns, and bombs.
+
+        Returns
+        -------
+        tuple of int
+            Tuple of size three containing number of rows, columns, and bombs.
+
+        """
         height = IO.read_int(TUI.HEIGHT_PROMPT, 1, TUI.MAX_INT)
         min_cols = 1 if height != 1 else 2  # prevent 1x1 grid
         width = IO.read_int(TUI.WIDTH_PROMPT, min_cols, TUI.MAX_INT)
