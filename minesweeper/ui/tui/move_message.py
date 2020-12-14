@@ -3,7 +3,7 @@ from minesweeper.game.move import Move
 
 class MoveMessage():
     """Messages to show user if they made an illegal move."""
-    MOVE_MSG = {
+    MOVE_MESSAGE = {
         Move.Invalid.CANT_OPEN_FLAGGED:
         "\nCan't open a FLAGGED cell! Unflag it first!",
         Move.Invalid.CANT_OPEN_NUMBER:
