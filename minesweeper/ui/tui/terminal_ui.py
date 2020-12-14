@@ -200,7 +200,6 @@ class TUI():
             (*(self.take_turn(action) for action in self.game.get_actions()),
              self.quit_and_end_program),
         )
-        self.display_board_to_user()
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
     # -------------------------------------------------------------------------
