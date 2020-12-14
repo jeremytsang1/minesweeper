@@ -14,6 +14,7 @@ class TUI():
     """Command Line Interface for Minesweeper
 
     """
+    MIN_BOMB_COUNT = 1  # Needs to be positive.
     MAX_INT = 1000000
 
     MAIN_MENU_DESCRIPTIONS = (
@@ -31,7 +32,7 @@ class TUI():
     WIDTH_PROMPT = f"How many cols?{Menu.PROMPT_CHAR}"
     BOMB_PROMPT = (
         "How many bombs? (must be in the range "
-        "[1 (inclusive) ... {} (exclusive)])"
+        f"[{MIN_BOMB_COUNT} (inclusive) ... {{}} (exclusive)])"
     )
 
     FIRST_TURN_MENU_DESCRIPTIONS = (
@@ -171,7 +172,7 @@ class TUI():
         max_bomb_count = height * width
         bomb_count = IO.read_int(
             TUI.BOMB_PROMPT.format(max_bomb_count),
-            min_val=1,
+            min_val=TUI.MIN_BOMB_COUNT,
             max_val=max_bomb_count,
         )
         return height, width, bomb_count
