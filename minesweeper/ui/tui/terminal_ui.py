@@ -168,8 +168,7 @@ class TUI():
 
             print(self.START_GAME_MESSAGE.format(
                 self.difficulty.get_current_level(),
-                *self.difficulty.get_diff_specs()
-            ))
+                *self.difficulty.get_diff_specs()))
             self._display_board_to_user()
             self.first_turn_menu.run_action_for_user_option()
 
