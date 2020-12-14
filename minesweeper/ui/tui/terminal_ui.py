@@ -284,7 +284,15 @@ class TUI():
     # Input functions
 
     def get_position_from_user(self):
-        """Assumes a game is currently running."""
+        """Assumes a game is currently running.
+
+        Gets position by first asking for row and then for column.
+
+        Returns
+        -------
+        tuple of int
+            Returns position that user entered.
+        """
         row = IO.read_int(TUI.ROW_PROMPT, 0, self.difficulty.get_rows())
         col = IO.read_int(TUI.COL_PROMPT, 0, self.difficulty.get_cols())
         return row, col
