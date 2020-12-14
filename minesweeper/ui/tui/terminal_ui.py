@@ -259,6 +259,17 @@ class TUI():
             self.turn_menu.run_action_for_user_option()
 
     def process_valid_move(self):
+        """Check end game conditions and decide whether to keep playing or stop.
+
+        If the user won/loss end the game begin end game process.
+
+        Otherwise prepare the game for the user's next turn.
+
+        Returns
+        -------
+        None
+
+        """
         won, loss = self.game.check_end_game()
         if won or loss:  # Can't both win and lose.
             self.show_end_game_results(won)
