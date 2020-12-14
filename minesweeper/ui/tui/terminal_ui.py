@@ -56,9 +56,9 @@ class TUI():
     ROW_PROMPT = "\nWhich row?"
     COL_PROMPT = "\nWhich col?"
 
-    ILLEGAL_MOVE_MSG = "\nIllegal move!"
-    WON_MSG = f"\nYOU WIN!{AsciiArt.HAPPY}"
-    LOSS_MSG = f"\nYOU DIED!{AsciiArt.DEAD}"
+    ILLEGAL_MOVE_MESSAGE = "\nIllegal move!"
+    WON_MESSAGE = f"\nYOU WIN!{AsciiArt.HAPPY}"
+    LOSS_MESSAGE = f"\nYOU DIED!{AsciiArt.DEAD}"
 
     GOODBYE = "\nGoodbye!"
 
@@ -271,8 +271,8 @@ class TUI():
         if move.is_valid():
             game_ended = self.is_game_over()
         else:
-            print(self.ILLEGAL_MOVE_MSG)
-            print(MoveMessage.MOVE_MSG[move.get_reason_turn_is_invalid()])
+            print(self.ILLEGAL_MOVE_MESSAGE)
+            print(MoveMessage.MOVE_MESSAGE[move.get_reason_turn_is_invalid()])
 
         self.display_board_to_user()
 
@@ -374,7 +374,7 @@ class TUI():
         None
 
         """
-        print(TUI.WON_MSG if won else TUI.LOSS_MSG)
+        print(TUI.WON_MESSAGE if won else TUI.LOSS_MESSAGE)
 
     @staticmethod
     def quit_and_end_program():
