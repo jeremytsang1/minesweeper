@@ -218,52 +218,6 @@ class TUI():
         )
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
-    # -------------------------------------------------------------------------
-    # Board printing methods.
-
-    def display_board_to_user(self):
-        """Prints game statistics and either dummy or real board.
-
-        Prints dummy board if it's the first turn (i.e. self.game not
-        initialized since game is not initialized until after the user makes
-        their first move due to bomb generation to prevent instant death).
-
-        Returns
-        -------
-        None
-
-        """
-        turn_taken = 0 if self.game is None else self.game.get_turn()
-
-        print(
-            self.TURN_MESSAGE.format(turn_taken),
-            self.make_board_output(),
-            sep="\n"
-        )
-
-    def make_board_output(self):
-        """Create grid version of board with row and column numbers.
-
-        Returns
-        -------
-        str
-            Representation of the board of the current state of the game.
-
-        """
-        # Use dummy board if it is before first turn because game not
-        # initialized till after player's first turn (in order to lay bombs in
-        # a way to prevent instant death).
-        if self.game is None:  # print dummy board
-            rows, cols, _ = self.difficulty.get_diff_specs()
-            unopened_char = self.APPEARANCES[Cell.Appearance.UNOPENED]
-            board_strings = [[unopened_char for _ in range(cols)]
-                             for _ in range(rows)]
-        else:  # print real board
-            board_strings = [[self.APPEARANCES[appearance] for appearance in row]
-                             for row in self.game.get_all_appearances()]
-
-        return TablePrinter.makeTable(board_strings)
-
     # --------------------------------------------------------------------------
     # Turn menu methods
 
@@ -339,6 +293,52 @@ class TUI():
         """
         won, loss = self.game.check_end_game()
         return won or loss
+
+    # -------------------------------------------------------------------------
+    # Board printing methods.
+
+    def display_board_to_user(self):
+        """Prints game statistics and either dummy or real board.
+
+        Prints dummy board if it's the first turn (i.e. self.game not
+        initialized since game is not initialized until after the user makes
+        their first move due to bomb generation to prevent instant death).
+
+        Returns
+        -------
+        None
+
+        """
+        turn_taken = 0 if self.game is None else self.game.get_turn()
+
+        print(
+            self.TURN_MESSAGE.format(turn_taken),
+            self.make_board_output(),
+            sep="\n"
+        )
+
+    def make_board_output(self):
+        """Create grid version of board with row and column numbers.
+
+        Returns
+        -------
+        str
+            Representation of the board of the current state of the game.
+
+        """
+        # Use dummy board if it is before first turn because game not
+        # initialized till after player's first turn (in order to lay bombs in
+        # a way to prevent instant death).
+        if self.game is None:  # print dummy board
+            rows, cols, _ = self.difficulty.get_diff_specs()
+            unopened_char = self.APPEARANCES[Cell.Appearance.UNOPENED]
+            board_strings = [[unopened_char for _ in range(cols)]
+                             for _ in range(rows)]
+        else:  # print real board
+            board_strings = [[self.APPEARANCES[appearance] for appearance in row]
+                             for row in self.game.get_all_appearances()]
+
+        return TablePrinter.makeTable(board_strings)
 
     # -------------------------------------------------------------------------
     # End game and quitting methods
