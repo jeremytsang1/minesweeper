@@ -249,6 +249,21 @@ class TUI():
         return perform_player_action
 
     def process_move(self, move):
+        """Check if a move is valid.
+
+        Depending on the validity of the move either accept it as valid and
+        continue normal game flow or warn the player why the move was invalid.
+
+        Parameters
+        ----------
+        move: Move
+            Move of the most recent turn.
+
+        Returns
+        -------
+        None
+
+        """
         assert type(move) == Move
         if move.is_valid():
             self.process_valid_move()
