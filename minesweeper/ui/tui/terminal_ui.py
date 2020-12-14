@@ -119,7 +119,7 @@ class TUI():
         )
 
     # -------------------------------------------------------------------------
-    # Main menu functions
+    # Main menu methods
 
     def start(self):
         """Start the TUI game by running its main menu.
@@ -132,7 +132,7 @@ class TUI():
         self.main_menu.run_action_for_user_option()
 
     # -------------------------------------------------------------------------
-    # New game menu functions
+    # New game menu methods
 
     def choose_level(self, level):
         """Makes a callable dependent on the level. Callable is responsible for
@@ -196,7 +196,7 @@ class TUI():
         return height, width, bomb_count
 
     # -------------------------------------------------------------------------
-    # First turn menu functions
+    # First turn menu methods
 
     def open_first_cell(self):
         """Allow user to make their first move and create new game based on it.
@@ -341,7 +341,7 @@ class TUI():
         return won or loss
 
     # -------------------------------------------------------------------------
-    # End game and quitting functions
+    # End game and quitting methods
 
     def handle_end_game(self):
         """Alert user they won/lost and allow them choice to start new game.
@@ -387,7 +387,7 @@ class TUI():
         print(f'{TUI.GOODBYE}')
 
     # -------------------------------------------------------------------------
-    # Input functions
+    # Input methods
 
     def get_position_from_user(self):
         """Assumes a game is currently running.
