@@ -98,7 +98,7 @@ class TUI():
 
         self.new_game_menu = ActionMenu(
             self.NEW_GAME_MENU_DESCRIPTIONS,
-            [self.choose_level(level) for level in Difficulty.get_levels()],
+            [self.choose_level(level) for level in Difficulty.Level],
         )
 
         # Must be initialized after self.new_game_menu since it's action is

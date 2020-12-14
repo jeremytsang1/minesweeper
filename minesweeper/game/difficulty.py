@@ -70,12 +70,3 @@ class Difficulty():
         self.rows = rows
         self.cols = cols
         self.bomb_count = bomb_count
-
-    @staticmethod
-    def get_levels():
-        return (
-            Difficulty.Level.EASY,
-            Difficulty.Level.MEDIUM,
-            Difficulty.Level.HARD,
-            Difficulty.Level.CUSTOM,
-        )
