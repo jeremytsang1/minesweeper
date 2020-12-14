@@ -54,6 +54,8 @@ class TUI():
 
     GOODBYE = "\nGoodbye!"
 
+    TURN_MESSAGE = "\n(Legal) Turns taken: {}"
+
     APPEARANCES = {
         Cell.Appearance.FLAG: 'F',
         Cell.Appearance.EMPTY: ' ',
@@ -216,12 +218,13 @@ class TUI():
         None
 
         """
-        self.print_turn()
-        print(self.make_board_output())
+        turn_taken = 0 if self.game is None else self.game.get_turn()
 
-    def print_turn(self):
-        turns_taken = 0 if self.game is None else self.game.get_turn()
-        print(f"\n(Legal) Turns taken: {turns_taken}")
+        print(
+            self.TURN_MESSAGE.format(turn_taken),
+            self.make_board_output(),
+            sep="\n"
+        )
 
     def make_board_output(self):
         """Create grid version of board with row and column numbers.
