@@ -1,4 +1,3 @@
-from minesweeper.ui.tui.menus.menu import Menu
 from minesweeper.ui.tui.menus.action_menu import ActionMenu
 from minesweeper.ui.tui.io import IO
 from minesweeper.ui.tui.move_message import MoveMessage
