@@ -328,6 +328,13 @@ class TUI():
     # End game and quitting functions
 
     def handle_end_game(self):
+        """Alert user they won/lost and allow them choice to start new game.
+
+        Returns
+        -------
+        None
+
+        """
         won, _ = self.game.check_end_game()
         self.show_end_game_results(won)
         self.game = None  # Remove the old game for display_board_to_user()
