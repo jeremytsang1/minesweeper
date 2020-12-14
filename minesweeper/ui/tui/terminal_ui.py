@@ -239,8 +239,26 @@ class TUI():
     # Turn menu methods
 
     def take_turn(self, player_action):
+        """Make callable to simulate player taking their turn.
+
+        Parameters
+        ----------
+        player_action: callable
+            Callable to allow the player to perform a specific action during
+            their turn.
+
+        Returns
+        -------
+        callable
+            Function that gets input and then decides if a move using that
+            input is valid.
+
+        """
 
         def perform_player_action():
+            """Get user input perform move and go to check if the move is valid.
+
+            """
             pos = self.get_position_from_user()
             move = player_action(*pos)   # Returns a move
             self.process_move(move)
