@@ -261,7 +261,7 @@ class TUI():
     def process_valid_move(self):
         won, loss = self.game.check_end_game()
         if won or loss:  # Can't both win and lose.
-            self.showEndGameResults(won, loss)
+            self.show_end_game_results(won)
             self.display_board_to_user()
             self.game = None  # Remove the old game for display_board_to_user()
             self.start()
@@ -272,7 +272,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # End game and quitting functions
 
-    def showEndGameResults(self, won, loss):
+    def show_end_game_results(self, won):
         print(TUI.WON_MSG if won else TUI.LOSS_MSG)
 
     @staticmethod
