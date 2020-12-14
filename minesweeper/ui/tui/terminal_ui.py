@@ -86,7 +86,9 @@ class TUI():
         # --------------------
         # Menu attributes (listed in reverse order of when they are called)
 
-        self.turn_menu = None  # Not initialized till self.game is initialized.
+        # Not initialized till self.game is initialized since it requires a
+        # game to perform its actions.
+        self.turn_menu = None
 
         self.first_turn_menu = ActionMenu(
             self.FIRST_TURN_MENU_DESCRIPTIONS,
