@@ -261,7 +261,7 @@ class TUI():
         won, loss = self.game.check_end_game()
         if won or loss:  # Can't both win and lose.
             self.showEndGameResults(won, loss)
-            self.print_real_board()
+            self.display_board_to_user()
             self.game = None  # Remove the old game for display_board_to_user()
             self.start()
         else:
