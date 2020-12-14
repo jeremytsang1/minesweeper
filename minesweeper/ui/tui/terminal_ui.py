@@ -271,8 +271,8 @@ class TUI():
         if move.is_valid():
             game_ended = self._is_game_over()
         else:
-            print(self.ILLEGAL_MOVE_MESSAGE)
-            print(MoveMessage.MOVE_MESSAGE[move.get_reason_turn_is_invalid()])
+            print(self.ILLEGAL_MOVE_MESSAGE,
+                  MoveMessage.MOVE_MESSAGE[move.get_reason_turn_is_invalid()])
 
         self._display_board_to_user()
 
