@@ -217,13 +217,16 @@ class TUI():
 
         """
         self.print_turn()
-        self.print_board()
+        print(self.make_board_output())
 
     def print_turn(self):
         turns_taken = 0 if self.game is None else self.game.get_turn()
         print(f"\n(Legal) Turns taken: {turns_taken}")
 
-    def print_board(self):
+    def make_board_output(self):
+        # Use dummy board if it is before first turn because game not
+        # initialized till after player's first turn (in order to lay bombs in
+        # a way to prevent instant death).
         if self.game is None:  # print dummy board
             rows, cols, _ = self.difficulty.get_diff_specs()
             unopened_char = self.APPEARANCES[Cell.Appearance.UNOPENED]
@@ -233,7 +236,7 @@ class TUI():
             board_strings = [[self.APPEARANCES[appearance] for appearance in row]
                              for row in self.game.get_all_appearances()]
 
-        print(TablePrinter.makeTable(board_strings))
+        return TablePrinter.makeTable(board_strings)
 
     # --------------------------------------------------------------------------
     # Turn menu methods
