@@ -277,8 +277,14 @@ class TUI():
 
     @staticmethod
     def quit_and_end_program():
+        """Display a parting message to the user.
+
+        Returns
+        -------
+        None
+
+        """
         print(f'{TUI.GOODBYE}')
-        return None
 
     # -------------------------------------------------------------------------
     # Input functions
