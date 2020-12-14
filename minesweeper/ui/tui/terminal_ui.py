@@ -295,38 +295,43 @@ class TUI():
 
         """
         assert type(move) == Move
+        game_ended = False
+
         if move.is_valid():
-            self.process_valid_move()
+            game_ended = self.is_game_over()
         else:
             print("Illegal move!")
             print(MoveMessage.MOVE_MSG[move.get_reason_turn_is_invalid()])
-            self.display_board_to_user()
+
+        self.display_board_to_user()
+
+        if game_ended:
+            self.handle_end_game()
+        else:
             self.turn_menu.run_action_for_user_option()
 
-    def process_valid_move(self):
-        """Check end game conditions and decide whether to keep playing or stop.
+    def is_game_over(self):
+        """Predicate.
 
-        If the user won/loss end the game begin end game process.
-
-        Otherwise prepare the game for the user's next turn.
+        Check end game conditions and decide whether to keep playing or stop.
 
         Returns
         -------
-        None
+        bool
+            Whether or not the game ended.
 
         """
         won, loss = self.game.check_end_game()
-        if won or loss:  # Can't both win and lose.
-            self.show_end_game_results(won)
-            self.display_board_to_user()
-            self.game = None  # Remove the old game for display_board_to_user()
-            self.start()
-        else:
-            self.display_board_to_user()
-            self.turn_menu.run_action_for_user_option()
+        return won or loss
 
     # -------------------------------------------------------------------------
     # End game and quitting functions
+
+    def handle_end_game(self):
+        won, _ = self.game.check_end_game()
+        self.show_end_game_results(won)
+        self.game = None  # Remove the old game for display_board_to_user()
+        self.start()
 
     def show_end_game_results(self, won):
         """Print message depending on if user won or lost.
