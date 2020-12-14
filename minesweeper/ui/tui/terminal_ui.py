@@ -192,9 +192,18 @@ class TUI():
     # First turn menu functions
 
     def open_first_cell(self):
+        """Allow user to make their first move and create new game based on it.
+
+        Returns
+        -------
+        None
+
+        """
         pos = self.get_position_from_user()
         self.game = Game(*self.difficulty.get_diff_specs(), *pos)
 
+        # Initialize a new turn_menu. Its actions are dependent on current
+        # game.
         self.turn_menu = ActionMenu(
             self.TURN_MENU_DESCRIPTIONS,
             (*(self.take_turn(action) for action in self.game.get_actions()),
