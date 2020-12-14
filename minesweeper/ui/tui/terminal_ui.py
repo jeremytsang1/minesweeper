@@ -34,6 +34,13 @@ class TUI():
         f"[{MIN_BOMB_COUNT} (inclusive) ... {{}} (exclusive)])"
     )
 
+    START_GAME_MESSAGE = (
+        "Starting {} game!"
+        "\nheight: {}"
+        "\n width: {}"
+        "\n bombs: {}"
+    )
+
     FIRST_TURN_MENU_DESCRIPTIONS = (
         "Open cell",
         "Quit",
@@ -158,9 +165,11 @@ class TUI():
             if not is_preset:
                 self.difficulty.set_specs(*self.read_custom_specs())
 
-            self.display_start_game()
+            print(self.START_GAME_MESSAGE.format(
+                self.difficulty.get_current_level(),
+                *self.difficulty.get_diff_specs()
+            ))
             self.display_board_to_user()
-
             self.first_turn_menu.run_action_for_user_option()
 
         return difficulty_callable
@@ -177,16 +186,6 @@ class TUI():
             max_val=max_bomb_count,
         )
         return height, width, bomb_count
-
-    def display_start_game(self):
-        print(
-            "",
-            f"Starting {self.difficulty.get_current_level()} game!",
-            f"height: {self.difficulty.get_rows()}",
-            f" width: {self.difficulty.get_cols()}",
-            f" bombs: {self.difficulty.get_bomb_count()}",
-            sep="\n",
-        )
 
     # -------------------------------------------------------------------------
     # First turn menu functions
