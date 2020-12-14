@@ -102,13 +102,13 @@ class TUI():
 
         self.first_turn_menu = ActionMenu(
             self.FIRST_TURN_MENU_DESCRIPTIONS,
-            (self.open_first_cell,
-             self.quit_and_end_program),
+            (self._open_first_cell,
+             self._quit_and_end_program),
         )
 
         self.new_game_menu = ActionMenu(
             self.NEW_GAME_MENU_DESCRIPTIONS,
-            [self.choose_level(level) for level in Difficulty.Level],
+            [self._choose_level(level) for level in Difficulty.Level],
         )
 
         # Must be initialized after self.new_game_menu since it's action is
@@ -116,7 +116,7 @@ class TUI():
         self.main_menu = ActionMenu(
             self.MAIN_MENU_DESCRIPTIONS,
             (self.new_game_menu.run_action_for_user_option,
-             self.quit_and_end_program),
+             self._quit_and_end_program),
         )
 
     # -------------------------------------------------------------------------
@@ -135,7 +135,7 @@ class TUI():
     # ----------------------------------------
     # New game menu methods
 
-    def choose_level(self, level):
+    def _choose_level(self, level):
         """Makes a callable dependent on the level. Callable is responsible for
         setting difficulty to the given ``level`` and then starting the game.
 
@@ -164,19 +164,19 @@ class TUI():
             is_preset = self.difficulty.set_difficulty(level)
 
             if not is_preset:
-                self.difficulty.set_specs(*self.read_custom_specs())
+                self.difficulty.set_specs(*self._read_custom_specs())
 
             print(self.START_GAME_MESSAGE.format(
                 self.difficulty.get_current_level(),
                 *self.difficulty.get_diff_specs()
             ))
-            self.display_board_to_user()
+            self._display_board_to_user()
             self.first_turn_menu.run_action_for_user_option()
 
         return difficulty_callable
 
     @staticmethod
-    def read_custom_specs():
+    def _read_custom_specs():
         """Prompt the player to enter in number of rows, columns, and bombs.
 
         Returns
@@ -199,7 +199,7 @@ class TUI():
     # ----------------------------------------
     # First turn menu methods
 
-    def open_first_cell(self):
+    def _open_first_cell(self):
         """Allow user to make their first move and create new game based on it.
 
         Returns
@@ -207,22 +207,22 @@ class TUI():
         None
 
         """
-        pos = self.get_position_from_user()
+        pos = self._get_position_from_user()
         self.game = Game(*self.difficulty.get_diff_specs(), *pos)
 
         # Initialize a new turn_menu. Its actions are dependent on current
         # game.
         self.turn_menu = ActionMenu(
             self.TURN_MENU_DESCRIPTIONS,
-            (*(self.take_turn(action) for action in self.game.get_actions()),
-             self.quit_and_end_program),
+            (*(self._take_turn(action) for action in self.game.get_actions()),
+             self._quit_and_end_program),
         )
-        self.process_move(self.game.open_cell(*pos))  # enact first turn
+        self._process_move(self.game.open_cell(*pos))  # enact first turn
 
     # ----------------------------------------
     # Turn menu methods
 
-    def take_turn(self, player_action):
+    def _take_turn(self, player_action):
         """Make callable to simulate player taking their turn.
 
         Parameters
@@ -243,13 +243,13 @@ class TUI():
             """Get user input perform move and go to check if the move is valid.
 
             """
-            pos = self.get_position_from_user()
+            pos = self._get_position_from_user()
             move = player_action(*pos)   # Returns a move
-            self.process_move(move)
+            self._process_move(move)
 
         return perform_player_action
 
-    def process_move(self, move):
+    def _process_move(self, move):
         """Check if a move is valid.
 
         Depending on the validity of the move either accept it as valid and
@@ -269,19 +269,19 @@ class TUI():
         game_ended = False
 
         if move.is_valid():
-            game_ended = self.is_game_over()
+            game_ended = self._is_game_over()
         else:
             print(self.ILLEGAL_MOVE_MESSAGE)
             print(MoveMessage.MOVE_MESSAGE[move.get_reason_turn_is_invalid()])
 
-        self.display_board_to_user()
+        self._display_board_to_user()
 
         if game_ended:
-            self.handle_end_game()
+            self._handle_end_game()
         else:
             self.turn_menu.run_action_for_user_option()
 
-    def is_game_over(self):
+    def _is_game_over(self):
         """Predicate.
 
         Check end game conditions and decide whether to keep playing or stop.
@@ -298,7 +298,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # Board printing methods.
 
-    def display_board_to_user(self):
+    def _display_board_to_user(self):
         """Prints game statistics and either dummy or real board.
 
         Prints dummy board if it's the first turn (i.e. self.game not
@@ -314,11 +314,11 @@ class TUI():
 
         print(
             self.TURN_MESSAGE.format(turn_taken),
-            self.make_board_output(),
+            self._make_board_output(),
             sep="\n"
         )
 
-    def make_board_output(self):
+    def _make_board_output(self):
         """Create grid version of board with row and column numbers.
 
         Returns
@@ -344,7 +344,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # End game and quitting methods
 
-    def handle_end_game(self):
+    def _handle_end_game(self):
         """Alert user they won/lost and allow them choice to start new game.
 
         Returns
@@ -353,11 +353,11 @@ class TUI():
 
         """
         won, _ = self.game.check_end_game()
-        self.show_end_game_results(won)
+        self._show_end_game_results(won)
         self.game = None  # Remove the old game for display_board_to_user()
         self.start()
 
-    def show_end_game_results(self, won):
+    def _show_end_game_results(self, won):
         """Print message depending on if user won or lost.
 
         Preconditions
@@ -377,7 +377,7 @@ class TUI():
         print(TUI.WON_MESSAGE if won else TUI.LOSS_MESSAGE)
 
     @staticmethod
-    def quit_and_end_program():
+    def _quit_and_end_program():
         """Display a parting message to the user.
 
         Returns
@@ -390,7 +390,7 @@ class TUI():
     # -------------------------------------------------------------------------
     # Input methods
 
-    def get_position_from_user(self):
+    def _get_position_from_user(self):
         """Assumes a game is currently running.
 
         Gets position by first asking for row and then for column.
