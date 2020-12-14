@@ -27,8 +27,8 @@ class TUI():
         "Hard",
         "Custom",
     )
-    HEIGHT_PROMPT = "How many rows?"
-    WIDTH_PROMPT = "How many cols?"
+    HEIGHT_PROMPT = f"How many rows?{Menu.PROMPT_CHAR}"
+    WIDTH_PROMPT = f"How many cols?{Menu.PROMPT_CHAR}"
     BOMB_PROMPT = (
         "How many bombs? (must be in the range "
         "[1 (inclusive) ... {} (exclusive)])"
