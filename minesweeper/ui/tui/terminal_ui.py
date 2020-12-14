@@ -72,6 +72,12 @@ class TUI():
      }
 
     def __init__(self):
+        """Creates difficulty and menus.
+
+        Does not create a game (that does not happen until the user makes their
+        first move, to prevent instant death.
+
+        """
         self.difficulty = Difficulty()
         # self.game should be None before a game starts and during the time
         # after a game ends and before another one starts.
