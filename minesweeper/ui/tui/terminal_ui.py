@@ -273,6 +273,22 @@ class TUI():
     # End game and quitting functions
 
     def show_end_game_results(self, won):
+        """Print message depending on if user won or lost.
+
+        Preconditions
+        -------------
+        User must have either won or lost the game.
+
+        Parameters
+        ----------
+        won: bool
+            Whether or not the user won the game.
+
+        Returns
+        -------
+        None
+
+        """
         print(TUI.WON_MSG if won else TUI.LOSS_MSG)
 
     @staticmethod
