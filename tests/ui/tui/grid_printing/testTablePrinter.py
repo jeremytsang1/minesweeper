@@ -1,6 +1,6 @@
 import unittest
-from minesweeper.ui.tui.table_printer import TablePrinter
-from minesweeper.ui.tui.table_printer import CommandLineGrid
+from minesweeper.ui.tui.grid_printing.table_printer import TablePrinter
+from minesweeper.ui.tui.grid_printing.table_printer import CommandLineGrid
 
 class TestTablePrinter(unittest.TestCase):
 

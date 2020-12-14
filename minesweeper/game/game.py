@@ -131,9 +131,6 @@ class Game:
     def get_turn(self):
         return self.turn
 
-    def get_grid(self):
-        return self.board.get_grid()
-
     def get_flags_left_to_place(self):
         return self.flags_left_to_place
 

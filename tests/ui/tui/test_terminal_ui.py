@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from minesweeper.ui.tui.terminal_ui import TUI
-from minesweeper.ui.tui.command_line_grid import CommandLineGrid
+from minesweeper.ui.tui.grid_printing.command_line_grid import CommandLineGrid
 from minesweeper.game.board import Board
 
 MODULE_NAME = 'tests.ui.tui.test_terminal_ui'
