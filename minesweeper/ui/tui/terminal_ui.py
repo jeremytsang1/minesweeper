@@ -131,7 +131,7 @@ class TUI():
         """
         self.main_menu.run_action_for_user_option()
 
-    # -------------------------------------------------------------------------
+    # ----------------------------------------
     # New game menu methods
 
     def choose_level(self, level):
@@ -195,7 +195,7 @@ class TUI():
         )
         return height, width, bomb_count
 
-    # -------------------------------------------------------------------------
+    # ----------------------------------------
     # First turn menu methods
 
     def open_first_cell(self):
@@ -218,7 +218,7 @@ class TUI():
         )
         self.process_move(self.game.open_cell(*pos))  # enact first turn
 
-    # --------------------------------------------------------------------------
+    # ----------------------------------------
     # Turn menu methods
 
     def take_turn(self, player_action):
