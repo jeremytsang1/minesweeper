@@ -78,7 +78,7 @@ pip install -r requirements.txt
   #+end_src
 - Run the main script
   #+begin_src 
-python3 main.py
+./main.py
   #+end_src
 - Follow instructions on terminal to choose TUI or GUI mode.
 ** Option 2: ~repl.it~

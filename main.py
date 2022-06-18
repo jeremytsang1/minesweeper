@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Filename    : main.py
 # Author      : Jeremy Tsang
 # Date        : 2020-11-22
