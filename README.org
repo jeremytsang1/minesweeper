@@ -77,22 +77,28 @@ This particular generates random boards of the following preset difficulties (EA
 pip install -r requirements.txt
   #+end_src
 - Run the main script
-  #+begin_src 
+  #+begin_src
 ./main.py
   #+end_src
 - Follow instructions on terminal to choose TUI or GUI mode.
 ** Option 2: ~repl.it~
 1) Navigate to the following link: [[https://repl.it/@jatsang52/minesweeper#main.py]]
-   [[file:screenshots/repl-it-step-1.png]]   
+   #+ATTR_ORG: :width 600
+   [[file:screenshots/repl-it-step-1.png]]
 2) In the repl.it terminal, install dependencies with ~pip install -r requirements.txt~
-   [[file:screenshots/repl-it-step-2.png]]   
+   #+ATTR_ORG: :width 600
+   [[file:screenshots/repl-it-step-2.png]]
 3) After the installation completes press the ~Run~ button.
+   #+ATTR_ORG: :width 600
    [[file:screenshots/repl-it-step-3.png]]
 4) In the repl.it terminal choose TUI or GUI mode.
+   #+ATTR_ORG: :width 600
    [[file:screenshots/repl-it-step-4.png]]
 5) In the repl.it terminal if you choose GUI mode make sure to choose option ~1~ to disable sound (repl.it doesn't play nicely with pygame apps with sound)
+   #+ATTR_ORG: :width 600
    [[file:screenshots/repl-it-step-5a.png]]
-   [[file:screenshots/repl-it-step-5b.png]]   
+   #+ATTR_ORG: :width 600
+   [[file:screenshots/repl-it-step-5b.png]]
 * Modes
 ** Graphical User Interface (GUI)
 *** Controls
@@ -114,6 +120,7 @@ pip install -r requirements.txt
   | ~q~ | Quit to main menu |
   |-----+-------------------|
 *** Screenshots
+#+ATTR_ORG: :width 600
 [[file:screenshots/screenshot_gui_hard.png]]
 *** Video
 [[https://www.youtube.com/watch?v=P8IPWk0izN4][Youtube: Minesweeper GUI Demo]]
@@ -122,9 +129,11 @@ pip install -r requirements.txt
 - Follow menu directions on screen.
 *** Screenshots
 - Starting an *EASY* difficulty game.
+  #+ATTR_ORG: :width 600
   [[file:screenshots/screenshot_tui_easy.png]]
 
 - Starting an *CUSTOM* difficulty game.
+  #+ATTR_ORG: :width 600
   [[file:screenshots/screenshot_tui_custom.png]]
 *** Video
 [[https://youtu.be/h8XMqZ9Ff1M][Youtube: Minesweeper TUI Demo]]
